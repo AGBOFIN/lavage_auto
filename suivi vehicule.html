@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Suivi véhicule - BIDE AKIMMAKO</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <style>
+        /* =====================================
+           VARIABLES
+        ===================================== */
+
+        :root {
+
+            --bleu: #0d6efd;
+            --bleu-fonce: #082b63;
+            --bleu-clair: #eaf3ff;
+
+            --vert: #198754;
+            --orange: #fd7e14;
+            --rouge: #dc3545;
+
+            --gris: #f5f7fa;
+            --gris-fonce: #6c757d;
+
+            --blanc: #ffffff;
+
+            --bordure: #e4e8ee;
+
+            --texte: #202b3c;
+
+        }
+
+
+        /* =====================================
+           GENERAL
+        ===================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family: "Nunito", sans-serif;
+
+            background-color: var(--gris);
+
+            color: var(--texte);
+
+        }
+
+
+        /* =====================================
+           STRUCTURE
+        ===================================== */
+
+        .dashboard {
+
+            display: flex;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* =====================================
+           SIDEBAR
+        ===================================== */
+
+        .sidebar {
+
+            width: 260px;
+
+            min-height: 100vh;
+
+            position: fixed;
+
+            left: 0;
+
+            top: 0;
+
+            bottom: 0;
+
+            background-color: var(--bleu-fonce);
+
+            color: white;
+
+            padding: 25px 15px;
+
+            z-index: 1000;
+
+        }
+
+
+        /* LOGO */
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 21px;
+
+            font-weight: 800;
+
+            margin-bottom: 35px;
+
+            padding-left: 10px;
+
+        }
+
+
+        .logo i {
+
+            color: #4da3ff;
+
+            font-size: 27px;
+
+        }
+
+
+        /* TITRES MENU */
+
+        .menu-title {
+
+            font-size: 12px;
+
+            color: #aebdd4;
+
+            text-transform: uppercase;
+
+            margin: 20px 10px 10px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* LIENS */
+
+        .menu a {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            color: #dce7f7;
+
+            text-decoration: none;
+
+            padding: 13px 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 5px;
+
+            transition: 0.3s;
+
+        }
+
+
+        .menu a:hover,
+        .menu a.active {
+
+            background-color: var(--bleu);
+
+            color: white;
+
+        }
+
+
+        .menu a i {
+
+            font-size: 18px;
+
+        }
+
+
+        /* =====================================
+           CONTENU PRINCIPAL
+        ===================================== */
+
+        .main-content {
+
+            margin-left: 260px;
+
+            width: calc(100% - 260px);
+
+        }
+
+
+        /* =====================================
+           TOPBAR
+        ===================================== */
+
+        .topbar {
+
+            height: 75px;
+
+            background-color: white;
+
+            border-bottom: 1px solid var(--bordure);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+        }
+
+
+        .topbar h5 {
+
+            margin: 0;
+
+            font-weight: 800;
+
+        }
+
+
+        .topbar-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+        }
+
+
+        /* NOTIFICATION */
+
+        .notification {
+
+            position: relative;
+
+            font-size: 22px;
+
+            cursor: pointer;
+
+        }
+
+
+        .notification span {
+
+            position: absolute;
+
+            top: -5px;
+
+            right: -7px;
+
+            width: 17px;
+
+            height: 17px;
+
+            border-radius: 50%;
+
+            background-color: var(--rouge);
+
+            color: white;
+
+            font-size: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        /* PROFIL */
+
+        .profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .avatar {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background-color: var(--bleu);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================
+           PAGE
+        ===================================== */
+
+        .page {
+
+            padding: 30px;
+
+        }
+
+
+        .page-title {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .page-title h2 {
+
+            font-weight: 800;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .page-title p {
+
+            color: var(--gris-fonce);
+
+            margin: 0;
+
+        }
+
+
+        /* =====================================
+           CARTES
+        ===================================== */
+
+        .dashboard-card {
+
+            background-color: var(--blanc);
+
+            border: 1px solid var(--bordure);
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            height: 100%;
+
+        }
+
+
+        .card-title {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .card-title h5 {
+
+            margin: 0;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================
+           INFORMATIONS VEHICULE
+        ===================================== */
+
+        .vehicle-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 20px;
+
+            background-color: var(--bleu-clair);
+
+            border-radius: 12px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .vehicle-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 12px;
+
+            background-color: var(--bleu);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 35px;
+
+        }
+
+
+        .vehicle-header h4 {
+
+            margin: 0 0 5px;
+
+            font-weight: 800;
+
+        }
+
+
+        .vehicle-header p {
+
+            margin: 2px 0;
+
+            color: var(--gris-fonce);
+
+        }
+
+
+        /* =====================================
+           BADGE STATUT
+        ===================================== */
+
+        .status {
+
+            display: inline-block;
+
+            padding: 6px 13px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+
+        .status.progress {
+
+            background-color: #cfe2ff;
+
+            color: #084298;
+
+        }
+
+
+        .status.done {
+
+            background-color: #d1e7dd;
+
+            color: #146c43;
+
+        }
+
+
+        /* =====================================
+           PROGRESSION
+        ===================================== */
+
+        .progress-container {
+
+            margin-top: 40px;
+
+            position: relative;
+
+        }
+
+
+        .progress-line {
+
+            position: absolute;
+
+            top: 23px;
+
+            left: 10%;
+
+            right: 10%;
+
+            height: 6px;
+
+            background-color: #dee2e6;
+
+            border-radius: 10px;
+
+            z-index: 0;
+
+        }
+
+
+        .progress-line-active {
+
+            position: absolute;
+
+            top: 23px;
+
+            left: 10%;
+
+            width: 25%;
+
+            height: 6px;
+
+            background-color: var(--bleu);
+
+            border-radius: 10px;
+
+            z-index: 1;
+
+            transition: width 1s ease;
+
+        }
+
+
+        .steps {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .step {
+
+            text-align: center;
+
+            width: 18%;
+
+        }
+
+
+        .step-circle {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 50%;
+
+            background-color: #dee2e6;
+
+            color: #6c757d;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: auto;
+
+            font-size: 20px;
+
+            border: 4px solid white;
+
+        }
+
+
+        .step.active .step-circle {
+
+            background-color: var(--bleu);
+
+            color: white;
+
+        }
+
+
+        .step.done .step-circle {
+
+            background-color: var(--vert);
+
+            color: white;
+
+        }
+
+
+        .step h6 {
+
+            margin-top: 12px;
+
+            margin-bottom: 4px;
+
+            font-weight: 800;
+
+            font-size: 14px;
+
+        }
+
+
+        .step small {
+
+            color: var(--gris-fonce);
+
+            font-size: 11px;
+
+        }
+
+
+        /* =====================================
+           INFORMATIONS
+        ===================================== */
+
+        .info-list {
+
+            list-style: none;
+
+            padding: 0;
+
+            margin: 0;
+
+        }
+
+
+        .info-list li {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 14px 0;
+
+            border-bottom: 1px solid var(--bordure);
+
+        }
+
+
+        .info-list li:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .info-label {
+
+            color: var(--gris-fonce);
+
+        }
+
+
+        .info-value {
+
+            font-weight: 700;
+
+            text-align: right;
+
+        }
+
+
+        /* =====================================
+           NOTIFICATION
+        ===================================== */
+
+        .notification-box {
+
+            display: flex;
+
+            gap: 15px;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            background-color: #eaf3ff;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .notification-box i {
+
+            color: var(--bleu);
+
+            font-size: 23px;
+
+        }
+
+
+        .notification-box p {
+
+            margin: 0;
+
+            font-size: 14px;
+
+        }
+
+
+        .notification-box small {
+
+            color: var(--gris-fonce);
+
+        }
+
+
+        /* =====================================
+           HISTORIQUE
+        ===================================== */
+
+        .history-item {
+
+            display: flex;
+
+            gap: 15px;
+
+            padding-bottom: 20px;
+
+            position: relative;
+
+        }
+
+
+        .history-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background-color: var(--bleu-clair);
+
+            color: var(--bleu);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .history-item h6 {
+
+            margin: 0;
+
+            font-weight: 800;
+
+        }
+
+
+        .history-item p {
+
+            margin: 3px 0;
+
+            color: var(--gris-fonce);
+
+            font-size: 13px;
+
+        }
+
+
+        /* =====================================
+           BOUTON
+        ===================================== */
+
+        .btn-bide {
+
+            background-color: var(--bleu);
+
+            color: white;
+
+            border: none;
+
+            padding: 10px 18px;
+
+            border-radius: 7px;
+
+            font-weight: 700;
+
+        }
+
+
+        .btn-bide:hover {
+
+            background-color: #0b5ed7;
+
+            color: white;
+
+        }
+
+
+        /* =====================================
+           RESPONSIVE
+        ===================================== */
+
+        @media (max-width: 768px) {
+
+            .dashboard {
+
+                display: block;
+
+            }
+
+
+            .sidebar {
+
+                position: relative;
+
+                width: 100%;
+
+                min-height: auto;
+
+            }
+
+
+            .main-content {
+
+                margin-left: 0;
+
+                width: 100%;
+
+            }
+
+
+            .topbar {
+
+                padding: 0 15px;
+
+            }
+
+
+            .page {
+
+                padding: 20px 15px;
+
+            }
+
+
+            .steps {
+
+                overflow-x: auto;
+
+                gap: 15px;
+
+            }
+
+
+            .step {
+
+                min-width: 90px;
+
+            }
+
+
+            .progress-line,
+            .progress-line-active {
+
+                display: none;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="dashboard">
+
+
+        <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
+        <aside class="sidebar">
+
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                <i class="bi bi-car-front-fill"></i>
+
+                BIDE AKIMMAKO
+
+            </div>
+
+
+            <!-- MENU -->
+
+            <div class="menu-title">
+                Menu principal
+            </div>
+
+
+            <nav class="menu">
+
+
+                <a href="dashboard-client.html">
+
+                    <i class="bi bi-grid-1x2-fill"></i>
+
+                    Tableau de bord
+
+                </a>
+
+
+                <a href="mes-factures.html">
+
+                    <i class="bi bi-receipt"></i>
+
+                    Mes factures
+
+                </a>
+
+
+                <a href="suivi-vehicule.html" class="active">
+
+                    <i class="bi bi-car-front"></i>
+
+                    Suivi véhicule
+
+                </a>
+
+
+                <a href="#">
+
+                    <i class="bi bi-bell"></i>
+
+                    Notifications
+
+                </a>
+
+
+                <a href="#">
+
+                    <i class="bi bi-star"></i>
+
+                    Donner mon avis
+
+                </a>
+
+
+            </nav>
+
+
+            <!-- COMPTE -->
+
+            <div class="menu-title">
+                Mon compte
+            </div>
+
+
+            <nav class="menu">
+
+
+                <a href="#">
+
+                    <i class="bi bi-person"></i>
+
+                    Mon profil
+
+                </a>
+
+
+                <a href="#">
+
+                    <i class="bi bi-gear"></i>
+
+                    Paramètres
+
+                </a>
+
+
+                <a href="index.html">
+
+                    <i class="bi bi-box-arrow-left"></i>
+
+                    Déconnexion
+
+                </a>
+
+
+            </nav>
+
+
+        </aside>
+
+
+
+        <!-- ==========================================
+         CONTENU
+    =========================================== -->
+
+        <main class="main-content">
+
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+
+                <h5>
+                    Suivi de mon véhicule
+                </h5>
+
+
+                <div class="topbar-right">
+
+
+                    <div class="notification">
+
+                        <i class="bi bi-bell"></i>
+
+                        <span>
+                            2
+                        </span>
+
+                    </div>
+
+
+                    <div class="profile">
+
+
+                        <div class="avatar">
+                            KA
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Kossi A.
+                            </strong>
+
+                            <small class="d-block text-muted">
+                                Client
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </header>
+
+
+
+            <!-- ==========================================
+             PAGE
+        =========================================== -->
+
+            <div class="page">
+
+
+                <!-- TITRE -->
+
+                <div class="page-title">
+
+                    <h2>
+                        Suivi de votre véhicule
+                    </h2>
+
+                    <p>
+                        Suivez l'avancement du lavage de votre véhicule
+                        en temps réel.
+                    </p>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                 INFORMATIONS VEHICULE
+            =========================================== -->
+
+                <div class="dashboard-card mb-4">
+
+
+                    <div class="card-title">
+
+
+                        <h5>
+                            Véhicule actuellement pris en charge
+                        </h5>
+
+
+                        <span class="status progress">
+
+                            Lavage en cours
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="vehicle-header">
+
+
+                        <div class="vehicle-icon">
+
+                            <i class="bi bi-car-front-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h4>
+                                Toyota Corolla
+                            </h4>
+
+                            <p>
+                                <strong>
+                                    Immatriculation :
+                                </strong>
+
+                                TG-2026-009
+                            </p>
+
+                            <p>
+                                <strong>
+                                    Client :
+                                </strong>
+
+                                Kossi A.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- ==========================================
+                     PROGRESSION
+                =========================================== -->
+
+                    <h5 class="mb-3">
+
+                        Progression du lavage
+
+                    </h5>
+
+
+                    <div class="progress-container">
+
+
+                        <!-- LIGNE -->
+
+                        <div class="progress-line"></div>
+
+
+                        <!-- PROGRESSION ACTIVE -->
+
+                        <div class="progress-line-active" id="progressActive"></div>
+
+
+                        <div class="steps">
+
+
+                            <!-- ETAPE 1 -->
+
+                            <div class="step done">
+
+
+                                <div class="step-circle">
+
+                                    <i class="bi bi-check-lg"></i>
+
+                                </div>
+
+
+                                <h6>
+                                    Reçu
+                                </h6>
+
+
+                                <small>
+                                    10:00
+                                </small>
+
+
+                            </div>
+
+
+
+                            <!-- ETAPE 2 -->
+
+                            <div class="step active">
+
+
+                                <div class="step-circle">
+
+                                    <i class="bi bi-droplet-fill"></i>
+
+                                </div>
+
+
+                                <h6>
+                                    Lavage
+                                </h6>
+
+
+                                <small>
+                                    En cours
+                                </small>
+
+
+                            </div>
+
+
+
+                            <!-- ETAPE 3 -->
+
+                            <div class="step">
+
+
+                                <div class="step-circle">
+
+                                    <i class="bi bi-wind"></i>
+
+                                </div>
+
+
+                                <h6>
+                                    Séchage
+                                </h6>
+
+
+                                <small>
+                                    À venir
+                                </small>
+
+
+                            </div>
+
+
+
+                            <!-- ETAPE 4 -->
+
+                            <div class="step">
+
+
+                                <div class="step-circle">
+
+                                    <i class="bi bi-check-circle"></i>
+
+                                </div>
+
+
+                                <h6>
+                                    Contrôle
+                                </h6>
+
+
+                                <small>
+                                    À venir
+                                </small>
+
+
+                            </div>
+
+
+
+                            <!-- ETAPE 5 -->
+
+                            <div class="step">
+
+
+                                <div class="step-circle">
+
+                                    <i class="bi bi-car-front-fill"></i>
+
+                                </div>
+
+
+                                <h6>
+                                    Prêt
+                                </h6>
+
+
+                                <small>
+                                    À venir
+                                </small>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- POURCENTAGE -->
+
+                    <div class="text-center mt-5">
+
+
+                        <h3 id="progressPercent" class="text-primary fw-bold">
+                            40%
+                        </h3>
+
+
+                        <p class="text-muted">
+
+                            Progression estimée du lavage
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                 INFORMATIONS + NOTIFICATION
+            =========================================== -->
+
+                <div class="row g-4 mb-4">
+
+
+                    <!-- INFORMATIONS -->
+
+                    <div class="col-lg-6">
+
+
+                        <div class="dashboard-card">
+
+
+                            <div class="card-title">
+
+                                <h5>
+                                    Informations du service
+                                </h5>
+
+                            </div>
+
+
+                            <ul class="info-list">
+
+
+                                <li>
+
+                                    <span class="info-label">
+                                        N° de suivi
+                                    </span>
+
+                                    <span class="info-value">
+                                        SUIVI-2026-009
+                                    </span>
+
+                                </li>
+
+
+                                <li>
+
+                                    <span class="info-label">
+                                        Véhicule
+                                    </span>
+
+                                    <span class="info-value">
+                                        Toyota Corolla
+                                    </span>
+
+                                </li>
+
+
+                                <li>
+
+                                    <span class="info-label">
+                                        Immatriculation
+                                    </span>
+
+                                    <span class="info-value">
+                                        TG-2026-009
+                                    </span>
+
+                                </li>
+
+
+                                <li>
+
+                                    <span class="info-label">
+                                        Prestation
+                                    </span>
+
+                                    <span class="info-value">
+                                        Lavage + Pressing
+                                    </span>
+
+                                </li>
+
+
+                                <li>
+
+                                    <span class="info-label">
+                                        Date
+                                    </span>
+
+                                    <span class="info-value">
+                                        19/08/2026
+                                    </span>
+
+                                </li>
+
+
+                                <li>
+
+                                    <span class="info-label">
+                                        Heure d'arrivée
+                                    </span>
+
+                                    <span class="info-value">
+                                        10:00
+                                    </span>
+
+                                </li>
+
+
+                                <li>
+
+                                    <span class="info-label">
+                                        Temps estimé
+                                    </span>
+
+                                    <span class="info-value">
+                                        Environ 45 min
+                                    </span>
+
+                                </li>
+
+
+                            </ul>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- NOTIFICATION -->
+
+                    <div class="col-lg-6">
+
+
+                        <div class="dashboard-card">
+
+
+                            <div class="card-title">
+
+                                <h5>
+                                    Dernière mise à jour
+                                </h5>
+
+                                <i class="bi bi-arrow-clockwise"></i>
+
+                            </div>
+
+
+                            <div class="notification-box">
+
+
+                                <i class="bi bi-droplet-fill"></i>
+
+
+                                <div>
+
+                                    <p>
+
+                                        Votre véhicule est actuellement
+                                        en cours de lavage.
+
+                                    </p>
+
+
+                                    <small>
+
+                                        Dernière mise à jour :
+                                        il y a quelques secondes.
+
+                                    </small>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="alert alert-info">
+
+
+                                <i class="bi bi-info-circle"></i>
+
+                                Le statut du véhicule est actualisé
+                                automatiquement toutes les 5 secondes.
+
+                            </div>
+
+
+                            <button class="btn btn-bide" onclick="actualiserSuivi()">
+
+                                <i class="bi bi-arrow-clockwise"></i>
+
+                                Actualiser maintenant
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                 HISTORIQUE
+            =========================================== -->
+
+                <div class="dashboard-card">
+
+
+                    <div class="card-title">
+
+
+                        <h5>
+                            Historique du traitement
+                        </h5>
+
+
+                        <span class="text-muted">
+                            Aujourd'hui
+                        </span>
+
+
+                    </div>
+
+
+                    <!-- RECEPTION -->
+
+                    <div class="history-item">
+
+
+                        <div class="history-icon">
+
+                            <i class="bi bi-check-lg"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h6>
+                                Véhicule reçu
+                            </h6>
+
+                            <p>
+                                Votre véhicule a été enregistré
+                                et pris en charge.
+                            </p>
+
+                            <small class="text-muted">
+                                10:00
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- LAVAGE -->
+
+                    <div class="history-item">
+
+
+                        <div class="history-icon">
+
+                            <i class="bi bi-droplet-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h6>
+                                Lavage commencé
+                            </h6>
+
+                            <p>
+                                Le lavage extérieur de votre véhicule
+                                a commencé.
+                            </p>
+
+                            <small class="text-muted">
+                                10:10
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- SECHAGE -->
+
+                    <div class="history-item">
+
+
+                        <div class="history-icon">
+
+                            <i class="bi bi-wind"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h6>
+                                Séchage
+                            </h6>
+
+                            <p>
+                                Cette étape sera disponible après
+                                la fin du lavage.
+                            </p>
+
+                            <small class="text-muted">
+                                À venir
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- CONTROLE -->
+
+                    <div class="history-item">
+
+
+                        <div class="history-icon">
+
+                            <i class="bi bi-check-circle"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h6>
+                                Contrôle qualité
+                            </h6>
+
+                            <p>
+                                Vérification finale du véhicule.
+                            </p>
+
+                            <small class="text-muted">
+                                À venir
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- PRET -->
+
+                    <div class="history-item">
+
+
+                        <div class="history-icon">
+
+                            <i class="bi bi-car-front-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h6>
+                                Véhicule prêt
+                            </h6>
+
+                            <p>
+                                Vous pourrez récupérer votre véhicule.
+                            </p>
+
+                            <small class="text-muted">
+                                À venir
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </main>
+
+
+    </div>
+
+
+
+    <!-- ==========================================
+     JAVASCRIPT
+=========================================== -->
+
+    <script>
+
+
+        /* =====================================
+           PROGRESSION
+        ====================================== */
+
+        let progression = 40;
+
+
+        /*
+            Simulation de mise à jour.
+            Dans la version finale, cette valeur
+            viendra du système de gestion des véhicules.
+        */
+
+
+        function afficherProgression() {
+
+
+            document
+                .getElementById("progressPercent")
+                .textContent = progression + "%";
+
+
+            document
+                .getElementById("progressActive")
+                .style.width = progression + "%";
+
+        }
+
+
+        afficherProgression();
+
+
+
+        /* =====================================
+           ACTUALISATION
+        ====================================== */
+
+        function actualiserSuivi() {
+
+
+            alert(
+                "Le suivi de votre véhicule vient d'être actualisé."
+            );
+
+
+            afficherProgression();
+
+        }
+
+
+
+        /* =====================================
+           MISE À JOUR AUTOMATIQUE
+        ====================================== */
+
+        setInterval(function () {
+
+
+            console.log(
+                "Actualisation du suivi du véhicule..."
+            );
+
+
+            /*
+                Plus tard, cette partie pourra utiliser
+                fetch() pour récupérer le statut depuis
+                le backend.
+            */
+
+
+        }, 5000);
+
+
+    </script>
+
+
+</body>
+
+</html>
