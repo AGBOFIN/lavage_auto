@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Paiements | Bidè Admin</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="paiements.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <div>
+                <h5>Bidè</h5>
+                <span>Administration</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="clients.html">
+                <i class="bi bi-people-fill"></i>
+                <span>Clients</span>
+            </a>
+
+            <a href="vehicules.html">
+                <i class="bi bi-car-front-fill"></i>
+                <span>Véhicules</span>
+            </a>
+
+            <a href="prestations.html">
+                <i class="bi bi-droplet-fill"></i>
+                <span>Prestations</span>
+            </a>
+
+            <a href="reservations.html">
+                <i class="bi bi-calendar-check-fill"></i>
+                <span>Réservations</span>
+            </a>
+            <a href="paiements.html" class="active">
+
+                <i class="bi bi-credit-card-fill"></i>
+                <span>Paiements</span>
+
+            </a>
+
+
+            <a href="utilisateurs.html">
+                <i class="bi bi-person-gear"></i>
+
+                <span>Utilisateurs</span>
+            </a>
+
+            <a href="parametres.html">
+                <i class="bi bi-gear-fill"></i>
+
+                <span>Paramètres</span>
+            </a>
+
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button type="button" id="logoutBtn">
+                <i class="bi bi-box-arrow-right"></i>
+                Déconnexion
+            </button>
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <button
+                type="button"
+                class="mobile-menu-btn"
+                id="mobileMenuBtn"
+                aria-label="Ouvrir le menu"
+            >
+                <i class="bi bi-list"></i>
+            </button>
+
+            <div class="topbar-title">
+                <h4>Paiements</h4>
+                <p>Gestion des transactions et règlements</p>
+            </div>
+
+            <div class="admin-user">
+
+                <div class="notification">
+                    <i class="bi bi-bell-fill"></i>
+                    <span id="notificationCount">0</span>
+                </div>
+
+                <div class="avatar">
+                    AG
+                </div>
+
+                <div class="user-details">
+                    <strong>Administrateur</strong>
+                    <small>Gestionnaire</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+        <section class="content">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+
+                <div>
+                    <h1>Paiements</h1>
+
+                    <p>
+                        Consultez, ajoutez et gérez les paiements des clients.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="newPaymentBtn"
+                >
+                    <i class="bi bi-plus-lg"></i>
+                    Nouveau paiement
+                </button>
+
+            </div>
+
+
+            <!-- ================= STATISTIQUES ================= -->
+            <div class="row g-4 mb-4">
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            <i class="bi bi-wallet2"></i>
+                        </div>
+
+                        <div>
+                            <span>Total encaissé</span>
+
+                            <h3 id="totalAmount">
+                                0 FCFA
+                            </h3>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+
+                        <div>
+                            <span>Paiements réussis</span>
+
+                            <h3 id="successfulPayments">
+                                0
+                            </h3>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
+
+                        <div>
+                            <span>En attente</span>
+
+                            <h3 id="pendingPayments">
+                                0
+                            </h3>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+
+                        <div class="stat-icon red">
+                            <i class="bi bi-x-circle-fill"></i>
+                        </div>
+
+                        <div>
+                            <span>Échecs / annulés</span>
+
+                            <h3 id="failedPayments">
+                                0
+                            </h3>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- ================= TABLE ================= -->
+            <div class="card-box">
+
+                <!-- TOOLBAR -->
+                <div class="toolbar">
+
+                    <div class="search-container">
+
+                        <i class="bi bi-search"></i>
+
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Rechercher une transaction..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div class="filters">
+
+                        <select
+                            id="methodFilter"
+                            class="form-select"
+                        >
+                            <option value="all">
+                                Tous les moyens
+                            </option>
+
+                            <option value="cash">
+                                Espèces
+                            </option>
+
+                            <option value="mobile_money">
+                                Mobile Money
+                            </option>
+
+                            <option value="card">
+                                Carte bancaire
+                            </option>
+
+                            <option value="transfer">
+                                Virement
+                            </option>
+                        </select>
+
+
+                        <select
+                            id="statusFilter"
+                            class="form-select"
+                        >
+                            <option value="all">
+                                Tous les statuts
+                            </option>
+
+                            <option value="paid">
+                                Payé
+                            </option>
+
+                            <option value="pending">
+                                En attente
+                            </option>
+
+                            <option value="failed">
+                                Échoué
+                            </option>
+
+                            <option value="cancelled">
+                                Annulé
+                            </option>
+                        </select>
+
+
+                        <input
+                            type="date"
+                            id="dateFilter"
+                            class="form-control"
+                        >
+
+
+                        <button
+                            type="button"
+                            class="btn btn-outline-primary"
+                            id="resetFiltersBtn"
+                        >
+                            <i class="bi bi-arrow-clockwise"></i>
+                            Réinitialiser
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TABLEAU -->
+                <div class="table-responsive">
+
+                    <table class="table payments-table">
+
+                        <thead>
+                            <tr>
+                                <th>Référence</th>
+                                <th>Client</th>
+                                <th>Réservation</th>
+                                <th>Montant</th>
+                                <th>Moyen</th>
+                                <th>Date</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="paymentsTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- EMPTY STATE -->
+                <div
+                    id="emptyState"
+                    class="empty-state d-none"
+                >
+
+                    <div class="empty-icon">
+                        <i class="bi bi-credit-card-2-front"></i>
+                    </div>
+
+                    <h5>Aucun paiement</h5>
+
+                    <p>
+                        Aucun paiement ne correspond aux critères sélectionnés.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL : NOUVEAU / MODIFICATION PAIEMENT
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="paymentModal"
+    tabindex="-1"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <h5 id="modalTitle">
+                        Nouveau paiement
+                    </h5>
+
+                    <p>
+                        Enregistrez une transaction client.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Fermer"
+                ></button>
+
+            </div>
+
+
+            <form id="paymentForm">
+
+                <div class="modal-body">
+
+                    <input
+                        type="hidden"
+                        id="paymentId"
+                    >
+
+
+                    <!-- RÉSERVATION -->
+                    <div class="form-section">
+
+                        <h6>
+                            <i class="bi bi-calendar-check-fill"></i>
+                            Réservation
+                        </h6>
+
+                        <div class="row g-3">
+
+                            <div class="col-md-12">
+
+                                <label
+                                    for="reservationSelect"
+                                    class="form-label"
+                                >
+                                    Réservation *
+                                </label>
+
+                                <select
+                                    id="reservationSelect"
+                                    class="form-select"
+                                    required
+                                >
+                                    <option value="">
+                                        Sélectionner une réservation
+                                    </option>
+                                </select>
+
+                            </div>
+
+
+                            <!-- APERÇU CLIENT -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Client
+                                </label>
+
+                                <div class="client-preview">
+
+                                    <strong id="clientPreviewName">
+                                        Aucun client
+                                    </strong>
+
+                                    <small id="clientPreviewPhone">
+                                        —
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PAIEMENT -->
+                    <div class="form-section">
+
+                        <h6>
+                            <i class="bi bi-credit-card-fill"></i>
+                            Informations du paiement
+                        </h6>
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+
+                                <label
+                                    for="paymentAmount"
+                                    class="form-label"
+                                >
+                                    Montant *
+                                </label>
+
+                                <div class="input-group">
+
+                                    <input
+                                        type="number"
+                                        id="paymentAmount"
+                                        class="form-control"
+                                        min="1"
+                                        step="1"
+                                        required
+                                    >
+
+                                    <span class="input-group-text">
+                                        FCFA
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label
+                                    for="paymentMethod"
+                                    class="form-label"
+                                >
+                                    Moyen de paiement *
+                                </label>
+
+                                <select
+                                    id="paymentMethod"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Sélectionner
+                                    </option>
+
+                                    <option value="cash">
+                                        Espèces
+                                    </option>
+
+                                    <option value="mobile_money">
+                                        Mobile Money
+                                    </option>
+
+                                    <option value="card">
+                                        Carte bancaire
+                                    </option>
+
+                                    <option value="transfer">
+                                        Virement bancaire
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label
+                                    for="paymentDate"
+                                    class="form-label"
+                                >
+                                    Date *
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="paymentDate"
+                                    class="form-control"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label
+                                    for="paymentStatus"
+                                    class="form-label"
+                                >
+                                    Statut *
+                                </label>
+
+                                <select
+                                    id="paymentStatus"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option value="paid">
+                                        Payé
+                                    </option>
+
+                                    <option value="pending">
+                                        En attente
+                                    </option>
+
+                                    <option value="failed">
+                                        Échoué
+                                    </option>
+
+                                    <option value="cancelled">
+                                        Annulé
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RÉFÉRENCE -->
+                    <div class="form-section">
+
+                        <h6>
+                            <i class="bi bi-upc-scan"></i>
+                            Référence
+                        </h6>
+
+                        <label
+                            for="transactionReference"
+                            class="form-label"
+                        >
+                            Référence de transaction
+                        </label>
+
+                        <input
+                            type="text"
+                            id="transactionReference"
+                            class="form-control"
+                            placeholder="Ex : MTN-458921"
+                        >
+
+                    </div>
+
+
+                    <!-- NOTES -->
+                    <div>
+
+                        <label
+                            for="paymentNotes"
+                            class="form-label"
+                        >
+                            Notes
+                        </label>
+
+                        <textarea
+                            id="paymentNotes"
+                            class="form-control"
+                            rows="3"
+                            placeholder="Informations complémentaires..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-light"
+                        data-bs-dismiss="modal"
+                    >
+                        Annuler
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="savePaymentBtn"
+                    >
+                        <i class="bi bi-check-lg"></i>
+                        Enregistrer
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =========================================================
+     MODAL : DÉTAILS
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="detailsModal"
+    tabindex="-1"
+    aria-hidden="true"
+>
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <h5>Détails du paiement</h5>
+
+                    <p>
+                        Informations de la transaction
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Fermer"
+                ></button>
+
+            </div>
+
+            <div
+                class="modal-body"
+                id="detailsContent"
+            ></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Bootstrap -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+<!-- Notre JS -->
+<script src="paiements.js"></script>
+
+</body>
+</html>

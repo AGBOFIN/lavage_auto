@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bidè | Gestion des lavages</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="lavages.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="brand">
+                <span class="brand-logo">
+                    <i class="bi bi-droplet-fill"></i>
+                </span>
+
+                <span class="brand-text">
+                    <strong>Bidè</strong>
+                    <small>Administration</small>
+                </span>
+            </a>
+
+            <button
+                type="button"
+                class="sidebar-close d-lg-none"
+                id="sidebarClose"
+            >
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-heading">MENU PRINCIPAL</p>
+
+            <a href="dashboard.html" class="nav-item">
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <p class="nav-heading">GESTION</p>
+
+            <a href="clients.html" class="nav-item">
+                <i class="bi bi-people-fill"></i>
+                <span>Clients</span>
+            </a>
+
+            <a href="vehicules.html" class="nav-item">
+                <i class="bi bi-car-front-fill"></i>
+                <span>Véhicules</span>
+            </a>
+
+            <a href="prestations.html" class="nav-item">
+                <i class="bi bi-droplet-fill"></i>
+                <span>Prestations</span>
+            </a>
+
+            <a href="reservations.html" class="nav-item">
+                <i class="bi bi-calendar-check-fill"></i>
+                <span>Réservations</span>
+            </a>
+
+            <a href="lavages.html" class="nav-item active">
+                <i class="bi bi-water"></i>
+                <span>Lavages</span>
+            </a>
+
+            <a href="employes.html" class="nav-item">
+                <i class="bi bi-person-badge-fill"></i>
+                <span>Employés</span>
+            </a>
+
+            <a href="paiements.html" class="nav-item">
+                <i class="bi bi-credit-card-fill"></i>
+                <span>Paiements</span>
+            </a>
+
+            <p class="nav-heading">ANALYSE</p>
+
+            <a href="statistiques.html" class="nav-item">
+                <i class="bi bi-bar-chart-fill"></i>
+                <span>Statistiques</span>
+            </a>
+
+            <p class="nav-heading">SYSTÈME</p>
+
+            <a href="parametres.html" class="nav-item">
+                <i class="bi bi-gear-fill"></i>
+                <span>Paramètres</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-profile">
+                <div class="avatar">AG</div>
+
+                <div class="profile-info">
+                    <strong>Abdou-Akim</strong>
+                    <span>Administrateur</span>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="menu-toggle d-lg-none"
+                    id="menuToggle"
+                >
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div>
+                    <span class="topbar-label">
+                        ESPACE ADMINISTRATEUR
+                    </span>
+
+                    <h1>Gestion des lavages</h1>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="current-date">
+                    <i class="bi bi-calendar3"></i>
+                    <span id="currentDate">--</span>
+                </div>
+
+                <div class="topbar-user">
+                    <div class="avatar avatar-small">AG</div>
+
+                    <div class="topbar-user-info">
+                        <strong>Abdou-Akim</strong>
+                        <span>Administrateur</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- CONTENT -->
+        <div class="page-container">
+
+            <!-- TITLE -->
+            <section class="page-heading">
+
+                <div>
+                    <span class="eyebrow">GESTION</span>
+
+                    <h2>
+                        Lavages
+                        <span>🚗</span>
+                    </h2>
+
+                    <p>
+                        Suivez et gérez les lavages de vos véhicules.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="newWashBtn"
+
+                >
+                    <i class="bi bi-plus-lg"></i>
+                    Nouveau lavage
+
+                </button>
+
+
+            </section>
+
+            <!-- STATISTICS -->
+            <section class="row g-4 statistics">
+
+
+                <div class="col-12 col-sm-6 col-xl-3">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            <i class="bi bi-water"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>Total lavages</span>
+                            <strong id="totalWashes">0</strong>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+
+                        <div>
+                            <span>Terminés</span>
+                            <strong id="completedWashes">0</strong>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
+
+                        <div>
+                            <span>En cours</span>
+                            <strong id="runningWashes">0</strong>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="stat-card">
+
+                        <div class="stat-icon dark">
+                            <i class="bi bi-cash-stack"></i>
+                        </div>
+
+                        <div>
+                            <span>Chiffre d'affaires</span>
+                            <strong id="washRevenue">0 FCFA</strong>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- FILTERS -->
+            <section class="panel-card filter-panel">
+
+                <div class="filter-header">
+
+                    <div>
+                        <span class="eyebrow">RECHERCHE</span>
+                        <h3>Filtrer les lavages</h3>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn-reset"
+                        id="resetFiltersBtn"
+                    >
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                        Réinitialiser
+                    </button>
+
+                </div>
+
+                <div class="row g-3">
+
+                    <div class="col-12 col-lg-5">
+
+                        <label for="searchInput">
+                            Recherche
+                        </label>
+
+                        <div class="input-icon">
+                            <i class="bi bi-search"></i>
+
+                            <input
+                                type="search"
+                                id="searchInput"
+                                class="form-control-custom"
+                                placeholder="Client, réservation, prestation..."
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-md-4 col-lg-3">
+
+                        <label for="dateFilter">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dateFilter"
+                            class="form-control-custom"
+                        >
+
+                    </div>
+
+                    <div class="col-12 col-md-4 col-lg-2">
+
+                        <label for="statusFilter">
+                            Statut
+                        </label>
+
+                        <select
+                            id="statusFilter"
+                            class="form-control-custom"
+                        >
+                            <option value="all">Tous</option>
+                            <option value="scheduled">Programmé</option>
+                            <option value="in_progress">En cours</option>
+                            <option value="completed">Terminé</option>
+                            <option value="cancelled">Annulé</option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-12 col-md-4 col-lg-2">
+
+                        <label for="serviceFilter">
+                            Prestation
+                        </label>
+
+                        <select
+                            id="serviceFilter"
+                            class="form-control-custom"
+                        >
+                            <option value="all">Toutes</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- TABLE -->
+            <section class="panel-card">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="eyebrow">LISTE</span>
+                        <h3>Lavages enregistrés</h3>
+                    </div>
+
+                    <span
+                        class="results-count"
+                        id="resultsCount"
+                    >
+                        0 lavage
+                    </span>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="custom-table">
+
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Réservation</th>
+                                <th>Prestation</th>
+                                <th>Date</th>
+                                <th>Heure</th>
+                                <th>Montant</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="washesTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div
+                    id="emptyState"
+                    class="empty-state d-none"
+                >
+                    <i class="bi bi-water"></i>
+
+                    <h4>Aucun lavage trouvé</h4>
+
+                    <p>
+                        Aucun lavage ne correspond aux critères.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="btn-primary-custom"
+                        id="emptyNewBtn"
+                    >
+                        <i class="bi bi-plus-lg"></i>
+                        Ajouter un lavage
+                    </button>
+                </div>
+
+            </section>
+
+            <footer class="page-footer">
+                <span>
+                    © <span id="currentYear"></span> Bidè.
+                    Tous droits réservés.
+                </span>
+
+                <span>
+                    Gestion des lavages
+                </span>
+            </footer>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- MODAL AJOUT / MODIFICATION -->
+<div
+    class="modal fade"
+    id="washModal"
+    tabindex="-1"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content custom-modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">LAVAGE</span>
+                    <h3 id="modalTitle">Nouveau lavage</h3>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+            <form id="washForm">
+
+                <div class="modal-body">
+
+                    <input
+                        type="hidden"
+                        id="washId"
+                    >
+
+                    <div class="row g-3">
+
+                        <div class="col-12">
+
+                            <label for="reservationSelect">
+                                Réservation *
+                            </label>
+
+                            <select
+                                id="reservationSelect"
+                                class="form-control-custom"
+                                required
+                            >
+                                <option value="">
+                                    Sélectionner une réservation
+                                </option>
+                            </select>
+
+                        </div>
+
+                        <!-- CLIENT -->
+                        <div class="col-12 col-md-6">
+
+                            <div class="preview-card">
+
+                                <span>
+                                    <i class="bi bi-person-fill"></i>
+                                    Client
+                                </span>
+
+                                <strong id="clientPreviewName">
+                                    Aucun client
+                                </strong>
+
+                                <small id="clientPreviewPhone">
+                                    —
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <!-- PRESTATION -->
+                        <div class="col-12 col-md-6">
+
+                            <div class="preview-card">
+
+                                <span>
+                                    <i class="bi bi-droplet-fill"></i>
+                                    Prestation
+                                </span>
+
+                                <strong id="servicePreviewName">
+                                    Aucune prestation
+                                </strong>
+
+                                <small id="servicePreviewPrice">
+                                    —
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 col-md-4">
+
+                            <label for="washDate">
+                                Date *
+                            </label>
+
+                            <input
+                                type="date"
+                                id="washDate"
+                                class="form-control-custom"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="col-6 col-md-4">
+
+                            <label for="startTime">
+                                Début
+                            </label>
+
+                            <input
+                                type="time"
+                                id="startTime"
+                                class="form-control-custom"
+                            >
+
+                        </div>
+
+                        <div class="col-6 col-md-4">
+
+                            <label for="endTime">
+                                Fin
+                            </label>
+
+                            <input
+                                type="time"
+                                id="endTime"
+                                class="form-control-custom"
+                            >
+
+                        </div>
+
+                        <div class="col-12 col-md-6">
+
+                            <label for="washAmount">
+                                Montant *
+                            </label>
+
+                            <div class="input-money">
+
+                                <input
+                                    type="number"
+                                    id="washAmount"
+                                    class="form-control-custom"
+                                    min="0"
+                                    step="1"
+                                    required
+                                >
+
+                                <span>FCFA</span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 col-md-6">
+
+                            <label for="washStatus">
+                                Statut *
+                            </label>
+
+                            <select
+                                id="washStatus"
+                                class="form-control-custom"
+                                required
+                            >
+                                <option value="scheduled">
+                                    Programmé
+                                </option>
+
+                                <option value="in_progress">
+                                    En cours
+                                </option>
+
+                                <option value="completed">
+                                    Terminé
+                                </option>
+
+                                <option value="cancelled">
+                                    Annulé
+                                </option>
+                            </select>
+
+                        </div>
+
+                        <div class="col-12">
+
+                            <label for="washNotes">
+                                Notes
+                            </label>
+
+                            <textarea
+                                id="washNotes"
+                                class="form-control-custom"
+                                rows="4"
+                                placeholder="Notes concernant le lavage..."
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn-secondary-custom"
+                        data-bs-dismiss="modal"
+                    >
+                        Annuler
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary-custom"
+                        id="saveWashBtn"
+                    >
+                        <i class="bi bi-check-lg"></i>
+                        Enregistrer
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DETAILS -->
+<div
+    class="modal fade"
+    id="detailsModal"
+    tabindex="-1"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content custom-modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">DÉTAILS</span>
+                    <h3>Détails du lavage</h3>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+            <div
+                class="modal-body"
+                id="detailsContent"
+            ></div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn-secondary-custom"
+                    data-bs-dismiss="modal"
+                >
+                    Fermer
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+<script src="lavages.js"></script>
+
+</body>
+</html>

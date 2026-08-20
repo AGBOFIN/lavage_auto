@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gestion des utilisateurs - Bidè Administration">
+    <title>Bidè | Utilisateurs</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="utilisateurs.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-header">
+                <span class="brand-text">
+
+                    <strong>Bidè</strong>
+
+                    <small>Administration</small>
+                </span>
+
+            </a>
+
+            <button class="sidebar-close d-lg-none" id="sidebarClose">
+
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+
+            <p class="nav-heading">MENU PRINCIPAL</p>
+
+            <a href="dashboard.html" class="nav-item">
+
+                <i class="bi bi-grid-1x2-fill"></i>
+
+                <span>Dashboard</span>
+            </a>
+
+
+            <p class="nav-heading">GESTION</p>
+
+
+            <a href="clients.html" class="nav-item">
+                <i class="bi bi-people-fill"></i>
+                <span>Clients</span>
+            </a>
+
+
+            <a href="vehicules.html" class="nav-item">
+                <i class="bi bi-car-front-fill"></i>
+
+                <span>Véhicules</span>
+            </a>
+
+            <a href="prestations.html" class="nav-item">
+                <i class="bi bi-droplet-fill"></i>
+                <span>Prestations</span>
+            </a>
+
+            <a href="reservations.html" class="nav-item">
+                <i class="bi bi-calendar-check-fill"></i>
+                <span>Réservations</span>
+            </a>
+
+            <a href="lavages.html" class="nav-item">
+                <i class="bi bi-water"></i>
+                <span>Lavages</span>
+            </a>
+
+            <a href="employes.html" class="nav-item">
+                <i class="bi bi-person-badge-fill"></i>
+                <span>Employés</span>
+            </a>
+
+            <a href="paiements.html" class="nav-item">
+                <i class="bi bi-credit-card-fill"></i>
+                <span>Paiements</span>
+            </a>
+
+            <p class="nav-heading">ANALYSE</p>
+
+            <a href="statistiques.html" class="nav-item">
+                <i class="bi bi-bar-chart-fill"></i>
+                <span>Statistiques</span>
+            </a>
+
+            <p class="nav-heading">SYSTÈME</p>
+
+            <a href="utilisateurs.html" class="nav-item active">
+                <i class="bi bi-person-gear"></i>
+                <span>Utilisateurs</span>
+            </a>
+
+            <a href="parametres.html" class="nav-item">
+                <i class="bi bi-gear-fill"></i>
+                <span>Paramètres</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-profile">
+                <div class="avatar">AG</div>
+
+                <div class="profile-info">
+                    <strong>Abdou-Akim</strong>
+                    <span>Administrateur</span>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- CONTENU -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle d-lg-none" id="menuToggle">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div>
+                    <span class="topbar-label">ESPACE ADMINISTRATEUR</span>
+                    <h1>Utilisateurs</h1>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="current-date">
+                    <i class="bi bi-calendar3"></i>
+                    <span id="currentDate"></span>
+                </div>
+
+                <div class="topbar-user">
+                    <div class="avatar avatar-small">AG</div>
+
+                    <div class="topbar-user-info">
+                        <strong>Abdou-Akim</strong>
+                        <span>Administrateur</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- PAGE -->
+        <div class="page-container">
+
+            <section class="page-heading">
+
+                <div>
+                    <span class="eyebrow">GESTION DES COMPTES</span>
+                    <h2>Utilisateurs</h2>
+                    <p>
+                        Gérez les comptes utilisateurs ayant accès à l'administration Bidè.
+                    </p>
+                </div>
+
+                <button
+                    class="btn-primary-custom"
+                    id="newUserBtn"
+                    type="button">
+
+                    <i class="bi bi-person-plus-fill"></i>
+                    Nouvel utilisateur
+
+                </button>
+
+            </section>
+
+            <!-- STATISTIQUES -->
+            <section class="stats-grid">
+
+                <article class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+
+                    <div>
+                        <span>Total utilisateurs</span>
+                        <strong id="totalUsers">0</strong>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="bi bi-person-check-fill"></i>
+                    </div>
+
+                    <div>
+                        <span>Actifs</span>
+                        <strong id="activeUsers">0</strong>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="bi bi-person-dash-fill"></i>
+                    </div>
+
+                    <div>
+                        <span>Inactifs</span>
+                        <strong id="inactiveUsers">0</strong>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Administrateurs</span>
+                        <strong id="adminUsers">0</strong>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- TABLE -->
+            <section class="panel-card">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="eyebrow">LISTE</span>
+                        <h3>Utilisateurs enregistrés</h3>
+                    </div>
+
+                </div>
+
+                <!-- FILTRES -->
+                <div class="filters">
+
+                    <div class="search-box">
+                        <i class="bi bi-search"></i>
+
+                        <input
+                            type="search"
+                            id="searchInput"
+                            class="form-control"
+                            placeholder="Rechercher par nom, email ou téléphone...">
+                    </div>
+
+                    <select id="roleFilter" class="form-select">
+
+                        <option value="all">
+                            Tous les rôles
+                        </option>
+
+                        <option value="admin">
+                            Administrateur
+                        </option>
+
+                        <option value="manager">
+                            Manager
+                        </option>
+
+                        <option value="agent">
+                            Agent
+                        </option>
+
+                        <option value="caissier">
+                            Caissier
+                        </option>
+
+                    </select>
+
+                    <select id="statusFilter" class="form-select">
+
+                        <option value="all">
+                            Tous les statuts
+                        </option>
+
+                        <option value="active">
+                            Actif
+                        </option>
+
+                        <option value="inactive">
+                            Inactif
+                        </option>
+
+                    </select>
+
+                    <button
+                        class="btn-reset"
+                        id="resetFiltersBtn"
+                        type="button">
+
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                        Réinitialiser
+
+                    </button>
+
+                </div>
+
+                <!-- TABLE -->
+                <div class="table-responsive">
+
+                    <table class="users-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Utilisateur</th>
+                                <th>Téléphone</th>
+                                <th>Rôle</th>
+                                <th>Création</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="usersTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+                <!-- VIDE -->
+                <div
+                    id="emptyState"
+                    class="empty-state d-none">
+
+                    <i class="bi bi-person-x"></i>
+
+                    <h4>Aucun utilisateur trouvé</h4>
+
+                    <p>
+                        Modifiez vos filtres ou créez un nouvel utilisateur.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <footer class="page-footer">
+
+                <span>
+                    © <span id="currentYear"></span>
+                    Bidè. Tous droits réservés.
+                </span>
+
+                <span>
+                    Administration
+                </span>
+
+            </footer>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL UTILISATEUR
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="userModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">GESTION</span>
+
+                    <h5
+                        class="modal-title"
+                        id="modalTitle">
+
+                        Nouvel utilisateur
+
+                    </h5>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <form id="userForm">
+
+                <div class="modal-body">
+
+                    <input
+                        type="hidden"
+                        id="userId">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Prénom *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="firstName"
+                                class="form-control"
+                                required
+                                maxlength="80">
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Nom *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="lastName"
+                                class="form-control"
+                                required
+                                maxlength="80">
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Email *
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                class="form-control"
+                                required
+                                maxlength="120">
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Téléphone
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                class="form-control"
+                                maxlength="30">
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Rôle *
+                            </label>
+
+                            <select
+                                id="role"
+                                class="form-select"
+                                required>
+
+                                <option value="">
+                                    Sélectionner
+                                </option>
+
+                                <option value="admin">
+                                    Administrateur
+                                </option>
+
+                                <option value="manager">
+                                    Manager
+                                </option>
+
+                                <option value="agent">
+                                    Agent
+                                </option>
+
+                                <option value="caissier">
+                                    Caissier
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Statut *
+                            </label>
+
+                            <select
+                                id="status"
+                                class="form-select"
+                                required>
+
+                                <option value="active">
+                                    Actif
+                                </option>
+
+                                <option value="inactive">
+                                    Inactif
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Mot de passe *
+                            </label>
+
+                            <input
+                                type="password"
+                                id="password"
+                                class="form-control"
+                                minlength="6">
+
+                            <small class="password-help">
+                                Minimum 6 caractères.
+                            </small>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Confirmation *
+                            </label>
+
+                            <input
+                                type="password"
+                                id="passwordConfirm"
+                                class="form-control"
+                                minlength="6">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn-secondary-custom"
+                        data-bs-dismiss="modal">
+
+                        Annuler
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary-custom">
+
+                        <i class="bi bi-check-lg"></i>
+                        Enregistrer
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL DETAILS
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="detailsModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">
+                        FICHE UTILISATEUR
+                    </span>
+
+                    <h5 class="modal-title">
+                        Détails
+                    </h5>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div
+                class="modal-body"
+                id="detailsContent">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+    <div
+        id="appToast"
+        class="toast">
+
+        <div class="toast-header">
+
+            <i class="bi bi-droplet-fill me-2"></i>
+
+            <strong class="me-auto">
+                Bidè
+            </strong>
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="toast">
+            </button>
+
+        </div>
+
+        <div
+            class="toast-body"
+            id="toastMessage">
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="utilisateurs.js"></script>
+
+</body>
+</html>

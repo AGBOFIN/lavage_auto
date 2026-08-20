@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Réservations | Bidè Admin</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <!-- CSS de la page -->
+    <link rel="stylesheet" href="reservations.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <div>
+                <h5>Bidè</h5>
+                <span>Administration</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="clients.html">
+                <i class="bi bi-people-fill"></i>
+                <span>Clients</span>
+
+            </a>
+
+
+            <a href="vehicules.html">
+                <i class="bi bi-car-front-fill"></i>
+
+                <span>Véhicules</span>
+            </a>
+
+            <a href="prestations.html">
+
+                <i class="bi bi-droplet-fill"></i>
+                <span>Prestations</span>
+
+            </a>
+
+
+            <a href="reservations.html" class="active">
+                <i class="bi bi-calendar-check-fill"></i>
+                <span>Réservations</span>
+
+            </a>
+
+
+            <a href="paiements.html">
+                <i class="bi bi-credit-card-fill"></i>
+                <span>Paiements</span>
+            </a>
+
+            <a href="utilisateurs.html">
+                <i class="bi bi-person-gear"></i>
+                <span>Utilisateurs</span>
+            </a>
+
+            <a href="parametres.html">
+                <i class="bi bi-gear-fill"></i>
+                <span>Paramètres</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button
+                type="button"
+                id="logoutBtn"
+                class="logout-btn"
+            >
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Déconnexion</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         CONTENU PRINCIPAL
+    ====================================================== -->
+    <main class="main-content">
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+        <header class="topbar">
+
+            <button
+                type="button"
+                class="mobile-menu-btn"
+                id="mobileMenuBtn"
+                aria-label="Ouvrir le menu"
+            >
+                <i class="bi bi-list"></i>
+            </button>
+
+            <div class="topbar-title">
+                <h4>Réservations</h4>
+                <p>Gestion des rendez-vous de lavage</p>
+            </div>
+
+            <div class="admin-user">
+
+                <div class="notification">
+                    <i class="bi bi-bell-fill"></i>
+                    <span>3</span>
+                </div>
+
+                <div class="avatar">
+                    AG
+                </div>
+
+                <div class="user-details">
+                    <strong>Administrateur</strong>
+                    <small>Gestionnaire</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             CONTENU
+        ================================================== -->
+        <section class="content">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+
+                <div>
+                    <h1>Réservations</h1>
+
+                    <p>
+                        Planifiez et gérez les rendez-vous des clients.
+                    </p>
+                </div>
+
+                <!-- IMPORTANT :
+                     Ce bouton est relié au JS
+                -->
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="newReservationBtn"
+                >
+                    <i class="bi bi-plus-lg"></i>
+                    Nouvelle réservation
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 STATISTIQUES
+            ================================================== -->
+            <div class="row g-4 mb-4">
+
+                <!-- TOTAL -->
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            <i class="bi bi-calendar2-check-fill"></i>
+                        </div>
+
+                        <div>
+                            <span>Total</span>
+                            <h3 id="totalReservations">0</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EN ATTENTE -->
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
+
+                        <div>
+                            <span>En attente</span>
+                            <h3 id="pendingReservations">0</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONFIRMEES -->
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+
+                        <div>
+                            <span>Confirmées</span>
+                            <h3 id="confirmedReservations">0</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ANNULEES -->
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon red">
+                            <i class="bi bi-x-circle-fill"></i>
+                        </div>
+
+                        <div>
+                            <span>Annulées</span>
+                            <h3 id="cancelledReservations">0</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TABLEAU
+            ================================================== -->
+            <div class="card-box">
+
+                <!-- TOOLBAR -->
+                <div class="toolbar">
+
+                    <!-- RECHERCHE -->
+                    <div class="search-container">
+
+                        <i class="bi bi-search"></i>
+
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Rechercher un client, véhicule..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <!-- FILTRES -->
+                    <div class="filters">
+
+                        <!-- DATE -->
+                        <input
+                            type="date"
+                            id="dateFilter"
+                            class="form-control"
+                            aria-label="Filtrer par date"
+                        >
+
+
+                        <!-- STATUT -->
+                        <select
+                            id="statusFilter"
+                            class="form-select"
+                            aria-label="Filtrer par statut"
+                        >
+
+                            <option value="all">
+                                Tous les statuts
+                            </option>
+
+                            <option value="pending">
+                                En attente
+                            </option>
+
+                            <option value="confirmed">
+                                Confirmée
+                            </option>
+
+                            <option value="completed">
+                                Terminée
+                            </option>
+
+                            <option value="cancelled">
+                                Annulée
+                            </option>
+
+                        </select>
+
+
+                        <!-- RESET -->
+                        <button
+                            type="button"
+                            class="btn btn-outline-primary"
+                            id="resetFiltersBtn"
+                        >
+                            <i class="bi bi-arrow-clockwise"></i>
+                            Réinitialiser
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     TABLE
+                ================================================== -->
+                <div class="table-responsive">
+
+                    <table class="table reservations-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Référence</th>
+                                <th>Client</th>
+                                <th>Véhicule</th>
+                                <th>Prestation</th>
+                                <th>Date</th>
+                                <th>Heure</th>
+                                <th>Montant</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <!-- IMPORTANT :
+                             Le JavaScript injecte les réservations ici.
+                        -->
+                        <tbody id="reservationsTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- =================================================
+                     ETAT VIDE
+                ================================================== -->
+                <div
+                    id="emptyState"
+                    class="empty-state d-none"
+                >
+
+                    <div class="empty-icon">
+                        <i class="bi bi-calendar-x"></i>
+                    </div>
+
+                    <h5>Aucune réservation</h5>
+
+                    <p>
+                        Aucune réservation ne correspond aux critères.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL : NOUVELLE / MODIFICATION RESERVATION
+========================================================== -->
+<div
+    class="modal fade"
+    id="reservationModal"
+    tabindex="-1"
+    aria-labelledby="modalTitle"
+    aria-hidden="true"
+>
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <!-- HEADER -->
+            <div class="modal-header">
+
+                <div>
+
+                    <h5 id="modalTitle">
+                        Nouvelle réservation
+                    </h5>
+
+                    <p>
+                        Créez un rendez-vous client.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Fermer"
+                ></button>
+
+            </div>
+
+
+            <!-- FORMULAIRE -->
+            <form id="reservationForm">
+
+                <div class="modal-body">
+
+                    <!-- ID CACHÉ -->
+                    <input
+                        type="hidden"
+                        id="reservationId"
+                    >
+
+
+                    <!-- =================================================
+                         CLIENT + VEHICULE
+                    ================================================== -->
+                    <div class="form-section">
+
+                        <h6>
+                            <i class="bi bi-person-fill"></i>
+                            Client et véhicule
+                        </h6>
+
+                        <div class="row g-3">
+
+                            <!-- CLIENT -->
+                            <div class="col-md-6">
+
+                                <label
+                                    for="clientSelect"
+                                    class="form-label"
+                                >
+                                    Client *
+                                </label>
+
+                                <select
+                                    id="clientSelect"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Sélectionner un client
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- VEHICULE -->
+                            <div class="col-md-6">
+
+                                <label
+                                    for="vehicleSelect"
+                                    class="form-label"
+                                >
+                                    Véhicule *
+                                </label>
+
+                                <select
+                                    id="vehicleSelect"
+                                    class="form-select"
+                                    required
+                                    disabled
+                                >
+
+                                    <option value="">
+                                        Sélectionnez d'abord un client
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         PRESTATION
+                    ================================================== -->
+                    <div class="form-section">
+
+                        <h6>
+                            <i class="bi bi-droplet-fill"></i>
+                            Prestation
+                        </h6>
+
+                        <div class="row g-3">
+
+                            <!-- PRESTATION -->
+                            <div class="col-md-8">
+
+                                <label
+                                    for="serviceSelect"
+                                    class="form-label"
+                                >
+                                    Prestation *
+                                </label>
+
+                                <select
+                                    id="serviceSelect"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Sélectionner une prestation
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- PRIX -->
+                            <div class="col-md-4">
+
+                                <label
+                                    class="form-label"
+                                >
+                                    Montant
+                                </label>
+
+                                <div class="price-display">
+
+                                    <strong id="priceDisplay">
+                                        0 FCFA
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         DATE + HEURE
+                    ================================================== -->
+                    <div class="form-section">
+
+                        <h6>
+                            <i class="bi bi-calendar-event-fill"></i>
+                            Rendez-vous
+                        </h6>
+
+                        <div class="row g-3">
+
+                            <!-- DATE -->
+                            <div class="col-md-6">
+
+                                <label
+                                    for="reservationDate"
+                                    class="form-label"
+                                >
+                                    Date *
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="reservationDate"
+                                    class="form-control"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- HEURE -->
+                            <div class="col-md-6">
+
+                                <label
+                                    for="reservationTime"
+                                    class="form-label"
+                                >
+                                    Heure *
+                                </label>
+
+                                <input
+                                    type="time"
+                                    id="reservationTime"
+                                    class="form-control"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         STATUT
+                    ================================================== -->
+                    <div class="form-section">
+
+                        <h6>
+                            <i class="bi bi-flag-fill"></i>
+                            Statut
+                        </h6>
+
+                        <select
+                            id="reservationStatus"
+                            class="form-select"
+                            required
+                        >
+
+                            <option value="pending">
+                                En attente
+                            </option>
+
+                            <option value="confirmed">
+                                Confirmée
+                            </option>
+
+                            <option value="completed">
+                                Terminée
+                            </option>
+
+                            <option value="cancelled">
+                                Annulée
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         NOTES
+                    ================================================== -->
+                    <div class="mb-3">
+
+                        <label
+                            for="reservationNotes"
+                            class="form-label"
+                        >
+                            Notes
+                        </label>
+
+                        <textarea
+                            id="reservationNotes"
+                            class="form-control"
+                            rows="3"
+                            placeholder="Informations complémentaires..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FOOTER -->
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-light"
+                        data-bs-dismiss="modal"
+                    >
+                        Annuler
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+
+                        <i class="bi bi-check-lg"></i>
+
+                        Enregistrer
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL : DETAILS RESERVATION
+========================================================== -->
+<div
+    class="modal fade"
+    id="detailsModal"
+    tabindex="-1"
+    aria-labelledby="detailsModalTitle"
+    aria-hidden="true"
+>
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h5 id="detailsModalTitle">
+                        Détails de la réservation
+                    </h5>
+
+                    <p>
+                        Informations complètes
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Fermer"
+                ></button>
+
+            </div>
+
+
+            <!-- Le JS injecte les détails ici -->
+            <div
+                class="modal-body"
+                id="detailsContent"
+            ></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     BOOTSTRAP JAVASCRIPT
+========================================================== -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+<!-- =========================================================
+     JAVASCRIPT RESERVATIONS
+========================================================== -->
+<script src="reservations.js"></script>
+
+</body>
+</html>

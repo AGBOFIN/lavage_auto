@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Paramètres de l'administration Bidè"
+    >
+
+    <title>Bidè | Paramètres</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="parametres.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-header">
+
+            <a href="dashboard.html" class="brand">
+
+            <div class="brand-logo">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+                
+                <span class="brand-text">
+                    <strong>Bidè</strong>
+                    <small>Administration</small>
+
+                </span>
+
+
+            </a>
+
+
+            <button
+                type="button"
+
+                class="sidebar-close d-lg-none"
+
+                id="sidebarClose"
+
+            >
+
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+        </div>
+
+
+
+        <nav class="sidebar-nav">
+
+            <div class="nav-heading">
+
+                MENU PRINCIPAL
+            </div>
+
+
+            <a href="dashboard.html" class="nav-item">
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+            </a>
+
+
+            <div class="nav-heading">
+                GESTION
+            </div>
+
+            <a href="clients.html" class="nav-item">
+                <i class="bi bi-people-fill"></i>
+                <span>Clients</span>
+            </a>
+
+            <a href="vehicules.html" class="nav-item">
+                <i class="bi bi-car-front-fill"></i>
+                <span>Véhicules</span>
+            </a>
+
+            <a href="prestations.html" class="nav-item">
+                <i class="bi bi-droplet-fill"></i>
+                <span>Prestations</span>
+            </a>
+
+            <a href="reservations.html" class="nav-item">
+                <i class="bi bi-calendar-check-fill"></i>
+                <span>Réservations</span>
+            </a>
+
+            <a href="lavages.html" class="nav-item">
+                <i class="bi bi-water"></i>
+                <span>Lavages</span>
+            </a>
+
+            <a href="employes.html" class="nav-item">
+                <i class="bi bi-person-badge-fill"></i>
+                <span>Employés</span>
+            </a>
+
+            <a href="paiements.html" class="nav-item">
+                <i class="bi bi-credit-card-fill"></i>
+                <span>Paiements</span>
+            </a>
+
+
+            <div class="nav-heading">
+                ANALYSE
+            </div>
+
+            <a href="statistiques.html" class="nav-item">
+                <i class="bi bi-bar-chart-fill"></i>
+                <span>Statistiques</span>
+            </a>
+
+
+            <div class="nav-heading">
+                SYSTÈME
+            </div>
+
+            <a href="parametres.html" class="nav-item active">
+                <i class="bi bi-gear-fill"></i>
+                <span>Paramètres</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="admin-profile">
+
+                <div class="avatar">
+                    AG
+                </div>
+
+                <div class="profile-info">
+                    <strong>Abdou-Akim</strong>
+                    <span>Administrateur</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="menu-toggle d-lg-none"
+                    id="menuToggle"
+                >
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div>
+
+                    <span class="topbar-label">
+                        ESPACE ADMINISTRATEUR
+                    </span>
+
+                    <h1>Paramètres</h1>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="current-date">
+
+                    <i class="bi bi-calendar3"></i>
+
+                    <span id="currentDate">
+                        --
+                    </span>
+
+                </div>
+
+
+                <div class="topbar-user">
+
+                    <div class="avatar avatar-small">
+                        AG
+                    </div>
+
+                    <div class="topbar-user-info">
+
+                        <strong>
+                            Abdou-Akim
+                        </strong>
+
+                        <span>
+                            Administrateur
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             PAGE
+             ================================================= -->
+
+        <div class="page-container">
+
+            <section class="page-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        CONFIGURATION
+                    </span>
+
+                    <h2>
+                        Paramètres
+                    </h2>
+
+                    <p>
+                        Configurez les paramètres de votre
+                        espace d'administration Bidè.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 LAYOUT
+                 ================================================= -->
+
+            <div class="settings-layout">
+
+
+                <!-- =============================================
+                     MENU PARAMETRES
+                     ============================================= -->
+
+                <aside class="settings-menu">
+
+                    <div class="settings-menu-title">
+                        PARAMÈTRES
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="settings-tab active"
+                        data-settings-tab="entreprise"
+                    >
+                        <span class="settings-tab-icon">
+                            <i class="bi bi-building"></i>
+                        </span>
+
+                        <span>
+                            <strong>
+                                Profil entreprise
+                            </strong>
+
+                            <small>
+                                Informations de Bidè
+                            </small>
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="settings-tab"
+                        data-settings-tab="preferences"
+                    >
+                        <span class="settings-tab-icon">
+                            <i class="bi bi-sliders"></i>
+                        </span>
+
+                        <span>
+                            <strong>
+                                Préférences générales
+                            </strong>
+
+                            <small>
+                                Langue et affichage
+                            </small>
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="settings-tab"
+                        data-settings-tab="notifications"
+                    >
+                        <span class="settings-tab-icon">
+                            <i class="bi bi-bell-fill"></i>
+                        </span>
+
+                        <span>
+                            <strong>
+                                Notifications
+                            </strong>
+
+                            <small>
+                                Alertes et notifications
+                            </small>
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="settings-tab"
+                        data-settings-tab="securite"
+                    >
+                        <span class="settings-tab-icon">
+                            <i class="bi bi-shield-lock-fill"></i>
+                        </span>
+
+                        <span>
+                            <strong>
+                                Sécurité
+                            </strong>
+
+                            <small>
+                                Mot de passe et session
+                            </small>
+                        </span>
+                    </button>
+
+
+                    <div class="settings-menu-separator"></div>
+
+
+                    <button
+                        type="button"
+                        class="settings-tab"
+                        id="exportSettingsBtn"
+                    >
+                        <span class="settings-tab-icon">
+                            <i class="bi bi-download"></i>
+                        </span>
+
+                        <span>
+                            <strong>
+                                Exporter
+                            </strong>
+
+                            <small>
+                                Sauvegarder les paramètres
+                            </small>
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="settings-tab"
+                        id="importSettingsBtn"
+                    >
+                        <span class="settings-tab-icon">
+                            <i class="bi bi-upload"></i>
+                        </span>
+
+                        <span>
+                            <strong>
+                                Importer
+                            </strong>
+
+                            <small>
+                                Restaurer les paramètres
+                            </small>
+                        </span>
+                    </button>
+
+                    <input
+                        type="file"
+                        id="importSettingsInput"
+                        accept=".json,application/json"
+                        hidden
+                    >
+
+                </aside>
+
+
+                <!-- =============================================
+                     CONTENU
+                     ============================================= -->
+
+                <div class="settings-content">
+
+
+                    <!-- =========================================
+                         PROFIL ENTREPRISE
+                         ========================================= -->
+
+                    <section
+                        class="settings-section active"
+                        data-settings-section="entreprise"
+                    >
+
+                        <div class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div>
+
+                                    <span class="eyebrow">
+                                        ENTREPRISE
+                                    </span>
+
+                                    <h3>
+                                        Profil entreprise
+                                    </h3>
+
+                                    <p>
+                                        Informations générales
+                                        de votre entreprise.
+                                    </p>
+
+                                </div>
+
+                                <div class="section-icon">
+                                    <i class="bi bi-building"></i>
+                                </div>
+
+                            </div>
+
+
+                            <form
+                                id="companyForm"
+                                novalidate
+                            >
+
+                                <div class="form-grid">
+
+                                    <div class="form-group">
+
+                                        <label for="companyName">
+                                            Nom de l'entreprise
+                                            <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="companyName"
+                                            class="form-control"
+                                            maxlength="100"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="companySlogan">
+                                            Slogan
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="companySlogan"
+                                            class="form-control"
+                                            maxlength="150"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="companyPhone">
+                                            Téléphone
+                                        </label>
+
+                                        <input
+                                            type="tel"
+                                            id="companyPhone"
+                                            class="form-control"
+                                            maxlength="30"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="companyEmail">
+                                            Email
+                                        </label>
+
+                                        <input
+                                            type="email"
+                                            id="companyEmail"
+                                            class="form-control"
+                                            maxlength="120"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-group full">
+
+                                        <label for="companyAddress">
+                                            Adresse
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="companyAddress"
+                                            class="form-control"
+                                            maxlength="200"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="companyCity">
+                                            Ville
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="companyCity"
+                                            class="form-control"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="companyCountry">
+                                            Pays
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="companyCountry"
+                                            class="form-control"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="currency">
+                                            Devise
+                                        </label>
+
+                                        <select
+                                            id="currency"
+                                            class="form-select"
+                                        >
+                                            <option value="FCFA">
+                                                FCFA
+                                            </option>
+
+                                            <option value="EUR">
+                                                Euro (€)
+                                            </option>
+
+                                            <option value="USD">
+                                                Dollar ($)
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group full">
+
+                                        <label for="companyDescription">
+                                            Description
+                                        </label>
+
+                                        <textarea
+                                            id="companyDescription"
+                                            class="form-control"
+                                            rows="4"
+                                            maxlength="500"
+                                        ></textarea>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="settings-actions">
+
+                                    <button
+                                        type="button"
+                                        class="btn-secondary-custom"
+                                        data-reset-section="entreprise"
+                                    >
+                                        <i class="bi bi-arrow-counterclockwise"></i>
+                                        Réinitialiser
+                                    </button>
+
+                                    <button
+                                        type="submit"
+                                        class="btn-primary-custom"
+                                    >
+                                        <i class="bi bi-check-lg"></i>
+                                        Enregistrer
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================================
+                         PREFERENCES
+                         ========================================= -->
+
+                    <section
+                        class="settings-section"
+                        data-settings-section="preferences"
+                        hidden
+                    >
+
+                        <div class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div>
+
+                                    <span class="eyebrow">
+                                        CONFIGURATION
+                                    </span>
+
+                                    <h3>
+                                        Préférences générales
+                                    </h3>
+
+                                    <p>
+                                        Personnalisez le fonctionnement
+                                        et l'affichage de Bidè.
+                                    </p>
+
+                                </div>
+
+                                <div class="section-icon">
+                                    <i class="bi bi-sliders"></i>
+                                </div>
+
+                            </div>
+
+
+                            <form
+                                id="preferencesForm"
+                                novalidate
+                            >
+
+                                <div class="form-grid">
+
+                                    <div class="form-group">
+
+                                        <label for="language">
+                                            Langue
+                                        </label>
+
+                                        <select
+                                            id="language"
+                                            class="form-select"
+                                        >
+                                            <option value="fr">
+                                                Français
+                                            </option>
+
+                                            <option value="en">
+                                                English
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="dateFormat">
+                                            Format de date
+                                        </label>
+
+                                        <select
+                                            id="dateFormat"
+                                            class="form-select"
+                                        >
+                                            <option value="DD/MM/YYYY">
+                                                31/12/2026
+                                            </option>
+
+                                            <option value="MM/DD/YYYY">
+                                                12/31/2026
+                                            </option>
+
+                                            <option value="YYYY-MM-DD">
+                                                2026-12-31
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="timeFormat">
+                                            Format de l'heure
+                                        </label>
+
+                                        <select
+                                            id="timeFormat"
+                                            class="form-select"
+                                        >
+                                            <option value="24">
+                                                24 heures
+                                            </option>
+
+                                            <option value="12">
+                                                12 heures
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="homePage">
+                                            Page d'accueil
+                                        </label>
+
+                                        <select
+                                            id="homePage"
+                                            class="form-select"
+                                        >
+                                            <option value="dashboard">
+                                                Dashboard
+                                            </option>
+
+                                            <option value="clients">
+                                                Clients
+                                            </option>
+
+                                            <option value="reservations">
+                                                Réservations
+                                            </option>
+
+                                            <option value="lavages">
+                                                Lavages
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="tableRows">
+                                            Lignes par tableau
+                                        </label>
+
+                                        <select
+                                            id="tableRows"
+                                            class="form-select"
+                                        >
+                                            <option value="10">
+                                                10 lignes
+                                            </option>
+
+                                            <option value="25">
+                                                25 lignes
+                                            </option>
+
+                                            <option value="50">
+                                                50 lignes
+                                            </option>
+
+                                            <option value="100">
+                                                100 lignes
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="theme">
+                                            Thème
+                                        </label>
+
+                                        <select
+                                            id="theme"
+                                            class="form-select"
+                                        >
+                                            <option value="light">
+                                                Clair
+                                            </option>
+
+                                            <option value="dark">
+                                                Sombre
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="primaryColor">
+                                            Couleur principale
+                                        </label>
+
+                                        <select
+                                            id="primaryColor"
+                                            class="form-select"
+                                        >
+                                            <option value="royal">
+                                                Bleu roi
+                                            </option>
+
+                                            <option value="navy">
+                                                Bleu marine
+                                            </option>
+
+                                            <option value="blue">
+                                                Bleu classique
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="density">
+                                            Densité de l'interface
+                                        </label>
+
+                                        <select
+                                            id="density"
+                                            class="form-select"
+                                        >
+                                            <option value="compact">
+                                                Compacte
+                                            </option>
+
+                                            <option value="normal">
+                                                Normale
+                                            </option>
+
+                                            <option value="comfortable">
+                                                Confortable
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="settings-actions">
+
+                                    <button
+                                        type="button"
+                                        class="btn-secondary-custom"
+                                        data-reset-section="preferences"
+                                    >
+                                        <i class="bi bi-arrow-counterclockwise"></i>
+                                        Réinitialiser
+                                    </button>
+
+                                    <button
+                                        type="submit"
+                                        class="btn-primary-custom"
+                                    >
+                                        <i class="bi bi-check-lg"></i>
+                                        Enregistrer
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================================
+                         NOTIFICATIONS
+                         ========================================= -->
+
+                    <section
+                        class="settings-section"
+                        data-settings-section="notifications"
+                        hidden
+                    >
+
+                        <div class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div>
+
+                                    <span class="eyebrow">
+                                        ALERTES
+                                    </span>
+
+                                    <h3>
+                                        Notifications
+                                    </h3>
+
+                                    <p>
+                                        Choisissez les événements
+                                        pour lesquels vous souhaitez
+                                        recevoir une notification.
+                                    </p>
+
+                                </div>
+
+                                <div class="section-icon">
+                                    <i class="bi bi-bell-fill"></i>
+                                </div>
+
+                            </div>
+
+
+                            <form
+                                id="notificationsForm"
+                                novalidate
+                            >
+
+                                <div class="notification-list">
+
+
+                                    <div class="notification-item">
+
+                                        <div class="notification-icon">
+                                            <i class="bi bi-calendar-check-fill"></i>
+                                        </div>
+
+                                        <div class="notification-info">
+
+                                            <strong>
+                                                Nouvelles réservations
+                                            </strong>
+
+                                            <span>
+                                                Recevoir une notification
+                                                lorsqu'une réservation
+                                                est créée.
+                                            </span>
+
+                                        </div>
+
+                                        <label class="switch">
+
+                                            <input
+                                                type="checkbox"
+                                                id="notificationReservations"
+                                            >
+
+                                            <span class="slider"></span>
+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="notification-item">
+
+                                        <div class="notification-icon">
+                                            <i class="bi bi-credit-card-fill"></i>
+                                        </div>
+
+                                        <div class="notification-info">
+
+                                            <strong>
+                                                Paiements
+                                            </strong>
+
+                                            <span>
+                                                Notification lorsqu'un
+                                                paiement est enregistré.
+                                            </span>
+
+                                        </div>
+
+                                        <label class="switch">
+
+                                            <input
+                                                type="checkbox"
+                                                id="notificationPayments"
+                                            >
+
+                                            <span class="slider"></span>
+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="notification-item">
+
+                                        <div class="notification-icon">
+                                            <i class="bi bi-water"></i>
+                                        </div>
+
+                                        <div class="notification-info">
+
+                                            <strong>
+                                                Lavages terminés
+                                            </strong>
+
+                                            <span>
+                                                Être informé lorsqu'un
+                                                lavage est terminé.
+                                            </span>
+
+                                        </div>
+
+                                        <label class="switch">
+
+                                            <input
+                                                type="checkbox"
+                                                id="notificationLavages"
+                                            >
+
+                                            <span class="slider"></span>
+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="notification-item">
+
+                                        <div class="notification-icon">
+                                            <i class="bi bi-person-plus-fill"></i>
+                                        </div>
+
+                                        <div class="notification-info">
+
+                                            <strong>
+                                                Nouveaux clients
+                                            </strong>
+
+                                            <span>
+                                                Recevoir une alerte lors
+                                                de l'ajout d'un client.
+                                            </span>
+
+                                        </div>
+
+                                        <label class="switch">
+
+                                            <input
+                                                type="checkbox"
+                                                id="notificationClients"
+                                            >
+
+                                            <span class="slider"></span>
+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="notification-item">
+
+                                        <div class="notification-icon">
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                        </div>
+
+                                        <div class="notification-info">
+
+                                            <strong>
+                                                Alertes système
+                                            </strong>
+
+                                            <span>
+                                                Recevoir les alertes
+                                                importantes du système.
+                                            </span>
+
+                                        </div>
+
+                                        <label class="switch">
+
+                                            <input
+                                                type="checkbox"
+                                                id="notificationAlerts"
+                                            >
+
+                                            <span class="slider"></span>
+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="notification-item">
+
+                                        <div class="notification-icon">
+                                            <i class="bi bi-envelope-fill"></i>
+                                        </div>
+
+                                        <div class="notification-info">
+
+                                            <strong>
+                                                Notifications email
+                                            </strong>
+
+                                            <span>
+                                                Autoriser l'envoi des
+                                                notifications par email.
+                                            </span>
+
+                                        </div>
+
+                                        <label class="switch">
+
+                                            <input
+                                                type="checkbox"
+                                                id="notificationEmail"
+                                            >
+
+                                            <span class="slider"></span>
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="settings-actions">
+
+                                    <button
+                                        type="button"
+                                        class="btn-secondary-custom"
+                                        data-reset-section="notifications"
+                                    >
+                                        <i class="bi bi-arrow-counterclockwise"></i>
+                                        Réinitialiser
+                                    </button>
+
+                                    <button
+                                        type="submit"
+                                        class="btn-primary-custom"
+                                    >
+                                        <i class="bi bi-check-lg"></i>
+                                        Enregistrer
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================================
+                         SECURITE
+                         ========================================= -->
+
+                    <section
+                        class="settings-section"
+                        data-settings-section="securite"
+                        hidden
+                    >
+
+                        <div class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div>
+
+                                    <span class="eyebrow">
+                                        PROTECTION
+                                    </span>
+
+                                    <h3>
+                                        Sécurité
+                                    </h3>
+
+                                    <p>
+                                        Gérez votre mot de passe
+                                        et les paramètres de sécurité.
+                                    </p>
+
+                                </div>
+
+                                <div class="section-icon">
+                                    <i class="bi bi-shield-lock-fill"></i>
+                                </div>
+
+                            </div>
+
+
+                            <!-- MOT DE PASSE -->
+
+                            <div class="security-block">
+
+                                <div class="security-block-title">
+
+                                    <div>
+                                        <h4>
+                                            Modifier le mot de passe
+                                        </h4>
+
+                                        <p>
+                                            Utilisez un mot de passe
+                                            suffisamment long et sécurisé.
+                                        </p>
+                                    </div>
+
+                                    <i class="bi bi-key-fill"></i>
+
+                                </div>
+
+
+                                <form
+                                    id="passwordForm"
+                                    novalidate
+                                >
+
+                                    <div class="form-grid">
+
+                                        <div class="form-group full">
+
+                                            <label for="currentPassword">
+                                                Mot de passe actuel
+                                            </label>
+
+                                            <div class="password-field">
+
+                                                <input
+                                                    type="password"
+                                                    id="currentPassword"
+                                                    class="form-control"
+                                                    autocomplete="current-password"
+                                                >
+
+                                                <button
+                                                    type="button"
+                                                    class="password-toggle"
+                                                    data-password-target="currentPassword"
+                                                    aria-label="Afficher le mot de passe"
+                                                >
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="form-group">
+
+                                            <label for="newPassword">
+                                                Nouveau mot de passe
+                                            </label>
+
+                                            <div class="password-field">
+
+                                                <input
+                                                    type="password"
+                                                    id="newPassword"
+                                                    class="form-control"
+                                                    minlength="8"
+                                                    autocomplete="new-password"
+                                                >
+
+                                                <button
+                                                    type="button"
+                                                    class="password-toggle"
+                                                    data-password-target="newPassword"
+                                                    aria-label="Afficher le mot de passe"
+                                                >
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="form-group">
+
+                                            <label for="confirmPassword">
+                                                Confirmation
+                                            </label>
+
+                                            <div class="password-field">
+
+                                                <input
+                                                    type="password"
+                                                    id="confirmPassword"
+                                                    class="form-control"
+                                                    minlength="8"
+                                                    autocomplete="new-password"
+                                                >
+
+                                                <button
+                                                    type="button"
+                                                    class="password-toggle"
+                                                    data-password-target="confirmPassword"
+                                                    aria-label="Afficher le mot de passe"
+                                                >
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="password-rules">
+
+                                        <strong>
+                                            Le mot de passe doit contenir :
+                                        </strong>
+
+                                        <ul>
+
+                                            <li id="ruleLength">
+                                                <i class="bi bi-circle"></i>
+                                                Au moins 8 caractères
+                                            </li>
+
+                                            <li id="ruleUpper">
+                                                <i class="bi bi-circle"></i>
+                                                Une lettre majuscule
+                                            </li>
+
+                                            <li id="ruleNumber">
+                                                <i class="bi bi-circle"></i>
+                                                Un chiffre
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+
+                                    <button
+                                        type="submit"
+                                        class="btn-primary-custom"
+                                    >
+                                        <i class="bi bi-shield-check"></i>
+                                        Modifier le mot de passe
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+
+                            <!-- SESSION -->
+
+                            <div class="security-block">
+
+                                <div class="security-block-title">
+
+                                    <div>
+                                        <h4>
+                                            Session
+                                        </h4>
+
+                                        <p>
+                                            Définissez la durée
+                                            d'inactivité avant expiration.
+                                        </p>
+                                    </div>
+
+                                    <i class="bi bi-clock-history"></i>
+
+                                </div>
+
+
+                                <form
+                                    id="securityForm"
+                                    novalidate
+                                >
+
+                                    <div class="form-grid">
+
+                                        <div class="form-group">
+
+                                            <label for="sessionDuration">
+                                                Durée de session
+                                            </label>
+
+                                            <select
+                                                id="sessionDuration"
+                                                class="form-select"
+                                            >
+
+                                                <option value="15">
+                                                    15 minutes
+                                                </option>
+
+                                                <option value="30">
+                                                    30 minutes
+                                                </option>
+
+                                                <option value="60">
+                                                    1 heure
+                                                </option>
+
+                                                <option value="120">
+                                                    2 heures
+                                                </option>
+
+                                                <option value="240">
+                                                    4 heures
+                                                </option>
+
+                                            </select>
+
+                                        </div>
+
+
+                                        <div class="form-group security-switch">
+
+                                            <label>
+                                                Double authentification
+                                            </label>
+
+                                            <div class="switch-line">
+
+                                                <label class="switch">
+
+                                                    <input
+                                                        type="checkbox"
+                                                        id="twoFactor"
+                                                    >
+
+                                                    <span class="slider"></span>
+
+                                                </label>
+
+                                                <span>
+                                                    Activer la sécurité
+                                                    renforcée
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="settings-actions">
+
+                                        <button
+                                            type="button"
+                                            class="btn-secondary-custom"
+                                            data-reset-section="securite"
+                                        >
+                                            <i class="bi bi-arrow-counterclockwise"></i>
+                                            Réinitialiser
+                                        </button>
+
+                                        <button
+                                            type="submit"
+                                            class="btn-primary-custom"
+                                        >
+                                            <i class="bi bi-check-lg"></i>
+                                            Enregistrer
+                                        </button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+
+            <footer class="page-footer">
+
+                <span>
+                    © <span id="currentYear"></span>
+                    Bidè. Tous droits réservés.
+                </span>
+
+                <span>
+                    Administration
+                </span>
+
+            </footer>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+     ========================================================= -->
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+    <div
+        id="appToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+    >
+
+        <div class="toast-header">
+
+            <i class="bi bi-droplet-fill me-2"></i>
+
+            <strong class="me-auto">
+                Bidè
+            </strong>
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="toast"
+            ></button>
+
+        </div>
+
+        <div
+            class="toast-body"
+            id="toastMessage"
+        >
+            Notification
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+<!-- JS -->
+
+<script src="parametres.js"></script>
+
+</body>
+</html>

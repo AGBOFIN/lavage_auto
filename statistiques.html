@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Statistiques - Bidè Administration">
+
+    <title>Bidè | Statistiques</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="statistiques.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-header">
+
+                <span class="brand-logo">
+                    <i class="bi bi-droplet-fill"></i>
+                </span>
+
+
+                <span class="brand-text">
+                    <strong>Bidè</strong>
+                    <small>Administration</small>
+
+                </span>
+
+
+            </a>
+
+
+            <button
+                class="sidebar-close d-lg-none"
+                id="sidebarClose"
+                type="button"
+
+            >
+
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-heading">MENU PRINCIPAL</p>
+
+
+            <a href="dashboard.html" class="nav-item">
+
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <p class="nav-heading">GESTION</p>
+
+            <a href="clients.html" class="nav-item">
+                <i class="bi bi-people-fill"></i>
+                <span>Clients</span>
+
+            </a>
+
+            <a href="vehicules.html" class="nav-item">
+
+                <i class="bi bi-car-front-fill"></i>
+                <span>Véhicules</span>
+            </a>
+
+            <a href="prestations.html" class="nav-item">
+                <i class="bi bi-droplet-fill"></i>
+                <span>Prestations</span>
+            </a>
+
+
+            <a href="reservations.html" class="nav-item">
+                <i class="bi bi-calendar-check-fill"></i>
+                <span>Réservations</span>
+            </a>
+
+            <a href="lavages.html" class="nav-item">
+                <i class="bi bi-water"></i>
+                <span>Lavages</span>
+            </a>
+
+            <a href="employes.html" class="nav-item">
+                <i class="bi bi-person-badge-fill"></i>
+                <span>Employés</span>
+            </a>
+
+            <a href="paiements.html" class="nav-item">
+                <i class="bi bi-credit-card-fill"></i>
+                <span>Paiements</span>
+            </a>
+
+            <p class="nav-heading">ANALYSE</p>
+
+            <a href="statistiques.html" class="nav-item active">
+                <i class="bi bi-bar-chart-fill"></i>
+                <span>Statistiques</span>
+            </a>
+
+            <p class="nav-heading">SYSTÈME</p>
+
+            <a href="parametres.html" class="nav-item">
+                <i class="bi bi-gear-fill"></i>
+                <span>Paramètres</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <div class="admin-profile">
+
+                <div class="avatar">
+                    AG
+                </div>
+
+                <div class="profile-info">
+                    <strong>Abdou-Akim</strong>
+                    <span>Administrateur</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="menu-toggle d-lg-none"
+                    id="menuToggle"
+                    type="button"
+                >
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div>
+
+                    <span class="topbar-label">
+                        ESPACE ADMINISTRATEUR
+                    </span>
+
+                    <h1>
+                        Statistiques
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="current-date">
+
+                    <i class="bi bi-calendar3"></i>
+
+                    <span id="currentDate">
+                        --
+                    </span>
+
+                </div>
+
+                <div class="topbar-user">
+
+                    <div class="avatar avatar-small">
+                        AG
+                    </div>
+
+                    <div class="topbar-user-info">
+
+                        <strong>
+                            Abdou-Akim
+                        </strong>
+
+                        <span>
+                            Administrateur
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+
+        <div class="page-container">
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        ANALYSE DE L'ACTIVITÉ
+                    </span>
+
+                    <h2>
+                        Statistiques
+                    </h2>
+
+                    <p>
+                        Analysez les performances de votre station de lavage.
+                    </p>
+
+                </div>
+
+                <div class="heading-actions">
+
+                    <button
+                        id="refreshBtn"
+                        class="btn-secondary-custom"
+                        type="button"
+                    >
+                        <i class="bi bi-arrow-clockwise"></i>
+                        Actualiser
+                    </button>
+
+                    <button
+                        id="exportBtn"
+                        class="btn-primary-custom"
+                        type="button"
+                    >
+                        <i class="bi bi-download"></i>
+                        Exporter
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= FILTERS ================= -->
+
+            <section class="filter-card">
+
+                <div class="filter-title">
+
+                    <i class="bi bi-funnel-fill"></i>
+
+                    <div>
+
+                        <strong>
+                            Période d'analyse
+                        </strong>
+
+                        <span id="periodLabel">
+                            Aujourd'hui
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="period-buttons">
+
+                    <button
+                        class="period-btn active"
+                        data-period="today"
+                    >
+                        Aujourd'hui
+                    </button>
+
+                    <button
+                        class="period-btn"
+                        data-period="7days"
+                    >
+                        7 jours
+                    </button>
+
+                    <button
+                        class="period-btn"
+                        data-period="month"
+                    >
+                        Ce mois
+                    </button>
+
+                    <button
+                        class="period-btn"
+                        data-period="year"
+                    >
+                        Cette année
+                    </button>
+
+                    <button
+                        class="period-btn"
+                        data-period="all"
+                    >
+                        Tout
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= KPI ================= -->
+
+            <section class="stats-grid">
+
+                <article class="stat-card">
+
+                    <div class="stat-icon blue">
+                        <i class="bi bi-cash-stack"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Chiffre d'affaires
+                        </span>
+
+                        <strong id="revenueStat">
+                            0 FCFA
+                        </strong>
+
+                        <small id="revenueEvolution">
+                            --
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-icon navy">
+                        <i class="bi bi-water"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Lavages
+                        </span>
+
+                        <strong id="washStat">
+                            0
+                        </strong>
+
+                        <small id="washEvolution">
+                            --
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-icon blue-light">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Clients
+                        </span>
+
+                        <strong id="clientStat">
+                            0
+                        </strong>
+
+                        <small id="clientEvolution">
+                            --
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-icon navy-light">
+                        <i class="bi bi-car-front-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Véhicules
+                        </span>
+
+                        <strong id="vehicleStat">
+                            0
+                        </strong>
+
+                        <small id="vehicleEvolution">
+                            --
+                        </small>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ================= GRAPHIQUES ================= -->
+
+            <section class="charts-grid">
+
+                <!-- CA -->
+
+                <article class="panel-card chart-large">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                PERFORMANCE
+                            </span>
+
+                            <h3>
+                                Évolution du chiffre d'affaires
+                            </h3>
+
+                        </div>
+
+                        <span class="chart-period" id="chartPeriod">
+                            Aujourd'hui
+                        </span>
+
+                    </div>
+
+                    <div class="chart-container">
+
+                        <canvas id="revenueChart"></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <!-- LAVAGES -->
+
+                <article class="panel-card">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                ACTIVITÉ
+                            </span>
+
+                            <h3>
+                                Lavages
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chart-container">
+
+                        <canvas id="washChart"></canvas>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ================= SECOND ROW ================= -->
+
+            <section class="bottom-grid">
+
+                <!-- PRESTATIONS -->
+
+                <article class="panel-card">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                PRESTATIONS
+                            </span>
+
+                            <h3>
+                                Prestations les plus demandées
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="servicesList"
+                        class="services-list"
+                    ></div>
+
+                </article>
+
+
+                <!-- PAIEMENTS -->
+
+                <article class="panel-card">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                PAIEMENTS
+                            </span>
+
+                            <h3>
+                                Répartition des paiements
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chart-container payment-chart">
+
+                        <canvas id="paymentChart"></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RESUME -->
+
+                <article class="panel-card">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                RÉSUMÉ
+                            </span>
+
+                            <h3>
+                                Résumé de l'activité
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="summary-list">
+
+                        <div class="summary-item">
+
+                            <span>
+                                Panier moyen
+                            </span>
+
+                            <strong id="averageBasket">
+                                0 FCFA
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-item">
+
+                            <span>
+                                Employés actifs
+                            </span>
+
+                            <strong id="activeEmployees">
+                                0
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-item">
+
+                            <span>
+                                Réservations
+                            </span>
+
+                            <strong id="reservationStat">
+                                0
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-item">
+
+                            <span>
+                                Taux de paiement
+                            </span>
+
+                            <strong id="paymentRate">
+                                0 %
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer class="page-footer">
+
+                <span>
+                    © <span id="currentYear"></span>
+                    Bidè. Tous droits réservés.
+                </span>
+
+                <span>
+                    Administration
+                </span>
+
+            </footer>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+    <div
+        id="appToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+    >
+
+        <div class="toast-header">
+
+            <i class="bi bi-droplet-fill me-2"></i>
+
+            <strong class="me-auto">
+                Bidè
+            </strong>
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="toast"
+            ></button>
+
+        </div>
+
+        <div
+            class="toast-body"
+            id="toastMessage"
+        >
+            Notification
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Bootstrap -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- Chart.js -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js">
+</script>
+
+
+<!-- Application -->
+
+<script src="statistiques.js"></script>
+
+</body>
+</html>
