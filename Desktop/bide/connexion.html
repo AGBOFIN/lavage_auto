@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BIDÈ — Espace Client Connexion</title>
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/connexion.css">
+
+    </head>
+
+    <body>
+
+        <!-- Left Panel — Image Background -->
+        <div class="login-left">
+            <img class="login-image" src="https://res.cloudinary.com/g36grm5h/image/upload/v1787151234/Nettoyage_du_capot_de_la_voiture_avec_une_%C3%A9ponge_jaune_et_de_la_mousse_de_savon_%C3%A0_l_ext%C3%A9rieur_au_service_de_lavage_de_voiture___Photo_Premium_eyjs9e.jpg" alt="Homme lavant une voiture">
+            <div class="login-left-overlay"></div>
+            <div class="login-left-content">
+                <a href="index.html" class="back-brand">
+                    <i class="bi bi-droplet-fill"></i> BIDÈ
+                </a>
+                <h1>Lavage Automobile<br><span>Professionnel</span></h1>
+                <p>Connectez-vous pour gérer vos services, suivre vos lavages et profiter de nos offres exclusives.</p>
+                <div class="login-features">
+                    <div class="feature">
+                        <i class="bi bi-calendar-check"></i>
+                        <span>Réservation rapide</span>
+                    </div>
+                    <div class="feature">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <span>Historique des lavages</span>
+                    </div>
+                    <div class="feature">
+                        <i class="bi bi-percent"></i>
+                        <span>Promotions exclusives</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel — Form -->
+        <div class="login-right">
+            <div class="login-form-wrapper">
+
+                <div class="login-header">
+                    <h2>Bienvenue</h2>
+                    <p>Connectez-vous à votre espace client</p>
+                </div>
+
+                <form class="login-form" id="loginForm">
+                    <div class="input-group">
+                        <i class="bi bi-envelope"></i>
+                        <input type="text" id="loginEmail" placeholder="Email ou téléphone" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="bi bi-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Mot de passe" required>
+                    </div>
+
+                    <div class="login-options">
+                        <label class="remember-me">
+                            <input type="checkbox"> <span>Se souvenir de moi</span>
+                        </label>
+                        <a href="#" class="forgot-link">Mot de passe oublié ?</a>
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        <span>Se connecter</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </button>
+                </form>
+
+                <div class="login-divider">
+                    <span>ou</span>
+                </div>
+
+                <p class="signup-text">
+                    Pas encore de compte ?
+                    <a href="#" id="openModal">Créer un compte</a>
+                </p>
+
+                <a href="index.html" class="back-home">
+                    <i class="bi bi-house"></i> Retour à l'accueil
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Modal d'inscription -->
+        <div class="modale" id="inscriptionModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-card">
+
+                <button class="close-btn" aria-label="Fermer">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+
+                <div class="modal-header">
+                    <div class="modal-icon">
+                        <i class="bi bi-person-plus-fill"></i>
+                    </div>
+                    <h2>Créer un compte</h2>
+                    <p>Rejoignez BIDÈ et profitez de nos services</p>
+                </div>
+
+                <form id="inscriptionForm">
+                    <div class="modal-row">
+                        <div class="input-group">
+                            <i class="bi bi-person"></i>
+                            <input type="text" placeholder="Nom" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="bi bi-person"></i>
+                            <input type="text" placeholder="Prénom" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="bi bi-envelope"></i>
+                        <input type="email" placeholder="Email" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="bi bi-telephone"></i>
+                        <input type="tel" placeholder="Numéro de téléphone" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="bi bi-calendar"></i>
+                        <input type="date" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="bi bi-lock"></i>
+                        <input type="password" placeholder="Mot de passe" required>
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        <span>S'inscrire</span>
+                        <i class="bi bi-check-circle"></i>
+                    </button>
+                </form>
+
+                <p class="signup-text">
+                    Déjà un compte ?
+                    <a href="#" id="closeModalLink">Se connecter</a>
+                </p>
+
+            </div>
+        </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var modal = document.getElementById('inscriptionModal');
+        var openBtn = document.getElementById('openModal');
+        var closeBtn = document.querySelector('.close-btn');
+        var closeModalLink = document.getElementById('closeModalLink');
+        var modalOverlay = document.querySelector('.modal-overlay');
+
+        if (openBtn) {
+            openBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+        if (closeModalLink) {
+            closeModalLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeModal();
+            });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        function showToast(msg, type) {
+            type = type || 'success';
+            var t = document.createElement('div');
+            t.style.cssText = 'position:fixed;top:20px;right:20px;z-index:99999;padding:15px 25px;border-radius:10px;color:white;font-weight:700;font-size:14px;box-shadow:0 4px 15px rgba(0,0,0,0.2);font-family:Nunito,sans-serif;display:flex;align-items:center;gap:10px;';
+            var c = {success:'#198754',info:'#0d6efd',warning:'#fd7e14',error:'#dc3545'};
+            t.style.background = c[type]||c.success;
+            var ic = {success:'bi-check-circle-fill',info:'bi-info-circle-fill',warning:'bi-exclamation-triangle-fill'};
+            t.innerHTML = '<i class="bi '+(ic[type]||ic.success)+'"></i> '+msg;
+            document.body.appendChild(t);
+            setTimeout(function(){t.style.opacity='0';t.style.transition='opacity 0.3s';},2500);
+            setTimeout(function(){t.remove();},3000);
+        }
+
+        var loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('loginEmail').value;
+                var password = document.getElementById('loginPassword').value;
+                if (!email || !password) {
+                    showToast('Veuillez remplir tous les champs.', 'warning');
+                    return;
+                }
+                localStorage.setItem('bide_session', JSON.stringify({email: email, loggedAt: new Date().toISOString()}));
+                showToast('Connexion réussie !', 'success');
+                setTimeout(function() {
+                    window.location.href = 'dashbord_client.html';
+                }, 800);
+            });
+        }
+
+        var inscriptionForm = document.getElementById('inscriptionForm');
+        if (inscriptionForm) {
+            inscriptionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var nom = e.target.querySelector('input[placeholder="Nom"]');
+                var prenom = e.target.querySelector('input[placeholder="Prénom"]');
+                var emailField = e.target.querySelector('input[type="email"]');
+                localStorage.setItem('bide_session', JSON.stringify({
+                    email: emailField ? emailField.value : '',
+                    nom: (prenom ? prenom.value : '') + ' ' + (nom ? nom.value : ''),
+                    registeredAt: new Date().toISOString()
+                }));
+                closeModal();
+                showToast('Inscription réussie ! Bienvenue.', 'success');
+                setTimeout(function() {
+                    window.location.href = 'dashbord_client.html';
+                }, 800);
+            });
+        }
+    });
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mes factures - BIDE AKIMMAKO</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <style>
+        /* ==============================
+           STYLE GENERAL
+        ============================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Nunito", sans-serif;
+            background-color: #f5f7fa;
+            color: #202b3c;
+        }
+
+
+        /* ==============================
+           DASHBOARD
+        ============================== */
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        /* ==============================
+           SIDEBAR
+        ============================== */
+
+        .sidebar {
+            width: 260px;
+            min-height: 100vh;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            background-color: #082b63;
+            color: white;
+
+            padding: 25px 15px;
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 21px;
+            font-weight: 800;
+
+            margin-bottom: 35px;
+
+            padding-left: 10px;
+        }
+
+        .logo i {
+            font-size: 27px;
+            color: #4da3ff;
+        }
+
+
+        /* TITRE MENU */
+
+        .menu-title {
+            color: #aebdd4;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            margin: 20px 10px 10px;
+
+            font-weight: 700;
+        }
+
+
+        /* LIENS */
+
+        .menu a {
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            color: #dce7f7;
+
+            text-decoration: none;
+
+            padding: 13px 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 5px;
+
+            transition: 0.3s;
+        }
+
+
+        .menu a:hover,
+        .menu a.active {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+
+        .menu a i {
+            font-size: 18px;
+        }
+
+
+        /* ==============================
+           CONTENU
+        ============================== */
+
+        .main-content {
+            margin-left: 260px;
+
+            width: calc(100% - 260px);
+        }
+
+
+        /* ==============================
+           TOPBAR
+        ============================== */
+
+        .topbar {
+            height: 75px;
+
+            background-color: white;
+
+            border-bottom: 1px solid #e4e8ee;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+        }
+
+
+        .topbar h5 {
+            margin: 0;
+
+            font-weight: 800;
+        }
+
+
+        .topbar-right {
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        /* NOTIFICATION */
+
+        .notification {
+            position: relative;
+
+            font-size: 22px;
+        }
+
+
+        .notification span {
+            position: absolute;
+
+            top: -5px;
+            right: -7px;
+
+            width: 17px;
+            height: 17px;
+
+            border-radius: 50%;
+
+            background-color: #dc3545;
+
+            color: white;
+
+            font-size: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        /* PROFIL */
+
+        .profile {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+
+            background-color: #0d6efd;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 800;
+        }
+
+
+        /* ==============================
+           PAGE
+        ============================== */
+
+        .page {
+            padding: 30px;
+        }
+
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+
+        .page-title h2 {
+            font-weight: 800;
+
+            margin-bottom: 5px;
+        }
+
+
+        .page-title p {
+            color: #6c757d;
+
+            margin: 0;
+        }
+
+
+        /* ==============================
+           STATISTIQUES FACTURES
+        ============================== */
+
+        .stat-card {
+            background-color: white;
+
+            border: 1px solid #e4e8ee;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .stat-icon {
+            width: 55px;
+            height: 55px;
+
+            border-radius: 12px;
+
+            background-color: #eaf3ff;
+
+            color: #0d6efd;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 25px;
+        }
+
+
+        .stat-card h3 {
+            margin: 0;
+
+            font-weight: 800;
+        }
+
+
+        .stat-card p {
+            margin: 3px 0 0;
+
+            color: #6c757d;
+
+            font-size: 14px;
+        }
+
+
+        /* ==============================
+           CARTE FACTURES
+        ============================== */
+
+        .invoice-card {
+            background-color: white;
+
+            border: 1px solid #e4e8ee;
+
+            border-radius: 12px;
+
+            padding: 25px;
+        }
+
+
+        .invoice-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .invoice-header h5 {
+            margin: 0;
+
+            font-weight: 800;
+        }
+
+
+        /* ==============================
+           RECHERCHE
+        ============================== */
+
+        .search-box {
+            position: relative;
+
+            max-width: 300px;
+        }
+
+
+        .search-box i {
+            position: absolute;
+
+            left: 12px;
+
+            top: 11px;
+
+            color: #6c757d;
+        }
+
+
+        .search-box input {
+            padding-left: 38px;
+        }
+
+
+        /* ==============================
+           TABLEAU
+        ============================== */
+
+        .table {
+            vertical-align: middle;
+        }
+
+
+        .table thead th {
+            background-color: #f8f9fa;
+
+            color: #495057;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            padding: 15px;
+        }
+
+
+        .table tbody td {
+            padding: 17px 15px;
+
+            font-size: 14px;
+        }
+
+
+        .invoice-number {
+            color: #0d6efd;
+
+            font-weight: 800;
+        }
+
+
+        /* ==============================
+           STATUT
+        ============================== */
+
+        .status {
+            display: inline-block;
+
+            padding: 5px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .status.paid {
+            background-color: #d1e7dd;
+
+            color: #146c43;
+        }
+
+
+        .status.pending {
+            background-color: #fff3cd;
+
+            color: #997404;
+        }
+
+
+        /* ==============================
+           BOUTONS
+        ============================== */
+
+        .btn-primary {
+            background-color: #0d6efd;
+
+            border: none;
+        }
+
+
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+
+
+        /* ==============================
+           PAGINATION
+        ============================== */
+
+        .pagination-container {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 25px;
+        }
+
+
+        .pagination-info {
+            color: #6c757d;
+
+            font-size: 14px;
+        }
+
+
+        /* ==============================
+           MODAL FACTURE
+        ============================== */
+
+        .invoice-details {
+            border: 1px solid #e4e8ee;
+
+            border-radius: 10px;
+
+            padding: 20px;
+        }
+
+
+        .invoice-details-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+
+        .invoice-logo {
+            font-size: 22px;
+
+            font-weight: 800;
+
+            color: #082b63;
+        }
+
+
+        .total-box {
+            background-color: #eaf3ff;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            text-align: right;
+        }
+
+
+        .total-box strong {
+            font-size: 25px;
+
+            color: #0d6efd;
+        }
+
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media (max-width: 768px) {
+
+            .dashboard {
+                display: block;
+            }
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+
+                min-height: auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+
+                width: 100%;
+            }
+
+            .topbar {
+                padding: 0 15px;
+            }
+
+            .page {
+                padding: 20px 15px;
+            }
+
+            .invoice-header {
+                display: block;
+            }
+
+            .search-box {
+                max-width: 100%;
+
+                margin-top: 15px;
+            }
+
+            .pagination-container {
+                display: block;
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="dashboard">
+
+
+        <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
+        <aside class="sidebar">
+
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                <i class="bi bi-car-front-fill"></i>
+
+                BIDE AKIMMAKO
+
+            </div>
+
+
+            <!-- MENU -->
+
+            <div class="menu-title">
+                Menu principal
+            </div>
+
+
+            <nav class="menu">
+
+
+                <!-- TABLEAU DE BORD -->
+
+                <a href="dashbord_client.html">
+
+                    <i class="bi bi-grid-1x2-fill"></i>
+
+                    Tableau de bord
+
+                </a>
+
+
+                <!-- FACTURES -->
+
+                <a href="mes_factures.html" class="active">
+
+                    <i class="bi bi-receipt"></i>
+
+                    Mes factures
+
+                </a>
+
+
+                <!-- SUIVI -->
+
+                <a href="suivi_vehicule.html">
+
+                    <i class="bi bi-car-front"></i>
+
+                    Suivi véhicule
+
+                </a>
+
+
+                <!-- NOTIFICATIONS -->
+
+                <a href="notifications.html">
+
+                    <i class="bi bi-bell"></i>
+
+                    Notifications
+
+                </a>
+
+
+                <!-- AVIS -->
+
+                <a href="avis.html">
+
+                    <i class="bi bi-star"></i>
+
+                    Donner mon avis
+
+                </a>
+
+
+            </nav>
+
+
+            <!-- COMPTE -->
+
+            <div class="menu-title">
+
+                Mon compte
+
+            </div>
+
+
+            <nav class="menu">
+
+
+                <a href="mon_profil.html">
+
+                    <i class="bi bi-person"></i>
+
+                    Mon profil
+
+                </a>
+
+
+                <a href="parametres.html">
+
+                    <i class="bi bi-gear"></i>
+
+                    Paramètres
+
+                </a>
+
+
+                <a href="deconnexion.html">
+
+                    <i class="bi bi-box-arrow-left"></i>
+
+                    Déconnexion
+
+                </a>
+
+
+            </nav>
+
+
+        </aside>
+
+
+
+        <!-- ==========================================
+         CONTENU PRINCIPAL
+    =========================================== -->
+
+        <main class="main-content">
+
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+
+                <h5>
+                    Mes factures
+                </h5>
+
+
+                <div class="topbar-right">
+
+
+                    <!-- NOTIFICATION -->
+
+                    <div class="notification">
+
+                        <i class="bi bi-bell"></i>
+
+                        <span>
+                            2
+                        </span>
+
+                    </div>
+
+
+                    <!-- PROFIL -->
+
+                    <div class="profile">
+
+
+                        <div class="avatar">
+                            KA
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Kossi A.
+                            </strong>
+
+                            <small class="d-block text-muted">
+                                Client
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </header>
+
+
+
+            <!-- ==========================================
+             PAGE
+        =========================================== -->
+
+            <div class="page">
+
+
+                <!-- TITRE -->
+
+                <div class="page-title">
+
+                    <h2>
+                        Mes factures
+                    </h2>
+
+                    <p>
+                        Consultez et gérez toutes vos factures BIDE AKIMMAKO.
+                    </p>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                 STATISTIQUES
+            =========================================== -->
+
+                <div class="row g-4 mb-4">
+
+
+                    <!-- TOTAL FACTURES -->
+
+                    <div class="col-md-4">
+
+
+                        <div class="stat-card">
+
+
+                            <div class="stat-icon">
+
+                                <i class="bi bi-receipt"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h3>0</h3>
+                                <p>Total des factures</p>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- FACTURES PAYEES -->
+
+                    <div class="col-md-4">
+
+
+                        <div class="stat-card">
+
+
+                            <div class="stat-icon">
+
+                                <i class="bi bi-check-circle"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h3>0</h3>
+                                <p>Factures payées</p>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- EN ATTENTE -->
+
+                    <div class="col-md-4">
+
+
+                        <div class="stat-card">
+
+
+                            <div class="stat-icon">
+
+                                <i class="bi bi-clock"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h3>0</h3>
+                                <p>En attente de paiement</p>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                 TABLEAU FACTURES
+            =========================================== -->
+
+                <div class="invoice-card">
+
+
+                    <!-- EN-TÊTE -->
+
+                    <div class="invoice-header">
+
+
+                        <h5>
+                            Liste de mes factures
+                        </h5>
+
+
+                        <!-- RECHERCHE -->
+
+                        <div class="search-box">
+
+
+                            <i class="bi bi-search"></i>
+
+
+                            <input type="text" id="searchInvoice" class="form-control"
+                                placeholder="Rechercher une facture..." onkeyup="rechercherFacture()">
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- TABLEAU -->
+
+                    <div class="table-responsive">
+
+
+                        <table class="table" id="invoiceTable">
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        N° Facture
+                                    </th>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Prestation
+                                    </th>
+
+                                    <th>
+                                        Véhicule
+                                    </th>
+
+                                    <th>
+                                        Montant
+                                    </th>
+
+                                    <th>
+                                        Statut
+                                    </th>
+
+                                    <th>
+                                        Actions
+                                    </th>
+
+                                </tr>
+
+                            </thead>                            <tbody>
+                                <tr>
+                                    <td colspan="7" style="text-align:center;padding:40px;color:#bbb;">
+                                        <i class="bi bi-receipt" style="font-size:36px;display:block;margin-bottom:10px;"></i>
+                                        Aucune facture pour le moment.
+                                    </td>
+                                </tr>
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+
+                    <!-- PAGINATION -->
+
+                    <div class="pagination-container">
+
+
+                        <div class="pagination-info">
+
+                            Aucune facture
+
+                        </div>
+
+
+                        <nav>
+
+                            <ul class="pagination mb-0">
+
+
+                                <li class="page-item disabled">
+
+                                    <a class="page-link" href="#">
+                                        Précédent
+                                    </a>
+
+                                </li>
+
+
+                                <li class="page-item active">
+
+                                    <a class="page-link" href="#">
+                                        1
+                                    </a>
+
+                                </li>
+
+
+                                <li class="page-item">
+
+                                    <a class="page-link" href="#">
+                                        2
+                                    </a>
+
+                                </li>
+
+
+                                <li class="page-item">
+
+                                    <a class="page-link" href="#">
+                                        Suivant
+                                    </a>
+
+                                </li>
+
+
+                            </ul>
+
+                        </nav>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </main>
+
+
+    </div>
+
+
+
+    <!-- ==========================================
+     MODAL : DETAILS FACTURE
+=========================================== -->
+
+    <div class="modal fade" id="invoiceModal" tabindex="-1">
+
+
+        <div class="modal-dialog modal-lg">
+
+
+            <div class="modal-content">
+
+
+                <div class="modal-header">
+
+
+                    <h5 class="modal-title">
+
+                        Détails de la facture
+
+                    </h5>
+
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+
+                </div>
+
+
+                <div class="modal-body">
+
+
+                    <div class="invoice-details">
+
+
+                        <!-- EN-TÊTE FACTURE -->
+
+                        <div class="invoice-details-header">
+
+
+                            <div>
+
+
+                                <div class="invoice-logo">
+
+                                    <i class="bi bi-car-front-fill"></i>
+
+                                    BIDE AKIMMAKO
+
+                                </div>
+
+
+                                <small class="text-muted">
+
+                                    Centre de lavage automobile
+
+                                </small>
+
+
+                            </div>
+
+
+                            <div class="text-end">
+
+
+                                <strong>
+                                    FACTURE
+                                </strong>
+
+
+                                <p class="invoice-number mb-0" id="modalInvoiceNumber">-</p>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <hr>
+
+
+
+                        <!-- CLIENT -->
+
+                        <div class="row mb-4">
+
+
+                            <div class="col-md-6">
+
+
+                                <small class="text-muted">
+                                    CLIENT
+                                </small>
+
+
+                                <h6 class="mt-1">
+                                    Kossi A.
+                                </h6>
+
+
+                                <p class="mb-0">
+                                    kossi@example.com
+                                </p>
+
+
+                                <p>
+                                    +228 90 00 00 00
+                                </p>
+
+
+                            </div>
+
+
+                            <div class="col-md-6 text-md-end">
+
+
+                                <small class="text-muted">
+                                    DATE
+                                </small>
+
+
+                                <h6 class="mt-1">
+                                    18 Août 2026
+                                </h6>
+
+
+                                <span class="status paid">
+                                    Payée
+                                </span>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- DETAILS -->
+
+                        <div class="table-responsive">
+
+
+                            <table class="table">
+
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+                                            Prestation
+                                        </th>
+
+                                        <th>
+                                            Véhicule
+                                        </th>
+
+                                        <th>
+                                            Quantité
+                                        </th>
+
+                                        <th>
+                                            Montant
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody>
+
+                                    <tr>
+
+                                        <td>
+                                            Lavage extérieur
+                                        </td>
+
+                                        <td>
+                                            Berline
+                                        </td>
+
+                                        <td>
+                                            1
+                                        </td>
+
+                                        <td>
+                                            3 000 FCFA
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>
+                                            Pressing intérieur
+                                        </td>
+
+                                        <td>
+                                            Berline
+                                        </td>
+
+                                        <td>
+                                            1
+                                        </td>
+
+                                        <td>
+                                            5 000 FCFA
+                                        </td>
+
+                                    </tr>
+
+
+                                </tbody>
+
+
+                            </table>
+
+                        </div>
+
+
+
+                        <!-- TOTAL -->
+
+                        <div class="total-box">
+
+
+                            <span>
+                                Total
+                            </span>
+
+
+                            <br>
+
+
+                            <strong>
+                                8 000 FCFA
+                            </strong>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="modal-footer">
+
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+
+                        Fermer
+
+                    </button>
+
+
+                    <button type="button" class="btn btn-primary" onclick="imprimerFacture()">
+
+                        <i class="bi bi-printer"></i>
+
+                        Imprimer / PDF
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ==========================================
+     JAVASCRIPT
+=========================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+
+
+        /* =====================================
+           RECHERCHE FACTURE
+        ====================================== */
+
+        function rechercherFacture() {
+
+
+            const recherche =
+                document
+                    .getElementById("searchInvoice")
+                    .value
+                    .toLowerCase();
+
+
+            const lignes =
+                document.querySelectorAll(
+                    "#invoiceTable tbody tr"
+                );
+
+
+            lignes.forEach(function (ligne) {
+
+
+                const texte =
+                    ligne.textContent.toLowerCase();
+
+
+                if (texte.includes(recherche)) {
+
+                    ligne.style.display = "";
+
+                } else {
+
+                    ligne.style.display = "none";
+
+                }
+
+
+            });
+
+        }
+
+
+
+        /* =====================================
+           VOIR FACTURE
+        ====================================== */
+
+        function voirFacture(numero) {
+
+
+            document
+                .getElementById("modalInvoiceNumber")
+                .textContent = numero;
+
+
+            const modal =
+                new bootstrap.Modal(
+                    document.getElementById("invoiceModal")
+                );
+
+
+            modal.show();
+
+        }
+
+
+
+        /* =====================================
+           PAYER FACTURE
+        ====================================== */
+
+        function payerFacture(numero) {
+
+
+            const confirmation =
+                confirm(
+                    "Voulez-vous payer la facture " +
+                    numero +
+                    " ?"
+                );
+
+
+            if (confirmation) {
+
+
+                showToast('Redirection vers le paiement Mobile Money...', 'info');
+
+
+            }
+
+        }
+
+
+
+        /* =====================================
+           TELECHARGER RECU
+        ====================================== */
+
+        function telechargerRecu(numero) {            showToast('Reçu ' + numero + ' téléchargé !', 'success');
+
+        }
+
+
+
+        /* =====================================
+           IMPRIMER FACTURE
+        ====================================== */
+
+        function imprimerFacture() {
+            window.print();
+        }
+
+        function showToast(msg, type) {
+            type = type || 'success';
+            var t = document.createElement('div');
+            t.style.cssText = 'position:fixed;top:20px;right:20px;z-index:99999;padding:15px 25px;border-radius:10px;color:white;font-weight:700;font-size:14px;box-shadow:0 4px 15px rgba(0,0,0,0.2);font-family:Nunito,sans-serif;display:flex;align-items:center;gap:10px;';
+            var c = {success:'#198754',info:'#0d6efd',warning:'#fd7e14',error:'#dc3545'};
+            t.style.background = c[type]||c.success;
+            var ic = {success:'bi-check-circle-fill',info:'bi-info-circle-fill',warning:'bi-exclamation-triangle-fill'};
+            t.innerHTML = '<i class="bi '+(ic[type]||ic.success)+'"></i> '+msg;
+            document.body.appendChild(t);
+            setTimeout(function(){t.style.opacity='0';t.style.transition='opacity 0.3s';},2500);
+            setTimeout(function(){t.remove();},3000);
+        }
+
+    </script>
+
+
+    <script src="js/session.js"></script>
+</body>
+
+</html>
