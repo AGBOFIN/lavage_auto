@@ -89,9 +89,9 @@ body {
     transform: translateY(-2px);
 }
 
-.back-brand i {
-    color: #2196F3;
-    font-size: 22px;
+.back-brand img {
+    max-height: 40px;
+    width: auto;
 }
 
 .login-left-content h1 {

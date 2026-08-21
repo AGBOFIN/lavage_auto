@@ -71,8 +71,10 @@ p{font-size:var(--fs-body);color:var(--color-text-light);line-height:1.7}
 /* ======================== NAVBAR ======================== */
 .navbar{padding:0;min-height:var(--navbar-height);background:var(--navbar-bg);border-bottom:1px solid var(--color-border);transition:var(--transition);z-index:1000}
 .navbar.scrolled{background:var(--navbar-scrolled-bg);box-shadow:var(--shadow-sm)}
-.navbar-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-heading);font-weight:800;font-size:1.8rem;color:var(--color-primary)}
-.navbar-brand .brand-icon{width:42px;height:42px;background:var(--color-blue);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--color-white);font-size:1.2rem;font-weight:700}
+.navbar-brand{display:flex;align-items:center;gap:12px;padding:4px 8px;background:transparent;border:1px solid rgba(26,58,92,0.22);border-radius:10px;font-family:var(--font-heading);font-weight:800;font-size:1.8rem;color:var(--color-primary);transition:var(--transition)}
+.navbar-brand:hover{transform:scale(1.02)}
+.navbar-brand img{max-height:55px;width:auto;filter:drop-shadow(0 2px 8px rgba(26,58,92,0.15));transition:var(--transition);object-fit:contain}
+.navbar-brand:hover img{filter:drop-shadow(0 4px 12px rgba(26,58,92,0.25));transform:scale(1.05)}
 .navbar-nav .nav-link{font-family:var(--font-heading);font-weight:500;font-size:0.95rem;color:var(--color-text);padding:10px 16px;border-radius:var(--radius-sm);transition:var(--transition)}
 .navbar-nav .nav-link:hover,.navbar-nav .nav-link.active{color:var(--color-blue);background:rgba(33,150,243,0.08)}
 .btn-login{font-family:var(--font-heading);font-weight:600;padding:10px 24px;border-radius:var(--radius-sm);background:var(--color-blue);color:var(--color-white)!important;border:none;transition:var(--transition)}
@@ -262,6 +264,16 @@ p{font-size:var(--fs-body);color:var(--color-text-light);line-height:1.7}
 .text-secondary{color:var(--color-blue)!important}
 .rounded-bide{border-radius:var(--radius-md)}
 .shadow-bide{box-shadow:var(--shadow-card)}
+
+/* ======================== LOGO STYLES ======================== */
+.logo{display:flex;align-items:center;justify-content:center;padding:20px 0}
+.logo img{max-height:50px;width:auto;filter:drop-shadow(0 2px 6px rgba(26,58,92,0.12));transition:var(--transition);object-fit:contain}
+.logo:hover img{filter:drop-shadow(0 4px 10px rgba(26,58,92,0.2));transform:scale(1.03)}
+
+.back-brand{display:inline-flex;align-items:center;gap:10px;padding:15px 20px;background:var(--color-white);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);transition:var(--transition)}
+.back-brand:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.back-brand img{max-height:45px;width:auto;filter:drop-shadow(0 2px 4px rgba(26,58,92,0.1));transition:var(--transition);object-fit:contain}
+.back-brand:hover img{filter:drop-shadow(0 3px 8px rgba(26,58,92,0.18));transform:scale(1.02)}
 
 /* ======================== RESPONSIVE ======================== */
 @media(min-width:1200px){.hero-content h1{font-size:4rem}}

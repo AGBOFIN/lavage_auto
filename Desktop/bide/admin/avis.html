@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avis clients | Bidè Admin</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-logo">
+        <a href="dashboard.html"><img src="../images/bide-wash-logo-no-bg.png" alt="BIDÈ" style="height:42px;width:auto;object-fit:contain"></a>
+        </div>
+    </div>
+
+    <div class="sidebar-menu">
+        <p class="menu-title">MENU PRINCIPAL</p>
+
+        <a href="dashboard.html" class="menu-link">
+            <i class="bi bi-grid-1x2-fill"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="reservations.html" class="menu-link">
+            <i class="bi bi-calendar-check"></i>
+            <span>Réservations</span>
+            <span class="menu-badge">8</span>
+        </a>
+
+        <a href="clients.html" class="menu-link">
+            <i class="bi bi-people"></i>
+            <span>Clients</span>
+        </a>
+
+        <a href="services.html" class="menu-link">
+            <i class="bi bi-droplet"></i>
+            <span>Services</span>
+        </a>
+
+        <a href="vehicules.html" class="menu-link">
+            <i class="bi bi-car-front"></i>
+            <span>Véhicules</span>
+        </a>
+
+        <p class="menu-title mt-4">GESTION</p>
+
+        <a href="paiements.html" class="menu-link">
+            <i class="bi bi-credit-card"></i>
+            <span>Paiements</span>
+        </a>
+
+        <a href="messages.html" class="menu-link">
+            <i class="bi bi-chat-left-text"></i>
+            <span>Messages</span>
+            <span class="menu-badge">3</span>
+        </a>
+
+        <a href="avis.html" class="menu-link active">
+            <i class="bi bi-star"></i>
+            <span>Avis clients</span>
+        </a>
+
+        <p class="menu-title mt-4">SYSTÈME</p>
+
+        <a href="utilisateurs.html" class="menu-link">
+            <i class="bi bi-person-gear"></i>
+            <span>Administrateurs</span>
+        </a>
+
+        <a href="parametres.html" class="menu-link">
+            <i class="bi bi-gear"></i>
+            <span>Paramètres</span>
+        </a>
+    </div>
+
+    <div class="sidebar-bottom">
+        <a href="../client/connexion.html" class="logout-link">
+            <i class="bi bi-box-arrow-left"></i>
+            <span>Déconnexion</span>
+        </a>
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <div class="topbar-left">
+            <div class="breadcrumb-admin">
+                <span>Administration</span>
+                <i class="bi bi-chevron-right"></i>
+                <strong>Avis clients</strong>
+            </div>
+        </div>
+
+        <div class="topbar-right">
+            <button class="notification-btn">
+                <i class="bi bi-bell"></i>
+                <span class="notification-dot"></span>
+            </button>
+            <div class="admin-profile">
+                <div class="profile-avatar">AG</div>
+                <div class="profile-info">
+                    <strong>Admin</strong>
+                    <span>Administrateur</span>
+                </div>
+                <i class="bi bi-chevron-down profile-arrow"></i>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- =================================================
+         CONTENU
+    ================================================== -->
+
+    <div class="dashboard-container">
+
+        <!-- TITRE -->
+        <div class="page-header">
+            <div>
+                <h1>Avis clients</h1>
+                <p>Consultez les retours et évaluations de vos clients.</p>
+            </div>
+        </div>
+
+        <!-- =================================================
+             STATISTIQUES
+        ================================================== -->
+        <div class="row g-4 mb-4">
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon blue">
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <span class="stat-growth positive">+0.2</span>
+                    </div>
+                    <p>Note moyenne</p>
+                    <h2>4.7</h2>
+                    <small>Sur 5 étoiles</small>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon azure">
+                            <i class="bi bi-chat-left-text"></i>
+                        </div>
+                        <span class="stat-growth positive">+18</span>
+                    </div>
+                    <p>Total avis</p>
+                    <h2>284</h2>
+                    <small>Ce mois-ci</small>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon blue">
+                            <i class="bi bi-emoji-smile"></i>
+                        </div>
+                    </div>
+                    <p>Avis positifs</p>
+                    <h2>92%</h2>
+                    <small>4 étoiles et plus</small>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon azure">
+                            <i class="bi bi-emoji-frown"></i>
+                        </div>
+                    </div>
+                    <p>Avis négatifs</p>
+                    <h2>8%</h2>
+                    <small>3 étoiles et moins</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================
+             LISTE DES AVIS
+        ================================================== -->
+        <div class="dashboard-card">
+
+            <div class="reservation-toolbar">
+                <div class="reservation-search">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Rechercher un avis...">
+                </div>
+                <div class="reservation-filters">
+                    <select class="reservation-select">
+                        <option>Toutes les notes</option>
+                        <option>5 étoiles</option>
+                        <option>4 étoiles</option>
+                        <option>3 étoiles</option>
+                        <option>2 étoiles</option>
+                        <option>1 étoile</option>
+                    </select>
+                    <button class="filter-btn">
+                        <i class="bi bi-funnel"></i>
+                        Filtrer
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="reservation-table">
+                    <thead>
+                        <tr>
+                            <th>CLIENT</th>
+                            <th>SERVICE</th>
+                            <th>NOTE</th>
+                            <th>AVIS</th>
+                            <th>DATE</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- AVIS 1 -->
+                        <tr>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">KA</div>
+                                    <div>
+                                        <strong>Kossi Agbeko</strong>
+                                        <span>#CLI001</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Lavage Premium</td>
+                            <td>
+                                <span style="color: #F59E0B;">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                            </td>
+                            <td>Service impeccable, je recommande !</td>
+                            <td>20 Août 2026</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view" title="Voir">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- AVIS 2 -->
+                        <tr>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">AM</div>
+                                    <div>
+                                        <strong>Ama Mensah</strong>
+                                        <span>#CLI002</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Lavage Complet</td>
+                            <td>
+                                <span style="color: #F59E0B;">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                            </td>
+                            <td>Très bien, légèrement long</td>
+                            <td>19 Août 2026</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- AVIS 3 -->
+                        <tr>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">YK</div>
+                                    <div>
+                                        <strong>Yao Komlan</strong>
+                                        <span>#CLI003</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Lavage Extérieur</td>
+                            <td>
+                                <span style="color: #F59E0B;">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                            </td>
+                            <td>Parfait comme toujours !</td>
+                            <td>18 Août 2026</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- AVIS 4 -->
+                        <tr>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">EA</div>
+                                    <div>
+                                        <strong>Eyram Adjo</strong>
+                                        <span>#CLI004</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Lavage + Protection</td>
+                            <td>
+                                <span style="color: #F59E0B;">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                            </td>
+                            <td>Prix un peu élevé pour le résultat</td>
+                            <td>17 Août 2026</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- AVIS 5 -->
+                        <tr>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">SD</div>
+                                    <div>
+                                        <strong>Sena Dodzi</strong>
+                                        <span>#CLI005</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Nettoyage Intérieur</td>
+                            <td>
+                                <span style="color: #F59E0B;">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                            </td>
+                            <td>Mon véhicule est comme neuf, merci !</td>
+                            <td>16 Août 2026</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="reservation-pagination">
+                <span>Affichage de 1 à 5 sur 284 avis</span>
+                <div>
+                    <button class="pagination-btn"><i class="bi bi-chevron-left"></i></button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <span class="pagination-dots">...</span>
+                    <button class="pagination-btn">57</button>
+                    <button class="pagination-btn"><i class="bi bi-chevron-right"></i></button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const sidebar = document.getElementById("sidebar");
+    mobileMenuBtn.addEventListener("click", function () {
+        sidebar.classList.toggle("show");
+    });
+</script>
+
+</body>
+</html>

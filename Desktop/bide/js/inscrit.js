@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             showToast('Connexion réussie !', 'success');
             setTimeout(function() {
-                window.location.href = 'dashbord client.html';
+                window.location.href = 'dashboard.html';
             }, 800);
         });
     }
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             closeModal();
             showToast('Inscription réussie ! Bienvenue chez BIDÈ.', 'success');
             setTimeout(function() {
-                window.location.href = 'dashbord client.html';
+                window.location.href = 'dashboard.html';
             }, 800);
         });
     }

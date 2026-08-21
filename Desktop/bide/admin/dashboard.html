@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Bidè Admin</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+
+     SIDEBAR
+===================================================== -->
+
+
+<aside class="sidebar" id="sidebar">
+
+
+    <div class="sidebar-logo">
+
+        <a href="dashboard.html">
+            <img src="../images/bide-wash-logo-no-bg.png" alt="BIDÈ" style="height:42px;width:auto;object-fit:contain">
+        </a>
+
+    </div>
+
+
+
+    <div class="sidebar-menu">
+
+        <p class="menu-title">
+            MENU PRINCIPAL
+
+        </p>
+
+        <a href="dashboard.html" class="menu-link active">
+            <i class="bi bi-grid-1x2-fill"></i>
+
+            <span>Dashboard</span>
+        </a>
+
+        <a href="reservations.html" class="menu-link">
+            <i class="bi bi-calendar-check"></i>
+            <span>Réservations</span>
+            <span class="menu-badge">8</span>
+        </a>
+
+        <a href="clients.html" class="menu-link">
+            <i class="bi bi-people"></i>
+            <span>Clients</span>
+        </a>
+
+        <a href="services.html" class="menu-link">
+            <i class="bi bi-droplet"></i>
+            <span>Services</span>
+        </a>
+
+        <a href="vehicules.html" class="menu-link">
+            <i class="bi bi-car-front"></i>
+            <span>Véhicules</span>
+        </a>
+
+
+        <p class="menu-title mt-4">
+            GESTION
+        </p>
+
+        <a href="paiements.html" class="menu-link">
+            <i class="bi bi-credit-card"></i>
+            <span>Paiements</span>
+        </a>
+
+        <a href="messages.html" class="menu-link">
+            <i class="bi bi-chat-left-text"></i>
+            <span>Messages</span>
+            <span class="menu-badge">3</span>
+        </a>
+
+        <a href="avis.html" class="menu-link">
+            <i class="bi bi-star"></i>
+            <span>Avis clients</span>
+        </a>
+
+
+        <p class="menu-title mt-4">
+            SYSTÈME
+        </p>
+
+        <a href="utilisateurs.html" class="menu-link">
+            <i class="bi bi-person-gear"></i>
+            <span>Administrateurs</span>
+        </a>
+
+        <a href="parametres.html" class="menu-link">
+            <i class="bi bi-gear"></i>
+            <span>Paramètres</span>
+        </a>
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="../client/connexion.html" class="logout-link">
+            <i class="bi bi-box-arrow-left"></i>
+            <span>Déconnexion</span>
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+        >
+            <i class="bi bi-list"></i>
+        </button>
+
+
+        <div class="topbar-left">
+
+            <div class="breadcrumb-admin">
+                <span>Administration</span>
+                <i class="bi bi-chevron-right"></i>
+                <strong>Dashboard</strong>
+            </div>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+            <!-- Notification -->
+
+            <button class="notification-btn">
+
+                <i class="bi bi-bell"></i>
+
+                <span class="notification-dot"></span>
+
+            </button>
+
+
+            <!-- Profil -->
+
+            <div class="admin-profile">
+
+                <div class="profile-avatar">
+                    AG
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <span>
+                        Administrateur
+                    </span>
+
+                </div>
+
+                <i class="bi bi-chevron-down profile-arrow"></i>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         CONTENT
+    ================================================== -->
+
+    <div class="dashboard-container">
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+                <p>
+                    Bienvenue dans votre espace d'administration Bidè.
+                </p>
+
+            </div>
+
+            <div>
+
+                <button class="primary-btn">
+                    <i class="bi bi-plus-lg"></i>
+                    Nouvelle réservation
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             STATISTIQUES
+        ================================================== -->
+
+        <div class="row g-4 mb-4">
+
+
+            <!-- CLIENTS -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon blue">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Total clients
+                    </p>
+
+                    <h2>
+                        0
+                    </h2>
+
+                    <small>
+                        Aucun client pour l'instant
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESERVATIONS -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon azure">
+                            <i class="bi bi-calendar-check-fill"></i>
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Réservations
+                    </p>
+
+                    <h2>
+                        0
+                    </h2>
+
+                    <small>
+                        Aucune réservation
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- REVENUS -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon blue">
+                            <i class="bi bi-cash-stack"></i>
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Chiffre d'affaires
+                    </p>
+
+                    <h2>
+                        0 FCFA
+                    </h2>
+
+                    <small>
+                        Aucun revenu
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- SERVICES -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon azure">
+                            <i class="bi bi-droplet-fill"></i>
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Lavages réalisés
+                    </p>
+
+                    <h2>
+                        0
+                    </h2>
+
+                    <small>
+                        Aucun lavage
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             GRAPHIQUE + RESERVATIONS
+        ================================================== -->
+
+        <div class="row g-4 mb-4">
+
+
+            <!-- GRAPHIQUE -->
+
+            <div class="col-xl-8">
+
+                <div class="dashboard-card">
+
+                    <div class="card-header-custom">
+
+                        <div>
+
+                            <h3>
+                                Activité des réservations
+                            </h3>
+
+                            <p>
+                                Évolution des réservations cette semaine
+                            </p>
+
+                        </div>
+
+
+                        <select class="period-select">
+
+                            <option>
+                                Cette semaine
+                            </option>
+
+                            <option>
+                                Ce mois
+                            </option>
+
+                            <option>
+                                Cette année
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="chart-container">
+
+                        <div class="chart-y-axis">
+
+                            <span>80</span>
+                            <span>60</span>
+                            <span>40</span>
+                            <span>20</span>
+                            <span>0</span>
+
+                        </div>
+
+
+                        <div class="chart">
+
+                            <div class="chart-grid">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+
+                            <div class="bars" id="chartBars">
+
+                                <div class="bar-column">
+                                    <div class="bar" style="height:0%;"></div>
+                                    <span>Lun</span>
+                                </div>
+
+                                <div class="bar-column">
+                                    <div class="bar" style="height:0%;"></div>
+                                    <span>Mar</span>
+                                </div>
+
+                                <div class="bar-column">
+                                    <div class="bar" style="height:0%;"></div>
+                                    <span>Mer</span>
+                                </div>
+
+                                <div class="bar-column">
+                                    <div class="bar" style="height:0%;"></div>
+                                    <span>Jeu</span>
+                                </div>
+
+                                <div class="bar-column">
+                                    <div class="bar" style="height:0%;"></div>
+                                    <span>Ven</span>
+                                </div>
+
+                                <div class="bar-column">
+                                    <div class="bar" style="height:0%;"></div>
+                                    <span>Sam</span>
+                                </div>
+
+                                <div class="bar-column">
+                                    <div class="bar" style="height:0%;"></div>
+                                    <span>Dim</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESERVATIONS RECENTES -->
+
+            <div class="col-xl-4">
+
+                <div class="dashboard-card recent-card">
+
+                    <div class="card-header-custom">
+
+                        <div>
+
+                            <h3>
+                                Réservations récentes
+                            </h3>
+
+                            <p>
+                                Dernières réservations
+                            </p>
+
+                        </div>
+
+                        <a href="reservations.html">
+                            Voir tout
+                        </a>
+
+                    </div>
+
+
+                    <div class="reservation-list" id="recentReservations">
+
+                        <p style="text-align:center;color:#9CA3AF;padding:30px;font-size:13px">
+                            Aucune réservation récente
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             ACTIVITES + SERVICES
+        ================================================== -->
+
+        <div class="row g-4">
+
+
+            <!-- ACTIVITES -->
+
+            <div class="col-lg-7">
+
+                <div class="dashboard-card">
+
+                    <div class="card-header-custom">
+
+                        <div>
+
+                            <h3>
+                                Activités récentes
+                            </h3>
+
+                            <p>
+                                Dernières actions sur la plateforme
+                            </p>
+
+                        </div>
+
+                        <button class="more-btn">
+                            <i class="bi bi-three-dots"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div class="activity-list" id="activityList">
+
+                        <p style="text-align:center;color:#9CA3AF;padding:30px;font-size:13px">
+                            Aucune activité récente
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SERVICES POPULAIRES -->
+
+            <div class="col-lg-5">
+
+                <div class="dashboard-card">
+
+                    <div class="card-header-custom">
+
+                        <div>
+
+                            <h3>
+                                Services populaires
+                            </h3>
+
+                            <p>
+                                Ce mois-ci
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <p style="text-align:center;color:#9CA3AF;padding:30px;font-size:13px">
+                        Aucun service enregistré
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             ARRIVÉES EN TEMPS RÉEL
+        ================================================== -->
+
+        <div class="row g-4 mb-4">
+
+            <div class="col-xl-8">
+                <div class="dashboard-card">
+                    <div class="card-header-custom">
+                        <div>
+                            <h3><i class="bi bi-car-front-fill" style="color:var(--primary)"></i> Arrivées de véhicules</h3>
+                            <p>Demandes reçues des clients en temps réel</p>
+                        </div>
+                    </div>
+                    <div id="adminArrivals" class="table-responsive">
+                        <p style="text-align:center;color:#6B7280;padding:40px">Aucune arrivée pour l'instant</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4">
+                <div class="dashboard-card">
+                    <div class="card-header-custom">
+                        <div>
+                            <h3><i class="bi bi-people-fill" style="color:var(--primary)"></i> Clients</h3>
+                            <p>Liste des clients enregistrés</p>
+                        </div>
+                    </div>
+                    <div id="adminClients" style="max-height:400px;overflow-y:auto">
+                        <p style="text-align:center;color:#6B7280;padding:40px">Aucun client</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             GÉNÉRATION DE FACTURE
+        ================================================== -->
+
+        <div class="row g-4 mb-4">
+
+            <div class="col-12">
+                <div class="dashboard-card">
+                    <div class="card-header-custom">
+                        <div>
+                            <h3><i class="bi bi-receipt" style="color:var(--primary)"></i> Générer une facture</h3>
+                            <p>Sélectionnez une demande pour créer une facture</p>
+                        </div>
+                    </div>
+
+                    <div class="row g-3" style="padding:15px">
+                        <div class="col-md-4">
+                            <label style="font-size:12px;font-weight:700;color:#374151">Demande</label>
+                            <select id="invoiceRequest" class="form-select" style="font-size:13px">
+                                <option value="">Sélectionner une demande...</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label style="font-size:12px;font-weight:700;color:#374151">Prestation(s)</label>
+                            <select id="invoiceService" class="form-select" style="font-size:13px">
+                                <option>Lavage Extérieur — 3 000 FCFA</option>
+                                <option>Lavage Intérieur — 5 000 FCFA</option>
+                                <option selected>Lavage Complet — 8 000 FCFA</option>
+                                <option>Nettoyage des Sièges — 7 500 FCFA</option>
+                                <option>Service Approfondi — 15 000 FCFA</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label style="font-size:12px;font-weight:700;color:#374151">Notes</label>
+                            <input type="text" id="invoiceNotes" class="form-control" placeholder="Optionnel" style="font-size:13px">
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button id="generateInvoiceBtn" class="primary-btn w-100">
+                                <i class="bi bi-file-earmark-plus"></i> Facturer
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="invoiceResult" style="padding:15px"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/bide.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
