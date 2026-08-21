@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Services | Bidè Admin</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+
+    <!-- Bootstrap Icons -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+
+    >
+
+
+    <!-- CSS principal -->
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+
+<aside class="sidebar" id="sidebar">
+
+
+
+    <!-- LOGO -->
+
+
+    <div class="sidebar-logo">
+        <a href="dashboard.html"><img src="../images/bide-wash-logo-no-bg.png" alt="BIDÈ" style="height:42px;width:auto;object-fit:contain"></a>
+    </div>
+
+    <!-- MENU -->
+    <div class="sidebar-menu">
+
+        <p class="menu-title">
+            MENU PRINCIPAL
+        </p>
+
+
+        <a href="dashboard.html"
+           class="menu-link">
+
+            <i class="bi bi-grid-1x2-fill"></i>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a href="reservations.html"
+           class="menu-link">
+
+            <i class="bi bi-calendar-check"></i>
+
+            <span>
+                Réservations
+            </span>
+
+            <span class="menu-badge">
+                8
+            </span>
+
+        </a>
+
+
+        <a href="clients.html"
+           class="menu-link">
+
+            <i class="bi bi-people"></i>
+
+            <span>
+                Clients
+            </span>
+
+        </a>
+
+
+        <a href="services.html"
+           class="menu-link active">
+
+            <i class="bi bi-droplet-fill"></i>
+
+            <span>
+                Services
+            </span>
+
+        </a>
+
+
+        <a href="vehicules.html"
+           class="menu-link">
+
+            <i class="bi bi-car-front"></i>
+
+            <span>
+                Véhicules
+            </span>
+
+        </a>
+
+
+        <p class="menu-title mt-4">
+            GESTION
+        </p>
+
+
+        <a href="paiements.html"
+           class="menu-link">
+
+            <i class="bi bi-credit-card"></i>
+
+            <span>
+                Paiements
+            </span>
+
+        </a>
+
+
+        <a href="messages.html"
+           class="menu-link">
+
+            <i class="bi bi-chat-left-text"></i>
+
+            <span>
+                Messages
+            </span>
+
+            <span class="menu-badge">
+                3
+            </span>
+
+        </a>        <a href="avis.html" class="menu-link">
+
+            <i class="bi bi-star"></i>
+
+            <span>
+                Avis clients
+            </span>
+
+        </a>
+
+        <a href="employes.html" class="menu-link">
+
+            <i class="bi bi-person-badge"></i>
+
+            <span>
+                Employés
+            </span>
+
+        </a>
+
+
+        <p class="menu-title mt-4">
+            SYSTÈME
+        </p>
+
+
+        <a href="utilisateurs.html"
+           class="menu-link">
+
+            <i class="bi bi-person-gear"></i>
+
+            <span>
+                Administrateurs
+            </span>
+
+        </a>
+
+
+        <a href="parametres.html"
+           class="menu-link">
+
+            <i class="bi bi-gear"></i>
+
+            <span>
+                Paramètres
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- DECONNEXION -->
+
+    <div class="sidebar-bottom">
+
+        <a href="../client/connexion.html"
+           class="logout-link">
+
+            <i class="bi bi-box-arrow-left"></i>
+
+            <span>
+                Déconnexion
+            </span>
+
+        </a>
+
+    </div></aside>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn">
+
+            <i class="bi bi-list"></i>
+
+        </button>
+
+
+        <div class="topbar-left">
+
+            <div class="breadcrumb-admin">
+
+                <span>
+                    Administration
+                </span>
+
+                <i class="bi bi-chevron-right"></i>
+
+                <strong>
+                    Services
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+            <button class="notification-btn">
+
+                <i class="bi bi-bell"></i>
+
+                <span class="notification-dot"></span>
+
+            </button>
+
+
+            <div class="admin-profile">
+
+                <div class="profile-avatar">
+                    AG
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <span>
+                        Administrateur
+                    </span>
+
+                </div>
+
+                <i class="bi bi-chevron-down profile-arrow"></i>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         CONTENU
+    ================================================== -->
+
+    <div class="dashboard-container">
+
+
+        <!-- TITRE -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    Services
+                </h1>
+
+                <p>
+                    Gérez les prestations de lavage proposées par Bidè.
+                </p>
+
+            </div>
+
+
+            <button class="primary-btn">
+
+                <i class="bi bi-plus-lg"></i>
+
+                Ajouter un service
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             STATISTIQUES
+        ================================================== -->
+
+        <div class="row g-4 mb-4">
+
+
+            <!-- TOTAL -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon blue">
+
+                            <i class="bi bi-droplet-fill"></i>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Total services
+                    </p>
+
+                    <h2>
+                        8
+                    </h2>
+
+                    <small>
+                        Services disponibles
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIFS -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon azure">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Services actifs
+                    </p>
+
+                    <h2>
+                        6
+                    </h2>
+
+                    <small>
+                        Actuellement proposés
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESERVATIONS -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon blue">
+
+                            <i class="bi bi-calendar-check-fill"></i>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Réservations
+                    </p>
+
+                    <h2>
+                        386
+                    </h2>
+
+                    <small>
+                        Ce mois-ci
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- SERVICE POPULAIRE -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon azure">
+
+                            <i class="bi bi-star-fill"></i>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Service populaire
+                    </p>
+
+                    <h2 class="service-stat-title">
+                        Premium
+                    </h2>
+
+                    <small>
+                        124 réservations
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             OUTILS
+        ================================================== -->
+
+        <div class="dashboard-card">
+
+
+            <div class="reservation-toolbar">
+
+
+                <!-- RECHERCHE -->
+
+                <div class="reservation-search">
+
+                    <i class="bi bi-search"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Rechercher un service..."
+                    >
+
+                </div>
+
+
+                <!-- FILTRES -->
+
+                <div class="reservation-filters">
+
+                    <select class="reservation-select">
+
+                        <option>
+                            Tous les services
+                        </option>
+
+                        <option>
+                            Services actifs
+                        </option>
+
+                        <option>
+                            Services inactifs
+                        </option>
+
+                    </select>
+
+
+                    <button class="filter-btn">
+
+                        <i class="bi bi-funnel"></i>
+
+                        Filtrer
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CARTES SERVICES
+            ================================================== -->
+
+            <div class="row g-4">
+
+
+                <!-- SERVICE 1 -->
+
+                <div class="col-xl-4 col-md-6">
+
+                    <div class="service-card-admin">
+
+
+                        <div class="service-card-header">
+
+                            <div class="service-icon-admin">
+
+                                <i class="bi bi-stars"></i>
+
+                            </div>
+
+
+                            <span class="status confirmed">
+                                Actif
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Lavage Premium
+                        </h3>
+
+
+                        <p class="service-description">
+
+                            Nettoyage complet intérieur et extérieur
+                            avec finition professionnelle.
+
+                        </p>
+
+
+                        <div class="service-details">
+
+
+                            <div>
+
+                                <i class="bi bi-clock"></i>
+
+                                <span>
+                                    60 min
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <i class="bi bi-calendar-check"></i>
+
+                                <span>
+                                    124 réservations
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-card-bottom">
+
+
+                            <strong>
+                                15 000 FCFA
+                            </strong>
+
+
+                            <div class="action-buttons">
+
+                                <button
+                                    class="table-action view">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </button>
+
+
+                                <button
+                                    class="table-action edit">
+
+                                    <i class="bi bi-pencil"></i>
+
+                                </button>
+
+
+                                <button
+                                    class="table-action delete">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 2 -->
+
+                <div class="col-xl-4 col-md-6">
+
+                    <div class="service-card-admin">
+
+
+                        <div class="service-card-header">
+
+                            <div class="service-icon-admin">
+
+                                <i class="bi bi-droplet"></i>
+
+                            </div>
+
+
+                            <span class="status confirmed">
+                                Actif
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Lavage Complet
+                        </h3>
+
+
+                        <p class="service-description">
+
+                            Nettoyage intérieur et extérieur
+                            adapté à tous types de véhicules.
+
+                        </p>
+
+
+                        <div class="service-details">
+
+
+                            <div>
+
+                                <i class="bi bi-clock"></i>
+
+                                <span>
+                                    45 min
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <i class="bi bi-calendar-check"></i>
+
+                                <span>
+                                    98 réservations
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-card-bottom">
+
+
+                            <strong>
+                                10 000 FCFA
+                            </strong>
+
+
+                            <div class="action-buttons">
+
+                                <button
+                                    class="table-action view">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </button>
+
+
+                                <button
+                                    class="table-action edit">
+
+                                    <i class="bi bi-pencil"></i>
+
+                                </button>
+
+
+                                <button
+                                    class="table-action delete">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 3 -->
+
+                <div class="col-xl-4 col-md-6">
+
+                    <div class="service-card-admin">
+
+
+                        <div class="service-card-header">
+
+                            <div class="service-icon-admin">
+
+                                <i class="bi bi-car-front"></i>
+
+                            </div>
+
+
+                            <span class="status confirmed">
+                                Actif
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Lavage Extérieur
+                        </h3>
+
+
+                        <p class="service-description">
+
+                            Nettoyage extérieur rapide avec
+                            séchage professionnel.
+
+                        </p>
+
+
+                        <div class="service-details">
+
+
+                            <div>
+
+                                <i class="bi bi-clock"></i>
+
+                                <span>
+                                    25 min
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <i class="bi bi-calendar-check"></i>
+
+                                <span>
+                                    86 réservations
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-card-bottom">
+
+
+                            <strong>
+                                5 000 FCFA
+                            </strong>
+
+
+                            <div class="action-buttons">
+
+                                <button
+                                    class="table-action view">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </button>
+
+
+                                <button
+                                    class="table-action edit">
+
+                                    <i class="bi bi-pencil"></i>
+
+                                </button>
+
+
+                                <button
+                                    class="table-action delete">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 4 -->
+
+                <div class="col-xl-4 col-md-6">
+
+                    <div class="service-card-admin">
+
+
+                        <div class="service-card-header">
+
+                            <div class="service-icon-admin">
+
+                                <i class="bi bi-wind"></i>
+
+                            </div>
+
+
+                            <span class="status confirmed">
+                                Actif
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Nettoyage Intérieur
+                        </h3>
+
+
+                        <p class="service-description">
+
+                            Aspiration, nettoyage des sièges,
+                            tapis et tableau de bord.
+
+                        </p>
+
+
+                        <div class="service-details">
+
+
+                            <div>
+
+                                <i class="bi bi-clock"></i>
+
+                                <span>
+                                    35 min
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <i class="bi bi-calendar-check"></i>
+
+                                <span>
+                                    62 réservations
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-card-bottom">
+
+
+                            <strong>
+                                7 500 FCFA
+                            </strong>
+
+
+                            <div class="action-buttons">
+
+                                <button class="table-action view">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </button>
+
+
+                                <button class="table-action edit">
+
+                                    <i class="bi bi-pencil"></i>
+
+                                </button>
+
+
+                                <button class="table-action delete">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 5 -->
+
+                <div class="col-xl-4 col-md-6">
+
+                    <div class="service-card-admin">
+
+
+                        <div class="service-card-header">
+
+                            <div class="service-icon-admin">
+
+                                <i class="bi bi-shield-check"></i>
+
+                            </div>
+
+
+                            <span class="status confirmed">
+                                Actif
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Lavage + Protection
+                        </h3>
+
+
+                        <p class="service-description">
+
+                            Lavage complet avec protection
+                            de la carrosserie.
+
+                        </p>
+
+
+                        <div class="service-details">
+
+
+                            <div>
+
+                                <i class="bi bi-clock"></i>
+
+                                <span>
+                                    75 min
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <i class="bi bi-calendar-check"></i>
+
+                                <span>
+                                    41 réservations
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-card-bottom">
+
+
+                            <strong>
+                                20 000 FCFA
+                            </strong>
+
+
+                            <div class="action-buttons">
+
+                                <button class="table-action view">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </button>
+
+
+                                <button class="table-action edit">
+
+                                    <i class="bi bi-pencil"></i>
+
+                                </button>
+
+
+                                <button class="table-action delete">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 6 -->
+
+                <div class="col-xl-4 col-md-6">
+
+                    <div class="service-card-admin">
+
+
+                        <div class="service-card-header">
+
+                            <div class="service-icon-admin">
+
+                                <i class="bi bi-stars"></i>
+
+                            </div>
+
+
+                            <span class="status pending">
+                                Inactif
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Traitement Cuir
+                        </h3>
+
+
+                        <p class="service-description">
+
+                            Nettoyage et entretien professionnel
+                            des surfaces en cuir.
+
+                        </p>
+
+
+                        <div class="service-details">
+
+
+                            <div>
+
+                                <i class="bi bi-clock"></i>
+
+                                <span>
+                                    50 min
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <i class="bi bi-calendar-check"></i>
+
+                                <span>
+                                    18 réservations
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-card-bottom">
+
+
+                            <strong>
+                                12 000 FCFA
+                            </strong>
+
+
+                            <div class="action-buttons">
+
+                                <button class="table-action view">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </button>
+
+
+                                <button class="table-action edit">
+
+                                    <i class="bi bi-pencil"></i>
+
+                                </button>
+
+
+                                <button class="table-action delete">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     MODALE : VOIR SERVICE
+===================================================== -->
+<div class="modal fade" id="viewServiceModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-eye"></i> Détails du service</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="viewServiceContent"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =====================================================
+     MODALE : MODIFIER SERVICE
+===================================================== -->
+<div class="modal fade" id="editServiceModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-pencil"></i> Modifier le service</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editServiceForm">
+                <input type="hidden" id="editServiceIdx">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-8"><label class="form-label">Nom du service *</label><input type="text" class="form-control" id="editServiceName" required></div>
+                        <div class="col-md-4"><label class="form-label">Prix (FCFA) *</label><input type="number" class="form-control" id="editServicePrice" required></div>
+                        <div class="col-md-6"><label class="form-label">Durée (min)</label><input type="number" class="form-control" id="editServiceDuration"></div>
+                        <div class="col-md-6"><label class="form-label">Statut</label><select class="form-select" id="editServiceStatut"><option value="active">Actif</option><option value="inactive">Inactif</option></select></div>
+                        <div class="col-12"><label class="form-label">Description</label><textarea class="form-control" id="editServiceDesc" rows="3"></textarea></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- =====================================================
+     MODALE : SUPPRIMER SERVICE
+===================================================== -->
+<div class="modal fade" id="deleteServiceModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger"><i class="bi bi-trash"></i> Supprimer le service</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Voulez-vous vraiment supprimer ce service ?</p>
+                <div id="deleteServiceName" class="fw-bold mb-3"></div>
+                <div class="alert alert-warning"><i class="bi bi-exclamation-triangle"></i> Cette action est irréversible.</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteService"><i class="bi bi-trash"></i> Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/bide.js"></script>
+
+<script>
+    /* ---- Mobile menu ---- */
+    var mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    var sidebar = document.getElementById("sidebar");
+    var sidebarOverlay = document.getElementById("sidebarOverlay");
+    if (mobileMenuBtn) { mobileMenuBtn.addEventListener("click", function () { sidebar.classList.toggle("show"); if (sidebarOverlay) sidebarOverlay.classList.toggle("show"); }); }
+    if (sidebarOverlay) { sidebarOverlay.addEventListener("click", function () { sidebar.classList.remove("show"); sidebarOverlay.classList.remove("show"); }); }
+
+    /* ---- Services data ---- */
+    var SERVICES_KEY = 'bide_services';
+    function getServices() { try { return JSON.parse(localStorage.getItem(SERVICES_KEY)) || []; } catch(e) { return []; } }
+    function saveServices(arr) { localStorage.setItem(SERVICES_KEY, JSON.stringify(arr)); }
+
+    var defaultServices = [
+        { name: 'Lavage Premium', price: 15000, duration: 60, statut: 'active', reservations: 124, desc: 'Nettoyage complet intérieur et extérieur avec finition professionnelle.' },
+        { name: 'Lavage Complet', price: 10000, duration: 45, statut: 'active', reservations: 98, desc: 'Nettoyage intérieur et extérieur adapté à tous types de véhicules.' },
+        { name: 'Lavage Extérieur', price: 5000, duration: 25, statut: 'active', reservations: 86, desc: 'Nettoyage extérieur rapide avec séchage professionnel.' },
+        { name: 'Nettoyage Intérieur', price: 7500, duration: 35, statut: 'active', reservations: 62, desc: 'Aspiration, nettoyage des sièges, tapis et tableau de bord.' },
+        { name: 'Lavage + Protection', price: 20000, duration: 75, statut: 'active', reservations: 41, desc: 'Lavage complet avec protection de la carrosserie.' },
+        { name: 'Traitement Cuir', price: 12000, duration: 50, statut: 'inactive', reservations: 18, desc: 'Nettoyage et entretien professionnel des surfaces en cuir.' }
+    ];
+    function seedServices() { var s = getServices(); if (s.length === 0) saveServices(defaultServices); }
+    seedServices();
+
+    /* ---- View Service ---- */
+    function viewService(idx) {
+        var services = getServices(); var s = services[idx]; if (!s) return;
+        var html = '<div style="text-align:center;margin-bottom:15px"><div style="width:60px;height:60px;border-radius:12px;background:#EFF6FF;color:#2563EB;display:inline-flex;align-items:center;justify-content:center;font-size:24px"><i class="bi bi-droplet-fill"></i></div></div>';
+        html += '<div class="vehicle-info-list">';
+        html += '<div class="vehicle-info-item"><span>Nom</span><strong>' + s.name + '</strong></div>';
+        html += '<div class="vehicle-info-item"><span>Prix</span><strong>' + Number(s.price).toLocaleString('fr-FR') + ' FCFA</strong></div>';
+        html += '<div class="vehicle-info-item"><span>Durée</span><strong>' + (s.duration || '—') + ' min</strong></div>';
+        html += '<div class="vehicle-info-item"><span>Réservations</span><strong>' + (s.reservations || 0) + '</strong></div>';
+        html += '<div class="vehicle-info-item"><span>Statut</span><strong><span class="status ' + (s.statut === 'active' ? 'confirmed' : 'pending') + '">' + (s.statut === 'active' ? 'Actif' : 'Inactif') + '</span></strong></div>';
+        html += '<div class="vehicle-info-item"><span>Description</span><strong>' + (s.desc || '—') + '</strong></div>';
+        html += '</div>';
+        document.getElementById('viewServiceContent').innerHTML = html;
+        new bootstrap.Modal(document.getElementById('viewServiceModal')).show();
+    }
+
+    /* ---- Edit Service ---- */
+    function editService(idx) {
+        var services = getServices(); var s = services[idx]; if (!s) return;
+        document.getElementById('editServiceIdx').value = idx;
+        document.getElementById('editServiceName').value = s.name || '';
+        document.getElementById('editServicePrice').value = s.price || 0;
+        document.getElementById('editServiceDuration').value = s.duration || '';
+        document.getElementById('editServiceStatut').value = s.statut || 'active';
+        document.getElementById('editServiceDesc').value = s.desc || '';
+        new bootstrap.Modal(document.getElementById('editServiceModal')).show();
+    }
+
+    document.getElementById('editServiceForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var idx = parseInt(document.getElementById('editServiceIdx').value);
+        var services = getServices();
+        services[idx].name = document.getElementById('editServiceName').value.trim();
+        services[idx].price = parseInt(document.getElementById('editServicePrice').value);
+        services[idx].duration = parseInt(document.getElementById('editServiceDuration').value) || 0;
+        services[idx].statut = document.getElementById('editServiceStatut').value;
+        services[idx].desc = document.getElementById('editServiceDesc').value.trim();
+        saveServices(services);
+        bootstrap.Modal.getInstance(document.getElementById('editServiceModal')).hide();
+        BIDE.toast('Service mis à jour !', 'success');
+        location.reload();
+    });
+
+    /* ---- Delete Service ---- */
+    var deleteServiceIdx = null;
+    function deleteService(idx) {
+        var services = getServices(); var s = services[idx]; if (!s) return;
+        deleteServiceIdx = idx;
+        document.getElementById('deleteServiceName').textContent = s.name;
+        new bootstrap.Modal(document.getElementById('deleteServiceModal')).show();
+    }
+
+    document.getElementById('confirmDeleteService').addEventListener('click', function() {
+        if (deleteServiceIdx === null) return;
+        var services = getServices();
+        services.splice(deleteServiceIdx, 1);
+        saveServices(services);
+        deleteServiceIdx = null;
+        bootstrap.Modal.getInstance(document.getElementById('deleteServiceModal')).hide();
+        BIDE.toast('Service supprimé.', 'success');
+        location.reload();
+    });
+
+    /* ---- Table delegation ---- */
+    document.querySelectorAll('.service-card-admin').forEach(function(card, idx) {
+        var viewBtn = card.querySelector('.table-action.view');
+        var editBtn = card.querySelector('.table-action.edit');
+        var deleteBtn = card.querySelector('.table-action.delete');
+        if (viewBtn) viewBtn.addEventListener('click', function() { viewService(idx); });
+        if (editBtn) editBtn.addEventListener('click', function() { editService(idx); });
+        if (deleteBtn) deleteBtn.addEventListener('click', function() { deleteService(idx); });
+    });
+</script>
+
+</body>
+
+</html>

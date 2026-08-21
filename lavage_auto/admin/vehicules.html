@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Véhicules | Bidè Admin</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-logo">
+        <a href="dashboard.html"><img src="../images/bide-wash-logo-no-bg.png" alt="BIDÈ" style="height:42px;width:auto;object-fit:contain"></a>
+    </div>
+
+    <div class="sidebar-menu">
+        <p class="menu-title">MENU PRINCIPAL</p>
+
+        <a href="dashboard.html" class="menu-link">
+            <i class="bi bi-grid-1x2-fill"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="reservations.html" class="menu-link">
+            <i class="bi bi-calendar-check"></i>
+            <span>Réservations</span>
+            <span class="menu-badge">8</span>
+        </a>
+
+        <a href="clients.html" class="menu-link">
+            <i class="bi bi-people"></i>
+            <span>Clients</span>
+        </a>
+
+        <a href="services.html" class="menu-link">
+            <i class="bi bi-droplet"></i>
+            <span>Services</span>
+        </a>
+
+        <a href="vehicules.html" class="menu-link active">
+            <i class="bi bi-car-front"></i>
+            <span>Véhicules</span>
+        </a>
+
+        <p class="menu-title mt-4">GESTION</p>
+
+        <a href="paiements.html" class="menu-link">
+            <i class="bi bi-credit-card"></i>
+            <span>Paiements</span>
+        </a>
+
+        <a href="messages.html" class="menu-link">
+            <i class="bi bi-chat-left-text"></i>
+            <span>Messages</span>
+            <span class="menu-badge">3</span>
+        </a>
+
+        <a href="avis.html" class="menu-link">
+            <i class="bi bi-star"></i>
+            <span>Avis clients</span>
+        </a>
+
+        <a href="employes.html" class="menu-link">
+            <i class="bi bi-person-badge"></i>
+            <span>Employés</span>
+        </a>
+
+        <p class="menu-title mt-4">SYSTÈME</p>
+
+        <a href="utilisateurs.html" class="menu-link">
+            <i class="bi bi-person-gear"></i>
+            <span>Administrateurs</span>
+        </a>
+
+        <a href="parametres.html" class="menu-link">
+            <i class="bi bi-gear"></i>
+            <span>Paramètres</span>
+        </a>
+    </div>
+
+    <div class="sidebar-bottom">
+        <a href="../client/connexion.html" class="logout-link">
+            <i class="bi bi-box-arrow-left"></i>
+            <span>Déconnexion</span>
+        </a>
+    </div>
+
+</aside>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <div class="topbar-left">
+            <div class="breadcrumb-admin">
+                <span>Administration</span>
+                <i class="bi bi-chevron-right"></i>
+                <strong>Véhicules</strong>
+            </div>
+        </div>
+
+        <div class="topbar-right">
+            <button class="notification-btn">
+                <i class="bi bi-bell"></i>
+                <span class="notification-dot"></span>
+            </button>
+            <div class="admin-profile">
+                <div class="profile-avatar">AG</div>
+                <div class="profile-info">
+                    <strong>Admin</strong>
+                    <span>Administrateur</span>
+                </div>
+                <i class="bi bi-chevron-down profile-arrow"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- =================================================
+         CONTENU
+    ================================================== -->
+
+    <div class="dashboard-container">
+
+        <!-- TITRE -->
+        <div class="page-header">
+            <div>
+                <h1>Véhicules</h1>
+                <p>Gérez les véhicules enregistrés sur la plateforme Bidè.</p>
+            </div>
+            <button class="primary-btn" data-bs-toggle="modal" data-bs-target="#addVehicleModal">
+                <i class="bi bi-plus-lg"></i>
+                Ajouter un véhicule
+            </button>
+        </div>
+
+        <!-- =================================================
+             STATISTIQUES
+        ================================================== -->
+        <div class="row g-4 mb-4">
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon blue">
+                            <i class="bi bi-car-front-fill"></i>
+                        </div>
+                    </div>
+                    <p>Total véhicules</p>
+                    <h2>1 582</h2>
+                    <small>Véhicules enregistrés</small>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon azure">
+                            <i class="bi bi-car-front"></i>
+                        </div>
+                    </div>
+                    <p>Voitures</p>
+                    <h2>1 204</h2>
+                    <small>76% du parc</small>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon blue">
+                            <i class="bi bi-truck"></i>
+                        </div>
+                    </div>
+                    <p>SUV / 4x4</p>
+                    <h2>276</h2>
+                    <small>17% du parc</small>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon azure">
+                            <i class="bi bi-bus-front"></i>
+                        </div>
+                    </div>
+                    <p>Autres véhicules</p>
+                    <h2>102</h2>
+                    <small>7% du parc</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================
+             LISTE VEHICULES
+        ================================================== -->
+        <div class="dashboard-card">
+
+            <!-- BARRE OUTILS -->
+            <div class="reservation-toolbar">
+                <div class="reservation-search">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Rechercher par immatriculation, marque...">
+                </div>
+                <div class="reservation-filters">
+                    <select class="reservation-select">
+                        <option>Tous les types</option>
+                        <option>Berline</option>
+                        <option>SUV / 4x4</option>
+                        <option>Pick-up</option>
+                        <option>Utilitaire</option>
+                    </select>
+                    <select class="reservation-select">
+                        <option>Toutes les marques</option>
+                        <option>Toyota</option>
+                        <option>Hyundai</option>
+                        <option>Mercedes</option>
+                        <option>BMW</option>
+                    </select>
+                    <button class="filter-btn">
+                        <i class="bi bi-funnel"></i>
+                        Filtrer
+                    </button>
+                </div>
+            </div>
+
+            <!-- TABLEAU -->
+            <div class="table-responsive">
+                <table class="reservation-table vehicle-table">
+                    <thead>
+                        <tr>
+                            <th>VÉHICULE</th>
+                            <th>IMMATRICULATION</th>
+                            <th>TYPE</th>
+                            <th>COULEUR</th>
+                            <th>PROPRIÉTAIRE</th>
+                            <th>RÉSERVATIONS</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- VEHICULE 1 -->
+                        <tr>
+                            <td>
+                                <div class="vehicle-cell">
+                                    <div class="vehicle-table-icon">
+                                    </div>
+                                    <div>
+                                        <strong>Toyota Corolla</strong>
+                                        <span>2023</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><strong>TG 1234 AB</strong></td>
+                            <td>Berline</td>
+                            <td>
+                                <span class="vehicle-color">
+                                    <span class="color-dot white"></span>
+                                    Blanc
+                                </span>
+                            </td>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">KA</div>
+                                    <div>
+                                        <strong>Kossi Agbeko</strong>
+                                        <span>#CLI001</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>24</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view" title="Voir">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="table-action edit" title="Modifier">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="table-action delete" title="Supprimer">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- VEHICULE 2 -->
+                        <tr>
+                            <td>
+                                <div class="vehicle-cell">
+                                    <div class="vehicle-table-icon">
+                                    </div>
+                                    <div>
+                                        <strong>Hyundai Tucson</strong>
+                                        <span>2024</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><strong>TG 2345 CD</strong></td>
+                            <td>SUV / 4x4</td>
+                            <td>
+                                <span class="vehicle-color">
+                                    <span class="color-dot black"></span>
+                                    Noir
+                                </span>
+                            </td>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">AM</div>
+                                    <div>
+                                        <strong>Ama Mensah</strong>
+                                        <span>#CLI002</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>18</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                    <button class="table-action edit"><i class="bi bi-pencil"></i></button>
+                                    <button class="table-action delete"><i class="bi bi-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- VEHICULE 3 -->
+                        <tr>
+                            <td>
+                                <div class="vehicle-cell">
+                                    <div class="vehicle-table-icon">
+                                    </div>
+                                    <div>
+                                        <strong>Kia Sportage</strong>
+                                        <span>2022</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><strong>TG 3456 EF</strong></td>
+                            <td>SUV / 4x4</td>
+                            <td>
+                                <span class="vehicle-color">
+                                    <span class="color-dot gray"></span>
+                                    Gris
+                                </span>
+                            </td>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">YK</div>
+                                    <div>
+                                        <strong>Yao Komlan</strong>
+                                        <span>#CLI003</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>31</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                    <button class="table-action edit"><i class="bi bi-pencil"></i></button>
+                                    <button class="table-action delete"><i class="bi bi-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- VEHICULE 4 -->
+                        <tr>
+                            <td>
+                                <div class="vehicle-cell">
+                                    <div class="vehicle-table-icon">
+                                    </div>
+                                    <div>
+                                        <strong>Mercedes GLC</strong>
+                                        <span>2025</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><strong>TG 4567 GH</strong></td>
+                            <td>SUV / 4x4</td>
+                            <td>
+                                <span class="vehicle-color">
+                                    <span class="color-dot blue"></span>
+                                    Bleu
+                                </span>
+                            </td>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">EA</div>
+                                    <div>
+                                        <strong>Eyram Adjo</strong>
+                                        <span>#CLI004</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>7</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                    <button class="table-action edit"><i class="bi bi-pencil"></i></button>
+                                    <button class="table-action delete"><i class="bi bi-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- VEHICULE 5 -->
+                        <tr>
+                            <td>
+                                <div class="vehicle-cell">
+                                    <div class="vehicle-table-icon">
+                                    </div>
+                                    <div>
+                                        <strong>BMW X3</strong>
+                                        <span>2024</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><strong>TG 5678 IJ</strong></td>
+                            <td>SUV / 4x4</td>
+                            <td>
+                                <span class="vehicle-color">
+                                    <span class="color-dot black"></span>
+                                    Noir
+                                </span>
+                            </td>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">SD</div>
+                                    <div>
+                                        <strong>Sena Dodzi</strong>
+                                        <span>#CLI005</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>16</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                    <button class="table-action edit"><i class="bi bi-pencil"></i></button>
+                                    <button class="table-action delete"><i class="bi bi-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="reservation-pagination">
+                <span>Affichage de 1 à 5 sur 1 582 véhicules</span>
+                <div>
+                    <button class="pagination-btn"><i class="bi bi-chevron-left"></i></button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <span class="pagination-dots">...</span>
+                    <button class="pagination-btn">317</button>
+                    <button class="pagination-btn"><i class="bi bi-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+<!-- =====================================================
+     MODALE AJOUTER VEHICULE
+===================================================== -->
+
+<div class="modal fade" id="addVehicleModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Ajouter un véhicule
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="vehicleForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Marque</label>
+                        <input type="text" class="form-control" id="marque" placeholder="Ex : Toyota" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Modèle</label>
+                        <input type="text" class="form-control" id="modele" placeholder="Ex : Corolla" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Année</label>
+                        <input type="number" class="form-control" id="annee" placeholder="Ex : 2024" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Immatriculation</label>
+                        <input type="text" class="form-control" id="immatriculation" placeholder="Ex : TG 1234 AB" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Type</label>
+                        <select class="form-select" id="type" required>
+                            <option value="">Sélectionner</option>
+                            <option value="Berline">Berline</option>
+                            <option value="SUV / 4x4">SUV / 4x4</option>
+                            <option value="Pick-up">Pick-up</option>
+                            <option value="Utilitaire">Utilitaire</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Couleur</label>
+                        <select class="form-select" id="couleur" required>
+                            <option value="">Sélectionner</option>
+                            <option value="Blanc">Blanc</option>
+                            <option value="Noir">Noir</option>
+                            <option value="Gris">Gris</option>
+                            <option value="Bleu">Bleu</option>
+                            <option value="Rouge">Rouge</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Propriétaire</label>
+                        <input type="text" class="form-control" id="proprietaire" placeholder="Nom du client" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-plus-lg"></i> Ajouter
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- =====================================================
+     MODALE VOIR VEHICULE
+===================================================== -->
+
+<div class="modal fade" id="viewVehicleModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Détails du véhicule
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="vehicle-detail-icon">
+                </div>
+                <h4 id="viewVehicleName" class="text-center mb-4">Toyota Corolla</h4>
+                <div class="vehicle-info-list">
+                    <div class="vehicle-info-item">
+                        <span>Immatriculation</span>
+                        <strong id="viewImmatriculation">TG 1234 AB</strong>
+                    </div>
+                    <div class="vehicle-info-item">
+                        <span>Type</span>
+                        <strong id="viewType">Berline</strong>
+                    </div>
+                    <div class="vehicle-info-item">
+                        <span>Année</span>
+                        <strong id="viewAnnee">2023</strong>
+                    </div>
+                    <div class="vehicle-info-item">
+                        <span>Couleur</span>
+                        <strong id="viewCouleur">Blanc</strong>
+                    </div>
+                    <div class="vehicle-info-item">
+                        <span>Propriétaire</span>
+                        <strong id="viewProprietaire">Kossi Agbeko</strong>
+                    </div>
+                    <div class="vehicle-info-item">
+                        <span>Réservations</span>
+                        <strong id="viewReservations">24</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    /* MENU MOBILE */
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarOverlay = document.getElementById("sidebarOverlay");
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener("click", function () {
+            sidebar.classList.toggle("show");
+            if (sidebarOverlay) sidebarOverlay.classList.toggle("show");
+        });
+    }
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener("click", function () {
+            sidebar.classList.remove("show");
+            sidebarOverlay.classList.remove("show");
+        });
+    }
+
+    /* AJOUTER UN VEHICULE */
+    const vehicleForm = document.getElementById("vehicleForm");
+    vehicleForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const marque = document.getElementById("marque").value;
+        const modele = document.getElementById("modele").value;
+        const annee = document.getElementById("annee").value;
+        const immatriculation = document.getElementById("immatriculation").value;
+        const type = document.getElementById("type").value;
+        const couleur = document.getElementById("couleur").value;
+        const proprietaire = document.getElementById("proprietaire").value;
+
+        const tableBody = document.querySelector(".vehicle-table tbody");
+        const newRow = document.createElement("tr");
+
+        newRow.innerHTML = `
+            <td>
+                <div class="vehicle-cell">
+                    <div class="vehicle-table-icon">
+                    </div>
+                    <div>
+                        <strong>${marque} ${modele}</strong>
+                        <span>${annee}</span>
+                    </div>
+                </div>
+            </td>
+            <td><strong>${immatriculation}</strong></td>
+            <td>${type}</td>
+            <td>
+                <span class="vehicle-color">
+                    <span class="color-dot"></span>
+                    ${couleur}
+                </span>
+            </td>
+            <td>
+                <div class="client-cell">
+                    <div class="client-avatar">
+                        ${proprietaire.substring(0, 2).toUpperCase()}
+                    </div>
+                    <div>
+                        <strong>${proprietaire}</strong>
+                        <span>Nouveau client</span>
+                    </div>
+                </div>
+            </td>
+            <td>0</td>
+            <td>
+                <div class="action-buttons">
+                    <button class="table-action view" title="Voir"><i class="bi bi-eye"></i></button>
+                    <button class="table-action edit" title="Modifier"><i class="bi bi-pencil"></i></button>
+                    <button class="table-action delete" title="Supprimer"><i class="bi bi-trash"></i></button>
+                </div>
+            </td>
+        `;
+
+        tableBody.prepend(newRow);
+
+        const modalElement = document.getElementById("addVehicleModal");
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        modal.hide();
+        vehicleForm.reset();
+        activateVehicleButtons(newRow);
+    });
+
+    /* FONCTION VOIR VEHICULE */
+    function viewVehicle(row) {
+        const cells = row.querySelectorAll("td");
+        const vehicleName = cells[0].querySelector("strong").textContent;
+        const annee = cells[0].querySelector("span").textContent;
+        const immatriculation = cells[1].textContent.trim();
+        const type = cells[2].textContent.trim();
+        const couleur = cells[3].textContent.trim();
+        const proprietaire = cells[4].querySelector("strong").textContent;
+        const reservations = cells[5].textContent.trim();
+
+        document.getElementById("viewVehicleName").textContent = vehicleName;
+        document.getElementById("viewAnnee").textContent = annee;
+        document.getElementById("viewImmatriculation").textContent = immatriculation;
+        document.getElementById("viewType").textContent = type;
+        document.getElementById("viewCouleur").textContent = couleur;
+        document.getElementById("viewProprietaire").textContent = proprietaire;
+        document.getElementById("viewReservations").textContent = reservations;
+
+        const modal = new bootstrap.Modal(document.getElementById("viewVehicleModal"));
+        modal.show();
+    }
+
+    /* ACTIVER BOUTONS D'UNE LIGNE */
+    function activateVehicleButtons(row) {
+        const viewBtn = row.querySelector(".table-action.view");
+        const editBtn = row.querySelector(".table-action.edit");
+        const deleteBtn = row.querySelector(".table-action.delete");
+
+        if (viewBtn) {
+            viewBtn.addEventListener("click", function () {
+                viewVehicle(row);
+            });
+        }
+
+        if (deleteBtn) {
+            deleteBtn.addEventListener("click", function () {
+                if (confirm("Voulez-vous vraiment supprimer ce véhicule ?")) {
+                    row.remove();
+                }
+            });
+        }
+    }
+
+    /* Activer les boutons des lignes existantes */
+    document.querySelectorAll(".vehicle-table tbody tr").forEach(function (row) {
+        activateVehicleButtons(row);
+
+        const viewBtn = row.querySelector(".table-action.view");
+        if (viewBtn) {
+            viewBtn.addEventListener("click", function () {
+                viewVehicle(row);
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

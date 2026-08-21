@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BIDÈ — Lavage automobile professionnel au Togo. Services de lavage extérieur, intérieur et complet pour tous types de véhicules. Qualité, rapidité et satisfaction garantie.">
+    <meta name="keywords" content="lavage automobile, lavage voiture, lavage professionnel, BIDÈ, nettoyage véhicule, Togo">
+    <meta name="author" content="BIDÈ">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="BIDÈ — Lavage Automobile Professionnel">
+    <meta property="og:description" content="Services de lavage automobile de qualité au Togo. Extérieur, intérieur, complet. Faites confiance à BIDÈ.">
+    <meta property="og:type" content="website">
+    <title>BIDÈ — Lavage Automobile Professionnel</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ======================== -->
+    <!-- NAVBAR                   -->
+    <!-- ======================== -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#accueil">
+                <img src="images/bide-wash-logo-no-bg.png" alt="BIDE WASH">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-label="Menu de navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tarifs">Tarifs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galerie">Galerie</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <a href="client/connexion.html" class="btn btn-login"><i class="bi bi-person-fill"></i> Se connecter</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======================== -->
+    <!-- 1. HERO / ACCUEIL        -->
+    <!-- ======================== -->
+    <section class="hero" id="accueil">
+        <video class="hero-video" autoplay muted loop playsinline poster="https://res.cloudinary.com/g36grm5h/image/upload/v1787151019/ChatGPT_Image_19_ao%C3%BBt_2026_14_50_01_gmjr2z.png">
+            <source src="https://res.cloudinary.com/g36grm5h/video/upload/v1787318551/WhatsApp_Video_2026-08-21_at_11.34.10_wd4bkj.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <!-- Bouton Play/Pause -->
+        <button class="hero-video-toggle" id="heroVideoToggle" aria-label="Play / Pause la vidéo">
+            <i class="bi bi-pause-fill" id="heroVideoIcon"></i>
+        </button>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <i class="bi bi-patch-check-fill"></i>
+                            Lavage automobile de confiance
+                        </div>
+                        <h1>Votre véhicule mérite le <span>meilleur lavage</span></h1>
+                        <p>BIDÈ vous offre un service de lavage automobile professionnel, rapide et soigné. Offrez à votre véhicule les soins qu'il mérite.</p>
+                        <div class="hero-buttons">
+                            <a href="#services" class="btn btn-bide btn-bide-accent"><i class="bi bi-arrow-right-circle"></i> Découvrir nos services</a>
+                            <a href="#tarifs" class="btn btn-bide btn-bide-white"><i class="bi bi-tag"></i> Voir les tarifs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 2. PRÉSENTATION          -->
+    <!-- ======================== -->
+    <section class="section presentation" id="presentation">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4 fade-in">
+                    <div class="presentation-item">
+                        <div class="icon"><i class="bi bi-droplet-fill"></i></div>
+                        <h4>Lavage Professionnel</h4>
+                        <p>Des techniques de lavage modernes pour un résultat impeccable à chaque visite.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="presentation-item">
+                        <div class="icon"><i class="bi bi-lightning-charge-fill"></i></div>
+                        <h4>Rapidité & Efficacité</h4>
+                        <p>Un service rapide sans compromis sur la qualité. Votre temps est précieux.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="presentation-item">
+                        <div class="icon"><i class="bi bi-shield-check"></i></div>
+                        <h4>Qualité Garantie</h4>
+                        <p>Des produits de qualité et un personnel formé pour votre satisfaction totale.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 3. SERVICES              -->
+    <!-- ======================== -->
+    <section class="section section-light" id="services">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Nos Services</h2>
+                <p>Découvrez la gamme complète de services que BIDÈ propose pour votre véhicule.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="service-detail-card">
+                        <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787151234/Nettoyage_du_capot_de_la_voiture_avec_une_%C3%A9ponge_jaune_et_de_la_mousse_de_savon_%C3%A0_l_ext%C3%A9rieur_au_service_de_lavage_de_voiture___Photo_Premium_eyjs9e.jpg" alt="Lavage extérieur" class="service-image" loading="lazy">
+                        <div class="service-body">
+                            <h3><i class="bi bi-water text-secondary"></i> Lavage Extérieur</h3>
+                            <p>Nettoyage complet de l'extérieur de votre véhicule. Carrosserie, jantes, pare-chocs et vitres lavés et séchés avec soin.</p>
+                            <span class="service-duration"><i class="bi bi-clock"></i> 15 - 25 min</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="service-detail-card">
+                        <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787151354/jpg_1_pt42rj.jpg" alt="Lavage intérieur" class="service-image" loading="lazy">
+                        <div class="service-body">
+                            <h3><i class="bi bi-box-seam text-secondary"></i> Lavage Intérieur</h3>
+                            <p>Aspiration complète, dépoussiérage du tableau de bord et des surfaces, nettoyage des vitres intérieures.</p>
+                            <span class="service-duration"><i class="bi bi-clock"></i> 20 - 35 min</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="service-detail-card">
+                        <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787151465/jpg_2_g5fvip.jpg" alt="Lavage complet" class="service-image" loading="lazy">
+                        <div class="service-body">
+                            <h3><i class="bi bi-stars text-secondary"></i> Lavage Complet</h3>
+                            <p>La combinaison du lavage extérieur et intérieur pour un véhicule impeccable, comme neuf. Notre service le plus populaire.</p>
+                            <span class="service-duration"><i class="bi bi-clock"></i> 30 - 45 min</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="service-detail-card">
+                        <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787151689/How_to_Deep_Clean_Your_Car_s_Carpet_and_Upholstery_Like_a_Pro_kt1adb.jpg" alt="Nettoyage des sièges" class="service-image" loading="lazy">
+                        <div class="service-body">
+                            <h3><i class="bi bi-clipboard2-pulse text-secondary"></i> Nettoyage des Sièges</h3>
+                            <p>Nettoyage en profondeur des sièges en tissu ou en cuir. Extraction des taches, désodorisation et protection.</p>
+                            <span class="service-duration"><i class="bi bi-clock"></i> 30 - 50 min</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="service-detail-card">
+                        <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787151795/Detailing_iahfoq.jpg" alt="Nettoyage des tapis" class="service-image" loading="lazy">
+                        <div class="service-body">
+                            <h3><i class="bi bi-brush text-secondary"></i> Nettoyage des Tapis</h3>
+                            <p>Extraction et assainissement de vos tapis de sol et de coffre. Élimination des taches et des mauvaises odeurs.</p>
+                            <span class="service-duration"><i class="bi bi-clock"></i> 20 - 35 min</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="service-detail-card">
+                        <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787152006/Simple_package_includes_Wheels_Degreased___Scrubbed___Dressed_Moderate_Vacuum___Air_Blow_Out_Seats_Wiped_Engine_Bay_Rinsed_much_more_pittsburgh_detailing_detailer_mobiledetailing_mobiledetailer_pa_pittsburghp_tqapaj.jpg" alt="Service approfondi" class="service-image" loading="lazy">
+                        <div class="service-body">
+                            <h3><i class="bi bi-gem text-secondary"></i> Service Approfondi</h3>
+                            <p>Un nettoyage complet et détaillé pour les véhicules très sales. Intérieur et extérieur traités en profondeur.</p>
+                            <span class="service-duration"><i class="bi bi-clock"></i> 45 - 75 min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 4. AVANTAGES             -->
+    <!-- ======================== -->
+    <section class="section" id="avantages">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0 fade-in-left">
+                    <div class="section-title text-start">
+                        <h2>Pourquoi Choisir BIDÈ ?</h2>
+                        <p>Des raisons de nous faire confiance pour le lavage de votre véhicule.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-in-right">
+                    <div class="advantages">
+                        <div class="advantage-item">
+                            <div class="advantage-icon"><i class="bi bi-clock-fill"></i></div>
+                            <div class="advantage-text"><h4>Service Rapide</h4><p>Un lavage efficace en un temps record, sans compromis sur la qualité.</p></div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="advantage-icon"><i class="bi bi-leaf"></i></div>
+                            <div class="advantage-text"><h4>Produits Écologiques</h4><p>Nous utilisons des produits respectueux de l'environnement.</p></div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="advantage-icon"><i class="bi bi-people-fill"></i></div>
+                            <div class="advantage-text"><h4>Équipe Professionnelle</h4><p>Un personnel formé et passionné par l'entretien automobile.</p></div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="advantage-icon"><i class="bi bi-currency-exchange"></i></div>
+                            <div class="advantage-text"><h4>Tarifs Accessibles</h4><p>Des prix justes pour un service de qualité supérieure.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 5. COMMENT ÇA MARCHE     -->
+    <!-- ======================== -->
+    <section class="section section-light how-it-works" id="comment-ca-marche">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Comment ça Marche ?</h2>
+                <p>Un processus simple en 3 étapes pour un véhicule impeccable.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 fade-in">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Arrivez</h4>
+                        <p>Rendez-vous au lavage BIDÈ aux horaires qui vous conviennent. Aucune réservation nécessaire.</p>
+                        <i class="bi bi-arrow-right step-connector"></i>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>Choisissez Votre Service</h4>
+                        <p>Sélectionnez la formule qui correspond à vos besoins parmi notre gamme de services.</p>
+                        <i class="bi bi-arrow-right step-connector"></i>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>Profitez</h4>
+                        <p>Repartez avec un véhicule propre et brillant. C'est aussi simple que ça !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 6. TARIFS                -->
+    <!-- ======================== -->
+    <section class="section" id="tarifs">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Nos Tarifs</h2>
+                <p>Des formules adaptées à tous les budgets pour un service de qualité.</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <!-- Essentiel -->
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="pricing-card">
+                        <div class="pricing-name">Essentiel</div>
+                        <div class="pricing-description">Lavage extérieur de base</div>
+                        <div class="pricing-amount"><span class="currency">FCFA</span> 3 000</div>
+                        <div class="pricing-period">par lavage</div>
+                        <ul class="pricing-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Lavage extérieur</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Nettoyage des jantes</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Séchage</li>
+                            <li class="disabled"><i class="bi bi-x-circle"></i> Lavage intérieur</li>
+                            <li class="disabled"><i class="bi bi-x-circle"></i> Nettoyage sièges</li>
+                        </ul>
+                        <a href="client/connexion.html" class="btn btn-bide btn-bide-outline w-100">Choisir cette formule</a>
+                    </div>
+                </div>
+                <!-- Confort -->
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="pricing-card">
+                        <div class="pricing-name">Confort</div>
+                        <div class="pricing-description">Lavage intérieur et extérieur</div>
+                        <div class="pricing-amount"><span class="currency">FCFA</span> 5 000</div>
+                        <div class="pricing-period">par lavage</div>
+                        <ul class="pricing-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Lavage extérieur</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Aspiration intérieure</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Dépoussiérage</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Nettoyage vitres</li>
+                            <li class="disabled"><i class="bi bi-x-circle"></i> Nettoyage sièges</li>
+                        </ul>
+                        <a href="client/connexion.html" class="btn btn-bide btn-bide-primary w-100">Choisir cette formule</a>
+                    </div>
+                </div>
+                <!-- Premium -->
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">Populaire</div>
+                        <div class="pricing-name">Premium</div>
+                        <div class="pricing-description">Lavage complet avec soins</div>
+                        <div class="pricing-amount"><span class="currency">FCFA</span> 8 000</div>
+                        <div class="pricing-period">par lavage</div>
+                        <ul class="pricing-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Tout le lavage Confort</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Nettoyage des sièges</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Nettoyage des tapis</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Cire de protection</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Parfum intérieur</li>
+                        </ul>
+                        <a href="client/connexion.html" class="btn btn-bide btn-bide-accent w-100">Choisir cette formule</a>
+                    </div>
+                </div>
+                <!-- VIP -->
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="pricing-card">
+                        <div class="pricing-name">VIP</div>
+                        <div class="pricing-description">Service approfondi complet</div>
+                        <div class="pricing-amount"><span class="currency">FCFA</span> 15 000</div>
+                        <div class="pricing-period">par lavage</div>
+                        <ul class="pricing-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Tout le lavage Premium</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Shampoing profond sièges</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Désinfection complète</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Traitement cuir</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Nettoyage moteur</li>
+                        </ul>
+                        <a href="client/connexion.html" class="btn btn-bide btn-bide-outline w-100">Choisir cette formule</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Services complémentaires -->
+            <div class="section-title fade-in mt-5">
+                <h2>Services Complémentaires</h2>
+                <p>Des options supplémentaires pour un entretien complet.</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4 fade-in">
+                    <div class="card card-bide text-center p-4">
+                        <div class="card-icon mx-auto"><i class="bi bi-droplet-half"></i></div>
+                        <h5 class="card-title">Polish</h5>
+                        <p class="card-text">Restauration de l'éclat de votre carrosserie.</p>
+                        <div class="fw-bold text-secondary">+ 10 000 FCFA</div>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="card card-bide text-center p-4">
+                        <div class="card-icon mx-auto"><i class="bi bi-shield-fill-check"></i></div>
+                        <h5 class="card-title">Nanocéramique</h5>
+                        <p class="card-text">Protection longue durée de la carrosserie.</p>
+                        <div class="fw-bold text-secondary">+ 25 000 FCFA</div>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="card card-bide text-center p-4">
+                        <div class="card-icon mx-auto"><i class="bi bi-wind"></i></div>
+                        <h5 class="card-title">Nettoyage Moteur</h5>
+                        <p class="card-text">Nettoyage en profondeur du compartiment moteur.</p>
+                        <div class="fw-bold text-secondary">+ 7 000 FCFA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4 fade-in">
+                <p class="text-muted"><i class="bi bi-info-circle"></i> Les prix peuvent varier selon la taille du véhicule. Contactez-nous pour plus d'informations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 7. STATISTIQUES          -->
+    <!-- ======================== -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-3 fade-in">
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
+                        <div class="stat-number" data-count="1500">0</div>
+                        <div class="stat-label">Clients Satisfaits</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 fade-in">
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="bi bi-car-front-fill"></i></div>
+                        <div class="stat-number" data-count="5000">0</div>
+                        <div class="stat-label">Véhicules Lavés</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 fade-in">
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="bi bi-calendar-check-fill"></i></div>
+                        <div class="stat-number" data-count="3">0</div>
+                        <div class="stat-label">Années d'Expérience</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 fade-in">
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="bi bi-emoji-smile-fill"></i></div>
+                        <div class="stat-number" data-count="98">0</div>
+                        <div class="stat-label">% Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 8. À PROPOS              -->
+    <!-- ======================== -->
+    <section class="section" id="apropos">
+        <div class="container">
+            <!-- Histoire -->
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0 fade-in-left">
+                    <img src="images/notre-histoire.png" alt="Notre lavage BIDÈ" class="img-fluid rounded-bide shadow-bide">
+                </div>
+                <div class="col-lg-6 fade-in-right">
+                    <div class="section-title text-start"><h2>Notre Histoire</h2></div>
+                    <p>BIDÈ est née de la passion pour l'entretien automobile et du désir d'offrir un service de lavage professionnel de qualité supérieure.</p>
+                    <p>Fondé avec la vision de devenir la référence du lavage automobile, BIDÈ s'est rapidement imposé grâce à son engagement envers l'excellence, la satisfaction client et l'utilisation de produits respectueux de l'environnement.</p>
+                    <p>Aujourd'hui, BIDÈ continue de croître en mettant toujours la qualité du service et le bonheur de ses clients au centre de ses priorités.</p>
+                </div>
+            </div>
+            <!-- Mission & Vision -->
+            <div class="row g-4">
+                <div class="col-md-6 fade-in">
+                    <div class="card card-bide p-4 h-100">
+                        <div class="card-icon"><i class="bi bi-bullseye"></i></div>
+                        <h4 class="card-title">Notre Mission</h4>
+                        <p class="card-text">Offrir un service de lavage automobile rapide, efficace et de qualité, tout en utilisant des produits écologiques pour préserver l'environnement. Nous voulons que chaque client reparte avec un sourire et un véhicule impeccable.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 fade-in">
+                    <div class="card card-bide p-4 h-100">
+                        <div class="card-icon"><i class="bi bi-eye-fill"></i></div>
+                        <h4 class="card-title">Notre Vision</h4>
+                        <p class="card-text">Devenir le leader du lavage automobile professionnel au Togo, reconnu pour la qualité de son service, son innovation et son engagement environnemental. BIDÈ aspire à être le choix n°1 de chaque propriétaire de véhicule.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valeurs -->
+    <section class="section section-light values-grid">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Nos Valeurs</h2>
+                <p>Les principes qui guident notre travail au quotidien.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="value-item">
+                        <div class="value-icon"><i class="bi bi-patch-check-fill"></i></div>
+                        <h4>Qualité</h4>
+                        <p>Nous ne faisons aucun compromis sur la qualité de notre travail.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="value-item">
+                        <div class="value-icon"><i class="bi bi-speedometer2"></i></div>
+                        <h4>Rapidité</h4>
+                        <p>Votre temps est précieux. Nous optimisons chaque étape.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="value-item">
+                        <div class="value-icon"><i class="bi bi-leaf-fill"></i></div>
+                        <h4>Écologie</h4>
+                        <p>Produits biodégradables et techniques respectueuses de l'environnement.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="value-item">
+                        <div class="value-icon"><i class="bi bi-heart-fill"></i></div>
+                        <h4>Passion</h4>
+                        <p>L'automobile est notre passion. C'est ce qui nous pousse à donner le meilleur.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engagement -->
+    <section class="section section-dark">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 fade-in">
+                    <h2>Notre Engagement Qualité</h2>
+                    <p class="mt-3" style="font-size: 1.1rem;">Chez BIDÈ, chaque véhicule est traité avec soin et professionnalisme. Notre équipe est formée régulièrement aux dernières techniques de lavage et utilise exclusivement des produits de qualité professionnelle. Votre satisfaction est notre priorité absolue.</p>
+                    <a href="#contact" class="btn btn-bide btn-bide-accent mt-4"><i class="bi bi-envelope"></i> Nous contacter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 9. GALERIE               -->
+    <!-- ======================== -->
+    <section class="section" id="galerie">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Notre Galerie</h2>
+                <p>Découvrez nos réalisations et l'environnement de BIDÈ.</p>
+            </div>
+            <!-- Filtres -->
+            <div class="gallery-filters fade-in">
+                <button class="filter-btn active" data-filter="all">Tout</button>
+                <button class="filter-btn" data-filter="exterieur">Extérieur</button>
+                <button class="filter-btn" data-filter="interieur">Intérieur</button>
+                <button class="filter-btn" data-filter="equipements">Équipements</button>
+                <button class="filter-btn" data-filter="equipe">Équipe</button>
+            </div>
+            <!-- Grid -->
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in" data-category="exterieur">
+                    <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=800&h=600&c_fill&fit=crop" alt="Lavage extérieur BIDÈ" loading="lazy">
+                    <div class="gallery-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+                </div>
+                <div class="gallery-item fade-in" data-category="exterieur">
+                    <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=800&h=600&c_fill&fit=crop" alt="Nettoyage carrosserie BIDÈ" loading="lazy">
+                    <div class="gallery-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+                </div>
+                <div class="gallery-item fade-in" data-category="exterieur">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&c_fill&fit=crop" alt="Séchage carrosserie BIDÈ" loading="lazy">
+                    <div class="gallery-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+                </div>
+                <div class="gallery-item fade-in" data-category="interieur">
+                    <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787151354/jpg_1_pt42rj.jpg" alt="Nettoyage intérieur BIDÈ" loading="lazy">
+                    <div class="gallery-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+                </div>
+                <div class="gallery-item fade-in" data-category="interieur">
+                    <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787151689/How_to_Deep_Clean_Your_Car_s_Carpet_and_Upholstery_Like_a_Pro_kt1adb.jpg" alt="Nettoyage sièges BIDÈ" loading="lazy">
+                    <div class="gallery-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+                </div>
+                <div class="gallery-item fade-in" data-category="interieur">
+                    <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787151795/Detailing_iahfoq.jpg" alt="Detailing intérieur BIDÈ" loading="lazy">
+                    <div class="gallery-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+                </div>
+                <div class="gallery-item fade-in" data-category="equipements">
+                    <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787152006/Simple_package_includes_Wheels_Degreased___Scrubbed___Dressed_Moderate_Vacuum___Air_Blow_Out_Seats_Wiped_Engine_Bay_Rinsed_much_more_pittsburgh_detailing_detailer_mobiledetailing_mobiledetailer_pa_pittsburghp_tqapaj.jpg" alt="Matériel de lavage BIDÈ" loading="lazy">
+                    <div class="gallery-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+                </div>
+                <div class="gallery-item fade-in" data-category="equipements">
+                    <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787151234/Nettoyage_du_capot_de_la_voiture_avec_une_%C3%A9ponge_jaune_et_de_la_mousse_de_savon_%C3%A0_l_ext%C3%A9rieur_au_service_de_lavage_de_voiture___Photo_Premium_eyjs9e.jpg" alt="Outils de lavage BIDÈ" loading="lazy">
+                    <div class="gallery-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+                </div>
+                <div class="gallery-item fade-in" data-category="equipe">
+                    <img src="https://res.cloudinary.com/g36grm5h/image/upload/v1787151465/jpg_2_g5fvip.jpg" alt="Équipe BIDÈ au travail" loading="lazy">
+                    <div class="gallery-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+                </div>
+                <div class="gallery-item fade-in" data-category="equipe">
+                    <img src="images/equipe-bide.png" alt="Équipe BIDÈ en action" loading="lazy">
+                    <div class="gallery-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+                </div>
+            </div>
+        </div>
+        <!-- Lightbox -->
+        <div class="lightbox">
+            <button class="lightbox-close" aria-label="Fermer"><i class="bi bi-x-lg"></i></button>
+            <button class="lightbox-nav lightbox-prev" aria-label="Photo précédente"><i class="bi bi-chevron-left"></i></button>
+            <img src="" alt="Photo agrandie">
+            <button class="lightbox-nav lightbox-next" aria-label="Photo suivante"><i class="bi bi-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 10. TÉMOIGNAGES          -->
+    <!-- ======================== -->
+    <section class="section section-light testimonials" id="temoignages">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Ce que Disent nos Clients</h2>
+                <p>La satisfaction de nos clients est notre plus belle récompense.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                        <p class="testimonial-text">"Meilleur centre de lavage à Lomé ! Ma Toyota est toujours impeccable après chaque passage. Le personnel est très accueillant."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=100&h=100&c_fill&fit=crop&crop=face" alt="Kofi Amoussou" class="testimonial-avatar">
+                            <div><div class="testimonial-name">Kofi Amoussou</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                        <p class="testimonial-text">"Service rapide et professionnel. Mon Hyundai Tucson ressort comme neuf à chaque fois. Je recommande vivement BIDÈ !"</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&h=100&c_fill&fit=crop&crop=face" alt="Amina Djedjro" class="testimonial-avatar">
+                            <div><div class="testimonial-name">Amina Djedjro</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+                        <p class="testimonial-text">"Tarifs très raisonnables pour un résultat de qualité. Le pressing intérieur est parfait. Merci BIDÈ !"</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&c_fill&fit=crop&crop=face" alt="Emmanuel Mensah" class="testimonial-avatar">
+                            <div><div class="testimonial-name">Emmanuel Mensah</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                        <p class="testimonial-text">"J'ammène toujours ma berline chez BIDÈ. Le séchage est impeccable et les produits sont de qualité. Top !"</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&c_fill&fit=crop&crop=face" alt="Sekou Assouman" class="testimonial-avatar">
+                            <div><div class="testimonial-name">Sekou Assouman</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                        <p class="testimonial-text">"Service exceptionnel du début à la fin. Mon SUV n'a jamais été aussi propre. L'équipe BIDÈ est au top !"</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&c_fill&fit=crop&crop=face" alt="Fatima Kossi" class="testimonial-avatar">
+                            <div><div class="testimonial-name">Fatima Kossi</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+                        <p class="testimonial-text">"Rapide, efficace et à prix juste. Je suis client depuis le premier jour et je n'ai jamais été déçu. Bravo !"</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&c_fill&fit=crop&crop=face" alt="Yao Gbede" class="testimonial-avatar">
+                            <div><div class="testimonial-name">Yao Gbede</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 11. FAQ                  -->
+    <!-- ======================== -->
+    <section class="section faq-page" id="faq">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Questions Fréquentes</h2>
+                <p>Trouvez rapidement les réponses à toutes vos questions.</p>
+            </div>
+            <div class="faq-search fade-in">
+                <input type="text" id="faqSearch" class="form-control" placeholder="Rechercher une question..." aria-label="Rechercher dans la FAQ">
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">Quels types de véhicules acceptez-vous ?</button></h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body">Nous lavons tous types de véhicules : voitures berlines, SUV, camionnettes et utilitaires. Notre équipement est adapté à chaque type de véhicule, du plus petit au plus grand.</div></div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">Quels services propose BIDÈ ?</button></h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">BIDÈ propose une gamme complète : lavage extérieur, lavage intérieur, lavage complet, nettoyage des sièges, nettoyage des tapis, service approfondi, ainsi que des services complémentaires comme le polish et la nanocéramique.</div></div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">Combien coûte un lavage ?</button></h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Nos tarifs commencent à 3 000 FCFA pour un lavage extérieur. Les formules complètes vont de 5 000 à 15 000 FCFA selon le niveau de prestation. Consultez la section <a href="#tarifs">Tarifs</a> ci-dessus.</div></div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">Combien de temps dure une prestation ?</button></h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">La durée dépend du service : 15 à 25 minutes pour un lavage extérieur, 30 à 45 minutes pour un lavage complet, et jusqu'à 1 heure 15 pour un service approfondi.</div></div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">Où se trouve le lavage BIDÈ ?</button></h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Nous nous trouvons au Togo. Consultez la section <a href="#contact">Contact</a> ci-dessous pour obtenir l'adresse exacte et accéder à la carte de localisation.</div></div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">Comment contacter BIDÈ ?</button></h2>
+                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Vous pouvez nous contacter par téléphone, WhatsApp ou email. Retrouvez tous les détails dans la section <a href="#contact">Contact</a>.</div></div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">Comment accéder à mon espace client ?</button></h2>
+                            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Cliquez sur le bouton « Se connecter » en haut de la page pour accéder à votre espace client.</div></div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">Quels sont vos horaires d'ouverture ?</button></h2>
+                            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Nous sommes ouverts du lundi au vendredi de 7h00 à 19h00, et le samedi de 7h00 à 17h00. Fermé le dimanche.</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 12. CONTACT              -->
+    <!-- ======================== -->
+    <section class="section section-light" id="contact">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Contactez-nous</h2>
+                <p>Nous sommes à votre écoute pour toute question ou demande d'information.</p>
+            </div>
+            <!-- Coordonnées -->
+            <div class="row g-4 mb-5">
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="contact-info-card">
+                        <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+                        <h4>Téléphone</h4>
+                        <p>+228 79 06 06 05</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="contact-info-card">
+                        <div class="contact-icon"><i class="bi bi-whatsapp"></i></div>
+                        <h4>WhatsApp</h4>
+                        <p>+228 79 06 06 05</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="contact-info-card">
+                        <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+                        <h4>Email</h4>
+                        <p>contact@bide-lavage.com</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 fade-in">
+                    <div class="contact-info-card">
+                        <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                        <h4>Adresse</h4>
+                        <p>Lomé, Togo</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Horaires + Réseaux -->
+            <div class="row g-4 mb-5">
+                <div class="col-lg-6 fade-in-left">
+                    <h3 class="mb-4"><i class="bi bi-clock-history text-secondary"></i> Horaires d'Ouverture</h3>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr><td class="fw-bold">Lundi - Vendredi</td><td class="text-end">7h00 — 19h00</td></tr>
+                            <tr><td class="fw-bold">Samedi</td><td class="text-end">7h00 — 17h00</td></tr>
+                            <tr><td class="fw-bold">Dimanche</td><td class="text-end"><span style="color:var(--color-blue);font-weight:600">Fermé</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-6 fade-in-right">
+                    <h3 class="mb-4"><i class="bi bi-share-fill text-secondary"></i> Réseaux Sociaux</h3>
+                    <p class="mb-3">Suivez-nous pour rester informé de nos actualités et promotions.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#" class="btn btn-bide btn-bide-primary"><i class="bi bi-facebook"></i> Facebook</a>
+                        <a href="#" class="btn btn-bide btn-bide-accent"><i class="bi bi-instagram"></i> Instagram</a>
+                        <a href="#" class="btn btn-bide btn-bide-outline"><i class="bi bi-tiktok"></i> TikTok</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Formulaire + Carte -->
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-7 fade-in-left">
+                    <div class="section-title text-start"><h2>Envoyez-nous un Message</h2></div>
+                    <form class="contact-form" id="contactForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="contactName" class="form-label">Nom complet <span style="color:var(--color-blue)">*</span></label>
+                                <input type="text" class="form-control" id="contactName" placeholder="Votre nom" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactEmail" class="form-label">Email <span style="color:var(--color-blue)">*</span></label>
+                                <input type="email" class="form-control" id="contactEmail" placeholder="votre@email.com" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactPhone" class="form-label">Téléphone</label>
+                                <input type="tel" class="form-control" id="contactPhone" placeholder="+228 79 06 06 05">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactSubject" class="form-label">Sujet <span style="color:var(--color-blue)">*</span></label>
+                                <select class="form-select" id="contactSubject" required>
+                                    <option value="" disabled selected>Choisir un sujet</option>
+                                    <option value="info">Demande d'information</option>
+                                    <option value="tarif">Question sur les tarifs</option>
+                                    <option value="service">Question sur un service</option>
+                                    <option value="reclamation">Réclamation</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="contactMessage" class="form-label">Message <span style="color:var(--color-blue)">*</span></label>
+                                <textarea class="form-control" id="contactMessage" rows="5" placeholder="Votre message..." required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-bide btn-bide-accent"><i class="bi bi-send"></i> Envoyer le message</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="contactSuccess" class="alert alert-success mt-3" style="display: none;">
+                        <i class="bi bi-check-circle-fill"></i> Votre message a bien été envoyé. Nous vous répondrons rapidement !
+                    </div>
+                </div>
+                <div class="col-lg-5 fade-in-right">
+                    <div class="section-title text-start"><h2>Nous Trouver</h2></div>
+                    <div class="map-container">
+                        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=1.15,6.10,1.25,6.20&layer=mapnik" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localisation BIDÈ — Lomé, Togo"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- 13. CTA                  -->
+    <!-- ======================== -->
+    <section class="cta-section">
+        <div class="container position-relative" style="z-index: 2;">
+            <h2 class="fade-in">Prêt à Laver Votre Véhicule ?</h2>
+            <p class="fade-in">Connectez-vous pour accéder à votre espace client et gérer vos services.</p>
+            <a href="client/connexion.html" class="btn btn-bide btn-bide-accent fade-in"><i class="bi bi-box-arrow-in-right"></i> Se connecter</a>
+        </div>
+    </section>
+
+    <!-- ======================== -->
+    <!-- FOOTER                   -->
+    <!-- ======================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand">BIDÈ<span>.</span></div>
+                    <p>Votre lavage automobile de confiance au Togo. Service professionnel, rapide et de qualité pour tous types de véhicules.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5>Liens Rapides</h5>
+                    <div class="footer-links">
+                        <a href="#accueil">Accueil</a>
+                        <a href="#services">Services</a>
+                        <a href="#tarifs">Tarifs</a>
+                        <a href="#apropos">À propos</a>
+                        <a href="#galerie">Galerie</a>
+                        <a href="#faq">FAQ</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Contact</h5>
+                    <div class="footer-contact-item"><i class="bi bi-telephone-fill"></i><span>+228 79 06 06 05</span></div>
+                    <div class="footer-contact-item"><i class="bi bi-whatsapp"></i><span>+228 79 06 06 05</span></div>
+                    <div class="footer-contact-item"><i class="bi bi-envelope-fill"></i><span>contact@bide-lavage.com</span></div>
+                    <div class="footer-contact-item"><i class="bi bi-geo-alt-fill"></i><span>Lomé, Togo</span></div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Horaires</h5>
+                    <div class="footer-contact-item"><i class="bi bi-clock-fill"></i><span>Lun - Ven : 7h00 - 19h00</span></div>
+                    <div class="footer-contact-item"><i class="bi bi-clock-fill"></i><span>Samedi : 7h00 - 17h00</span></div>
+                    <div class="footer-contact-item"><i class="bi bi-clock-fill"></i><span>Dimanche : Fermé</span></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BIDÈ — Tous droits réservés. Lavage Automobile Professionnel.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" aria-label="Retour en haut"><i class="bi bi-arrow-up"></i></button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/faq.js"></script>
+    <script>
+        // Contact form handler (public, no auth)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('contactSuccess').style.display = 'block';
+            this.reset();
+            setTimeout(function() { document.getElementById('contactSuccess').style.display = 'none'; }, 5000);
+        });
+
+        // ===== HERO VIDEO: Play / Pause + Parallax + Mobile =====
+        (function() {
+            var heroVideo = document.querySelector('.hero-video');
+            var toggleBtn = document.getElementById('heroVideoToggle');
+            var toggleIcon = document.getElementById('heroVideoIcon');
+            var heroSection = document.getElementById('accueil');
+            if (!heroVideo || !toggleBtn) return;
+
+            // --- Play / Pause ---
+            var isPlaying = true;
+            toggleBtn.addEventListener('click', function() {
+                if (heroVideo.paused) {
+                    heroVideo.play();
+                    isPlaying = true;
+                    toggleIcon.className = 'bi bi-pause-fill';
+                } else {
+                    heroVideo.pause();
+                    isPlaying = false;
+                    toggleIcon.className = 'bi bi-play-fill';
+                }
+            });
+
+            // --- Parallaxe au scroll ---
+            var ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        var scrollY = window.pageYOffset;
+                        var heroHeight = heroSection.offsetHeight;
+                        if (scrollY < heroHeight * 1.5) {
+                            heroVideo.style.transform = 'translateY(' + (scrollY * 0.3) + 'px)';
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            // --- Mobile : vitesse de lecture réduite + qualité auto ---
+            var isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                heroVideo.playbackRate = 0.75;
+                // Forcer le poster sur mobile si la connexion est lente
+                if (navigator.connection && navigator.connection.saveData) {
+                    heroVideo.pause();
+                    heroVideo.removeAttribute('autoplay');
+                    heroVideo.load();
+                }
+            }
+
+            // --- Auto-play visibility : pause quand l'onglet est caché ---
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    heroVideo.pause();
+                } else if (isPlaying) {
+                    heroVideo.play();
+                }
+            });
+        })();
+
+    </script>
+</body>
+</html>

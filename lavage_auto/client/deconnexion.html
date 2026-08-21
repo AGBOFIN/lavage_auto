@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Déconnexion - BIDE AKIMMAKO</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Police -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==============================
+           VARIABLES
+        ============================== */
+
+        :root {
+            --blue: #0066e6;
+            --dark-blue: #0b2b5c;
+            --background: #f5f8fc;
+            --white: #ffffff;
+            --text: #172033;
+            --muted: #718096;
+            --border: #e2e8f0;
+            --red: #dc3545;
+        }
+
+
+        /* ==============================
+           RESET
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Nunito", sans-serif;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+
+        /* ==============================
+           PAGE
+        ============================== */
+
+        .page {
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+
+        /* ==============================
+           CARTE DE DECONNEXION
+        ============================== */
+
+        .logout-card {
+
+            width: 100%;
+
+            max-width: 450px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            padding: 40px 35px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px rgba(15, 23, 42, 0.07);
+        }
+
+
+        /* ==============================
+           LOGO
+        ============================== */
+
+        .logo {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            max-height: 40px;
+            width: auto;
+        }
+
+
+        /* ==============================
+           ICONE DECONNEXION
+        ============================== */
+
+        .logout-icon {
+
+            width: 75px;
+
+            height: 75px;
+
+            margin: 0 auto 20px;
+
+            background: #eef5ff;
+
+            color: var(--blue);
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 34px;
+        }
+
+
+        /* ==============================
+           TITRE
+        ============================== */
+
+        h1 {
+
+            font-size: 23px;
+
+            color: var(--dark-blue);
+
+            margin-bottom: 10px;
+        }
+
+        .message {
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ==============================
+           INFORMATIONS UTILISATEUR
+        ============================== */
+
+        .user-info {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            background: #f8fafc;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            padding: 12px;
+
+            margin-bottom: 25px;
+
+            text-align: left;
+        }
+
+        .avatar {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: #dbeafe;
+
+            color: var(--blue);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            flex-shrink: 0;
+        }
+
+        .user-details strong {
+
+            display: block;
+
+            font-size: 12px;
+
+            color: var(--text);
+        }
+
+        .user-details span {
+
+            display: block;
+
+            font-size: 10px;
+
+            color: var(--muted);
+
+            margin-top: 2px;
+        }
+
+
+        /* ==============================
+           BOUTONS
+        ============================== */
+
+        .buttons {
+
+            display: flex;
+
+            gap: 10px;
+
+            justify-content: center;
+        }
+
+        .btn {
+
+            flex: 1;
+
+            padding: 11px 15px;
+
+            border-radius: 6px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+            border: none;
+        }
+
+
+        /* ANNULER */
+
+        .btn-cancel {
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            color: #475569;
+        }
+
+        .btn-cancel:hover {
+
+            background: #f8fafc;
+        }
+
+
+        /* DECONNECTER */
+
+        .btn-logout {
+
+            background: var(--blue);
+
+            color: white;
+        }
+
+        .btn-logout:hover {
+
+            background: #0054bf;
+        }
+
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        .footer {
+
+            margin-top: 25px;
+
+            padding-top: 18px;
+
+            border-top: 1px solid var(--border);
+
+            font-size: 9px;
+
+            color: var(--muted);
+        }
+
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media (max-width: 500px) {
+
+            .logout-card {
+
+                padding: 30px 20px;
+            }
+
+            .buttons {
+
+                flex-direction: column;
+            }
+
+            .btn {
+
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="page">
+
+
+        <section class="logout-card">
+
+
+            <!-- ==========================
+                 LOGO
+            =========================== -->
+
+            <div class="logo">
+                <img src="../images/bide-wash-logo-transparent.png" alt="BIDE WASH">
+            </div>
+
+
+
+            <!-- ==========================
+                 ICONE
+            =========================== -->
+
+            <div class="logout-icon">
+
+                <i class="bi bi-box-arrow-right"></i>
+
+            </div>
+
+
+
+            <!-- ==========================
+                 TITRE
+            =========================== -->
+
+            <h1>
+                Se déconnecter ?
+            </h1>
+
+            <p class="message">
+
+                Êtes-vous sûr de vouloir vous déconnecter
+                de votre espace client ?
+
+            </p>
+
+
+
+            <!-- ==========================
+                 UTILISATEUR
+            =========================== -->
+
+            <div class="user-info">
+
+                <div class="avatar">
+                    KK
+                </div>
+
+                <div class="user-details">
+
+                    <strong id="logoutName">-</strong>
+
+                    <span id="logoutEmail">-</span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==========================
+                 BOUTONS
+            =========================== -->
+
+            <div class="buttons">
+
+
+                <button class="btn btn-cancel" onclick="annulerDeconnexion()">
+
+                    Annuler
+
+                </button>
+
+
+                <button class="btn btn-logout" onclick="confirmerDeconnexion()">
+
+                    <i class="bi bi-box-arrow-right"></i>
+
+                    Se déconnecter
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- ==========================
+                 FOOTER
+            =========================== -->
+
+            <div class="footer">
+
+                © 2026 BIDE AKIMMAKO —
+                Tous droits réservés.
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script>
+
+        /* =================================
+           ANNULER
+        ================================= */
+
+        function annulerDeconnexion() {
+
+            /*
+             * Retour vers le tableau de bord
+             */
+
+            window.location.href =
+                "dashbord_client.html";
+
+        }
+
+
+
+        /* =================================
+           CONFIRMER LA DECONNEXION
+        ================================= */
+
+        function confirmerDeconnexion() {
+
+            const confirmation = confirm(
+
+                "Voulez-vous vraiment vous déconnecter ?"
+
+            );
+
+
+            if (confirmation) {
+
+                /*
+                 * Suppression de la session
+                 */
+
+                localStorage.removeItem(
+                    "bide_session"
+                );
+
+
+                /*
+                 * Suppression éventuelle
+                 * des informations utilisateur
+                 */
+
+                localStorage.removeItem(
+                    "bide_user"
+                );
+
+
+                /*
+                 * Message
+                 */
+
+                alert(
+                    "Vous avez été déconnecté avec succès."
+                );
+
+
+                /*
+                 * Redirection vers
+                 * la page de connexion
+                 */
+
+                window.location.href =
+                    "connexion.html";
+
+            }
+
+        }
+
+    </script>
+
+
+    <script src="../js/session.js"></script>
+</body>
+
+</html>

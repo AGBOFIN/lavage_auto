@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiements | Bidè Admin</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-logo">
+        <a href="dashboard.html"><img src="../images/bide-wash-logo-no-bg.png" alt="BIDÈ" style="height:42px;width:auto;object-fit:contain"></a>
+    </div>
+
+    <div class="sidebar-menu">
+        <p class="menu-title">MENU PRINCIPAL</p>
+
+        <a href="dashboard.html" class="menu-link">
+            <i class="bi bi-grid-1x2-fill"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="reservations.html" class="menu-link">
+            <i class="bi bi-calendar-check"></i>
+            <span>Réservations</span>
+            <span class="menu-badge">8</span>
+        </a>
+
+        <a href="clients.html" class="menu-link">
+            <i class="bi bi-people"></i>
+            <span>Clients</span>
+        </a>
+
+        <a href="services.html" class="menu-link">
+            <i class="bi bi-droplet"></i>
+            <span>Services</span>
+        </a>
+
+        <a href="vehicules.html" class="menu-link">
+            <i class="bi bi-car-front"></i>
+            <span>Véhicules</span>
+        </a>
+
+        <p class="menu-title mt-4">GESTION</p>
+
+        <a href="paiements.html" class="menu-link active">
+            <i class="bi bi-credit-card"></i>
+            <span>Paiements</span>
+        </a>
+
+        <a href="messages.html" class="menu-link">
+            <i class="bi bi-chat-left-text"></i>
+            <span>Messages</span>
+            <span class="menu-badge">3</span>
+        </a>
+
+        <a href="avis.html" class="menu-link">
+            <i class="bi bi-star"></i>
+            <span>Avis clients</span>
+        </a>
+
+        <a href="employes.html" class="menu-link">
+            <i class="bi bi-person-badge"></i>
+            <span>Employés</span>
+        </a>
+
+        <p class="menu-title mt-4">SYSTÈME</p>
+
+        <a href="utilisateurs.html" class="menu-link">
+            <i class="bi bi-person-gear"></i>
+            <span>Administrateurs</span>
+        </a>
+
+        <a href="parametres.html" class="menu-link">
+            <i class="bi bi-gear"></i>
+            <span>Paramètres</span>
+        </a>
+    </div>
+
+    <div class="sidebar-bottom">
+        <a href="../client/connexion.html" class="logout-link">
+            <i class="bi bi-box-arrow-left"></i>
+            <span>Déconnexion</span>
+        </a>
+    </div>
+
+</aside>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <div class="topbar-left">
+            <div class="breadcrumb-admin">
+                <span>Administration</span>
+                <i class="bi bi-chevron-right"></i>
+                <strong>Paiements</strong>
+            </div>
+        </div>
+
+        <div class="topbar-right">
+            <button class="notification-btn">
+                <i class="bi bi-bell"></i>
+                <span class="notification-dot"></span>
+            </button>
+            <div class="admin-profile">
+                <div class="profile-avatar">AG</div>
+                <div class="profile-info">
+                    <strong>Admin</strong>
+                    <span>Administrateur</span>
+                </div>
+                <i class="bi bi-chevron-down profile-arrow"></i>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- =================================================
+         CONTENU
+    ================================================== -->
+
+    <div class="dashboard-container">
+
+        <!-- TITRE -->
+        <div class="page-header">
+            <div>
+                <h1>Paiements</h1>
+                <p>Consultez et gérez les paiements de la plateforme Bidè.</p>
+            </div>
+            <button class="primary-btn">
+                <i class="bi bi-plus-lg"></i>
+                Nouveau paiement
+            </button>
+        </div>
+
+        <!-- =================================================
+             STATISTIQUES
+        ================================================== -->
+        <div class="row g-4 mb-4">
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon blue">
+                            <i class="bi bi-cash-stack"></i>
+                        </div>
+                        <span class="stat-growth positive">+15.8%</span>
+                    </div>
+                    <p>Total revenus</p>
+                    <h2>3.84M</h2>
+                    <small>FCFA ce mois</small>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon azure">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <span class="stat-growth positive">+12.3%</span>
+                    </div>
+                    <p>Paiements confirmés</p>
+                    <h2>342</h2>
+                    <small>Ce mois-ci</small>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon blue">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
+                    </div>
+                    <p>En attente</p>
+                    <h2>28</h2>
+                    <small>Paiements en cours</small>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon azure">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                    </div>
+                    <p>Mobile Money</p>
+                    <h2>78%</h2>
+                    <small>Des transactions</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================
+             LISTE DES PAIEMENTS
+        ================================================== -->
+        <div class="dashboard-card">
+
+            <div class="reservation-toolbar">
+                <div class="reservation-search">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Rechercher par référence, client...">
+                </div>
+                <div class="reservation-filters">
+                    <select class="reservation-select">
+                        <option>Tous les statuts</option>
+                        <option>Confirmé</option>
+                        <option>En attente</option>
+                        <option>Échoué</option>
+                    </select>
+                    <select class="reservation-select">
+                        <option>Tous les moyens</option>
+                        <option>Mobile Money</option>
+                        <option>Carte bancaire</option>
+                    </select>
+                    <button class="filter-btn">
+                        <i class="bi bi-funnel"></i>
+                        Filtrer
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="reservation-table">
+                    <thead>
+                        <tr>
+                            <th>RÉFÉRENCE</th>
+                            <th>CLIENT</th>
+                            <th>MONTANT</th>
+                            <th>MOYEN</th>
+                            <th>DATE</th>
+                            <th>STATUT</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- PAIEMENT 1 -->
+                        <tr>
+                            <td><strong>BIDE-847291</strong></td>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">KA</div>
+                                    <div>
+                                        <strong>Kossi Agbeko</strong>
+                                        <span>#CLI001</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><strong>15 000 FCFA</strong></td>
+                            <td>
+                                <span class="status confirmed">
+                                    <i class="bi bi-phone"></i> Mobile Money
+                                </span>
+                            </td>
+                            <td>20 Août 2026</td>
+                            <td><span class="status confirmed">Confirmé</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view" title="Voir">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="table-action edit" title="Télécharger">
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- PAIEMENT 2 -->
+                        <tr>
+                            <td><strong>BIDE-583120</strong></td>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">AM</div>
+                                    <div>
+                                        <strong>Ama Mensah</strong>
+                                        <span>#CLI002</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><strong>10 000 FCFA</strong></td>
+                            <td>
+                                <span class="status confirmed">
+                                    <i class="bi bi-phone"></i> Mobile Money
+                                </span>
+                            </td>
+                            <td>19 Août 2026</td>
+                            <td><span class="status confirmed">Confirmé</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                    <button class="table-action edit"><i class="bi bi-download"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- PAIEMENT 3 -->
+                        <tr>
+                            <td><strong>BIDE-294817</strong></td>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">YK</div>
+                                    <div>
+                                        <strong>Yao Komlan</strong>
+                                        <span>#CLI003</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><strong>5 000 FCFA</strong></td>
+                            <td>
+                                <span class="status pending">
+                                    <i class="bi bi-credit-card"></i> Carte bancaire
+                                </span>
+                            </td>
+                            <td>18 Août 2026</td>
+                            <td><span class="status pending">En attente</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                    <button class="table-action edit"><i class="bi bi-download"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- PAIEMENT 4 -->
+                        <tr>
+                            <td><strong>BIDE-736482</strong></td>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">EA</div>
+                                    <div>
+                                        <strong>Eyram Adjo</strong>
+                                        <span>#CLI004</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><strong>20 000 FCFA</strong></td>
+                            <td>
+                                <span class="status confirmed">
+                                    <i class="bi bi-phone"></i> Mobile Money
+                                </span>
+                            </td>
+                            <td>17 Août 2026</td>
+                            <td><span class="status confirmed">Confirmé</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                    <button class="table-action edit"><i class="bi bi-download"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- PAIEMENT 5 -->
+                        <tr>
+                            <td><strong>BIDE-105839</strong></td>
+                            <td>
+                                <div class="client-cell">
+                                    <div class="client-avatar">SD</div>
+                                    <div>
+                                        <strong>Sena Dodzi</strong>
+                                        <span>#CLI005</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><strong>7 500 FCFA</strong></td>
+                            <td>
+                                <span class="status confirmed">
+                                    <i class="bi bi-phone"></i> Mobile Money
+                                </span>
+                            </td>
+                            <td>16 Août 2026</td>
+                            <td><span class="status confirmed">Confirmé</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="table-action view"><i class="bi bi-eye"></i></button>
+                                    <button class="table-action edit"><i class="bi bi-download"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="reservation-pagination">
+                <span>Affichage de 1 à 5 sur 342 paiements</span>
+                <div>
+                    <button class="pagination-btn"><i class="bi bi-chevron-left"></i></button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <span class="pagination-dots">...</span>
+                    <button class="pagination-btn">69</button>
+                    <button class="pagination-btn"><i class="bi bi-chevron-right"></i></button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     MODALE : VOIR PAIEMENT
+===================================================== -->
+<div class="modal fade" id="viewPaymentModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-receipt"></i> Détails du paiement</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="viewPaymentContent"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/bide.js"></script>
+
+<script>
+    /* Mobile menu */
+    var mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    var sidebar = document.getElementById("sidebar");
+    var sidebarOverlay = document.getElementById("sidebarOverlay");
+    if (mobileMenuBtn) { mobileMenuBtn.addEventListener("click", function () { sidebar.classList.toggle("show"); if (sidebarOverlay) sidebarOverlay.classList.toggle("show"); }); }
+    if (sidebarOverlay) { sidebarOverlay.addEventListener("click", function () { sidebar.classList.remove("show"); sidebarOverlay.classList.remove("show"); }); }
+
+    /* Search filter */
+    var searchInput = document.querySelector('.reservation-search input');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            var term = this.value.toLowerCase();
+            var rows = document.querySelectorAll('.reservation-table tbody tr');
+            rows.forEach(function(row) {
+                row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none';
+            });
+        });
+    }
+
+    /* View payment */
+    document.querySelectorAll('.table-action.view').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var row = this.closest('tr');
+            if (!row) return;
+            var cells = row.querySelectorAll('td');
+            var ref = cells[0] ? cells[0].textContent.trim() : '';
+            var client = cells[1] ? cells[1].textContent.trim() : '';
+            var amount = cells[2] ? cells[2].textContent.trim() : '';
+            var method = cells[3] ? cells[3].textContent.trim() : '';
+            var date = cells[4] ? cells[4].textContent.trim() : '';
+            var status = cells[5] ? cells[5].textContent.trim() : '';
+            var html = '<div class="vehicle-info-list">' +
+                '<div class="vehicle-info-item"><span>Référence</span><strong>' + ref + '</strong></div>' +
+                '<div class="vehicle-info-item"><span>Client</span><strong>' + client + '</strong></div>' +
+                '<div class="vehicle-info-item"><span>Montant</span><strong>' + amount + '</strong></div>' +
+                '<div class="vehicle-info-item"><span>Moyen</span><strong>' + method + '</strong></div>' +
+                '<div class="vehicle-info-item"><span>Date</span><strong>' + date + '</strong></div>' +
+                '<div class="vehicle-info-item"><span>Statut</span><strong>' + status + '</strong></div>' +
+                '</div>';
+            document.getElementById('viewPaymentContent').innerHTML = html;
+            new bootstrap.Modal(document.getElementById('viewPaymentModal')).show();
+        });
+    });
+</script>
+
+</body>
+</html>
