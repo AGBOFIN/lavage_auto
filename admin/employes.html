@@ -1,42 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Gestion des employés - Bidè Administration">
     <title>Employés | Bidè Admin</title>
 
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Base Admin Stylesheet -->
     <link rel="stylesheet" href="css/dashboard.css">
+    <!-- Employes Specific Stylesheet -->
     <link rel="stylesheet" href="css/employes.css">
 </head>
 
 <body>
-<div class="app">
 
-    <aside class="sidebar" id="sidebar">
-
-        <div class="sidebar-logo">
-            <a href="dashboard.html"><img src="../images/bide-wash-logo-no-bg.png" alt="BIDÈ" style="height:42px;width:auto;object-fit:contain"></a>
-        </div>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+        <a href="dashboard.html">
+            <img src="../images/bide-wash-logo-cropped.png" alt="BIDÈ" style="height:42px;width:auto;object-fit:contain">
+        </a>
+    </div>
 
     <div class="sidebar-menu">
         <p class="menu-title">MENU PRINCIPAL</p>
         <a href="dashboard.html" class="menu-link"><i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></a>
-        <a href="reservations.html" class="menu-link"><i class="bi bi-calendar-check"></i><span>Réservations</span></a>
+        <a href="reservations.html" class="menu-link"><i class="bi bi-calendar-check"></i><span>Réservations</span><span class="menu-badge">8</span></a>
         <a href="clients.html" class="menu-link"><i class="bi bi-people"></i><span>Clients</span></a>
         <a href="services.html" class="menu-link"><i class="bi bi-droplet"></i><span>Services</span></a>
         <a href="vehicules.html" class="menu-link"><i class="bi bi-car-front"></i><span>Véhicules</span></a>
+
         <p class="menu-title mt-4">GESTION</p>
         <a href="paiements.html" class="menu-link"><i class="bi bi-credit-card"></i><span>Paiements</span></a>
-        <a href="messages.html" class="menu-link"><i class="bi bi-chat-left-text"></i><span>Messages</span></a>
+        <a href="messages.html" class="menu-link"><i class="bi bi-chat-left-text"></i><span>Messages</span><span class="menu-badge">3</span></a>
         <a href="avis.html" class="menu-link"><i class="bi bi-star"></i><span>Avis clients</span></a>
         <a href="employes.html" class="menu-link active"><i class="bi bi-person-badge"></i><span>Employés</span></a>
+
         <p class="menu-title mt-4">SYSTÈME</p>
         <a href="utilisateurs.html" class="menu-link"><i class="bi bi-person-gear"></i><span>Administrateurs</span></a>
         <a href="parametres.html" class="menu-link"><i class="bi bi-gear"></i><span>Paramètres</span></a>
     </div>
+
     <div class="sidebar-bottom">
         <a href="../client/connexion.html" class="logout-link"><i class="bi bi-box-arrow-left"></i><span>Déconnexion</span></a>
     </div>
@@ -44,80 +55,116 @@
 
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <main class="main-content">
-        <header class="topbar">
-            <div class="topbar-left">
-                <button class="menu-toggle d-lg-none" id="menuToggle" type="button" aria-label="Ouvrir le menu">
-                    <i class="bi bi-list"></i>
-                </button>
-                <div>
-                    <span class="topbar-label">ESPACE ADMINISTRATEUR</span>
-                    <h1>Employés</h1>
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+<main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Menu mobile">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <div class="topbar-left">
+            <div class="breadcrumb-admin">
+                <span>Administration</span>
+                <i class="bi bi-chevron-right"></i>
+                <strong>Employés</strong>
+            </div>
+        </div>
+
+        <div class="topbar-right">
+            <button class="notification-btn" type="button" title="Notifications">
+                <i class="bi bi-bell"></i>
+                <span class="notification-dot"></span>
+            </button>
+
+            <div class="admin-profile">
+                <div class="profile-avatar">AG</div>
+                <div class="profile-info">
+                    <strong>Admin</strong>
+                    <span>Administrateur</span>
+                </div>
+                <i class="bi bi-chevron-down profile-arrow"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- DASHBOARD CONTAINER -->
+    <div class="dashboard-container employees-page">
+
+        <!-- PAGE HEADER -->
+        <div class="page-header">
+            <div>
+                <h1>Employés</h1>
+                <p>Consultez, ajoutez et gérez les membres du personnel de Bidè.</p>
+            </div>
+            <button class="primary-btn" id="newEmployeeBtn" type="button">
+                <i class="bi bi-person-plus"></i>
+                Nouvel employé
+            </button>
+        </div>
+
+        <!-- STAT CARDS -->
+        <div class="row g-4 mb-4">
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon blue"><i class="bi bi-people-fill"></i></div>
+                    </div>
+                    <p>Total employés</p>
+                    <h2 id="totalEmployees">0</h2>
+                    <small>Membres de l'équipe</small>
                 </div>
             </div>
 
-            <div class="topbar-right">
-                <div class="current-date">
-                    <i class="bi bi-calendar3"></i>
-                    <span id="currentDate">--</span>
-                </div>
-                <div class="topbar-user">
-                    <div class="avatar avatar-small">AG</div>
-                    <div class="topbar-user-info">
-                        <strong>Admin</strong>
-                        <span>Administrateur</span>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon green"><i class="bi bi-person-check-fill"></i></div>
                     </div>
+                    <p>Employés actifs</p>
+                    <h2 id="activeEmployees">0</h2>
+                    <small>En poste actuellement</small>
                 </div>
             </div>
-        </header>
 
-        <div class="page-container">
-            <section class="page-heading">
-                <div>
-                    <span class="eyebrow">GESTION DU PERSONNEL</span>
-                    <h2>Employés</h2>
-                    <p>Ajoutez, consultez, modifiez et supprimez les employés de Bidè.</p>
-                </div>
-                <button class="btn-primary-custom" id="newEmployeeBtn" type="button">
-                    <i class="bi bi-person-plus-fill"></i>
-                    Nouvel employé
-                </button>
-            </section>
-
-            <section class="stats-grid">
-                <article class="stat-card">
-                    <div class="stat-icon blue"><i class="bi bi-people-fill"></i></div>
-                    <div><span>Total employés</span><strong id="totalEmployees">0</strong></div>
-                </article>
-                <article class="stat-card">
-                    <div class="stat-icon green"><i class="bi bi-person-check-fill"></i></div>
-                    <div><span>Actifs</span><strong id="activeEmployees">0</strong></div>
-                </article>
-                <article class="stat-card">
-                    <div class="stat-icon orange"><i class="bi bi-person-dash-fill"></i></div>
-                    <div><span>Inactifs</span><strong id="inactiveEmployees">0</strong></div>
-                </article>
-                <article class="stat-card">
-                    <div class="stat-icon purple"><i class="bi bi-person-workspace"></i></div>
-                    <div><span>Administrateurs</span><strong id="adminEmployees">0</strong></div>
-                </article>
-            </section>
-
-            <section class="panel-card">
-                <div class="panel-header">
-                    <div>
-                        <span class="eyebrow">LISTE</span>
-                        <h3>Employés enregistrés</h3>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon orange"><i class="bi bi-person-dash-fill"></i></div>
                     </div>
+                    <p>Inactifs / Congé</p>
+                    <h2 id="inactiveEmployees">0</h2>
+                    <small>Comptes inactifs</small>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <div class="stat-icon purple"><i class="bi bi-shield-check"></i></div>
+                    </div>
+                    <p>Responsables & Admins</p>
+                    <h2 id="adminEmployees">0</h2>
+                    <small>Accès de gestion</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- DASHBOARD CARD (TABLEAU & FILTRES) -->
+        <div class="dashboard-card">
+
+            <!-- TOOLBAR FILTRES & RECHERCHE -->
+            <div class="reservation-toolbar">
+                <div class="reservation-search">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="searchInput" placeholder="Rechercher par nom, téléphone, email, poste...">
                 </div>
 
-                <div class="filters">
-                    <div class="search-box">
-                        <i class="bi bi-search"></i>
-                        <input id="searchInput" type="search" placeholder="Rechercher par nom, téléphone, email...">
-                    </div>
-
-                    <select id="roleFilter" class="form-select">
+                <div class="reservation-filters">
+                    <select class="reservation-select" id="roleFilter">
                         <option value="all">Tous les rôles</option>
                         <option value="admin">Administrateur</option>
                         <option value="manager">Manager</option>
@@ -126,58 +173,71 @@
                         <option value="caissier">Caissier</option>
                     </select>
 
-                    <select id="statusFilter" class="form-select">
+                    <select class="reservation-select" id="statusFilter">
                         <option value="all">Tous les statuts</option>
                         <option value="active">Actif</option>
                         <option value="inactive">Inactif</option>
                     </select>
 
-                    <button id="resetFiltersBtn" class="btn-reset" type="button">
+                    <button class="filter-btn" id="resetFiltersBtn" type="button">
                         <i class="bi bi-arrow-counterclockwise"></i>
                         Réinitialiser
                     </button>
                 </div>
+            </div>
 
-                <div class="table-responsive">
-                    <table class="employees-table">
-                        <thead>
-                            <tr>
-                                <th>Employé</th>
-                                <th>Téléphone</th>
-                                <th>Rôle</th>
-                                <th>Embauche</th>
-                                <th>Statut</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="employeesTableBody"></tbody>
-                    </table>
-                </div>
+            <!-- TABLEAU -->
+            <div class="table-responsive">
+                <table class="reservation-table employees-table">
+                    <thead>
+                        <tr>
+                            <th>EMPLOYÉ</th>
+                            <th>TÉLÉPHONE</th>
+                            <th>RÔLE</th>
+                            <th>DATE D'EMBAUCHE</th>
+                            <th>STATUT</th>
+                            <th class="text-end">ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeesTableBody"></tbody>
+                </table>
+            </div>
 
-                <div id="emptyState" class="empty-state d-none">
-                    <i class="bi bi-person-x"></i>
-                    <h4>Aucun employé trouvé</h4>
-                    <p>Modifiez vos filtres ou ajoutez un nouvel employé.</p>
-                </div>
-            </section>
+            <!-- ETAT VIDE -->
+            <div id="emptyState" class="empty-table d-none">
+                <i class="bi bi-person-x"></i>
+                <h5>Aucun employé trouvé</h5>
+                <p>Aucun résultat ne correspond à vos filtres de recherche.</p>
+            </div>
 
-            <footer class="page-footer">
-                <span>© <span id="currentYear"></span> Bidè. Tous droits réservés.</span>
-                <span>Administration</span>
-            </footer>
+            <!-- PAGINATION -->
+            <div class="reservation-pagination" id="pagination">
+                <span id="paginationInfo">Affichage de 0 à 0 sur 0 employés</span>
+                <div id="paginationBtns"></div>
+            </div>
+
         </div>
-    </main>
-</div>
 
-<!-- Modal ajout / modification -->
-<div class="modal fade" id="employeeModal" tabindex="-1" aria-hidden="true">
+        <!-- FOOTER -->
+        <div class="admin-page-footer">
+            <span>© <span id="currentYear"></span> Bidè. Tous droits réservés.</span>
+            <span>Espace Administration</span>
+        </div>
+
+    </div>
+</main>
+
+<!-- =====================================================
+     MODALE : AJOUTER / MODIFIER UN EMPLOYÉ
+===================================================== -->
+<div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <div>
-                    <span class="eyebrow">GESTION</span>
-                    <h5 class="modal-title" id="modalTitle">Nouvel employé</h5>
-                </div>
+                <h5 class="modal-title" id="modalTitle">
+                    <i class="bi bi-person-plus"></i>
+                    <span id="modalTitleText">Nouvel employé</span>
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
             </div>
 
@@ -187,27 +247,29 @@
 
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="firstName" class="form-label">Prénom *</label>
-                            <input id="firstName" class="form-control" required maxlength="80">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="lastName" class="form-label">Nom *</label>
-                            <input id="lastName" class="form-control" required maxlength="80">
+                            <label for="firstName" class="form-label">Prénom <span class="text-danger">*</span></label>
+                            <input id="firstName" class="form-control" placeholder="ex: Kossi" required maxlength="80">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="phone" class="form-label">Téléphone *</label>
-                            <input id="phone" class="form-control" type="tel" required maxlength="30">
+                            <label for="lastName" class="form-label">Nom <span class="text-danger">*</span></label>
+                            <input id="lastName" class="form-control" placeholder="ex: Agbeko" required maxlength="80">
                         </div>
+
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Téléphone <span class="text-danger">*</span></label>
+                            <input id="phone" class="form-control" type="tel" placeholder="+228 90 00 00 00" required maxlength="30">
+                        </div>
+
                         <div class="col-md-6">
                             <label for="email" class="form-label">Email</label>
-                            <input id="email" class="form-control" type="email" maxlength="120">
+                            <input id="email" class="form-control" type="email" placeholder="employe@bide.com" maxlength="120">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="role" class="form-label">Rôle *</label>
+                            <label for="role" class="form-label">Rôle / Poste <span class="text-danger">*</span></label>
                             <select id="role" class="form-select" required>
-                                <option value="">Sélectionner</option>
+                                <option value="">Sélectionner un rôle</option>
                                 <option value="admin">Administrateur</option>
                                 <option value="manager">Manager</option>
                                 <option value="agent">Agent</option>
@@ -217,39 +279,40 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="status" class="form-label">Statut *</label>
+                            <label for="status" class="form-label">Statut <span class="text-danger">*</span></label>
                             <select id="status" class="form-select" required>
-                                <option value="active">Actif</option>
-                                <option value="inactive">Inactif</option>
+                                <option value="active">Actif (En activité)</option>
+                                <option value="inactive">Inactif (En congé / suspendu)</option>
                             </select>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="hireDate" class="form-label">Date d'embauche *</label>
+                            <label for="hireDate" class="form-label">Date d'embauche <span class="text-danger">*</span></label>
                             <input id="hireDate" class="form-control" type="date" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="salary" class="form-label">Salaire (FCFA)</label>
-                            <input id="salary" class="form-control" type="number" min="0" step="1">
+                            <label for="salary" class="form-label">Salaire mensuel (FCFA)</label>
+                            <input id="salary" class="form-control" type="number" min="0" step="1000" placeholder="ex: 150000">
                         </div>
 
                         <div class="col-12">
-                            <label for="address" class="form-label">Adresse</label>
-                            <input id="address" class="form-control" maxlength="200">
+                            <label for="address" class="form-label">Adresse / Quartier</label>
+                            <input id="address" class="form-control" placeholder="ex: Lomé, Tokoin" maxlength="200">
                         </div>
 
                         <div class="col-12">
-                            <label for="notes" class="form-label">Notes</label>
-                            <textarea id="notes" class="form-control" rows="3" maxlength="1000"></textarea>
+                            <label for="notes" class="form-label">Notes & Observations</label>
+                            <textarea id="notes" class="form-control" rows="3" placeholder="Informations complémentaires sur l'employé..." maxlength="1000"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn-secondary-custom" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn-primary-custom" id="saveEmployeeBtn">
-                        <i class="bi bi-check-lg"></i> Enregistrer
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="primary-btn" id="saveEmployeeBtn">
+                        <i class="bi bi-check-lg"></i>
+                        Enregistrer
                     </button>
                 </div>
             </form>
@@ -257,72 +320,78 @@
     </div>
 </div>
 
-<!-- Modal détails -->
-<div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+<!-- =====================================================
+     MODALE : DÉTAILS EMPLOYÉ
+===================================================== -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <div>
-                    <span class="eyebrow">FICHE EMPLOYÉ</span>
-                    <h5 class="modal-title">Détails</h5>
-                </div>
+                <h5 class="modal-title" id="detailsModalTitle">
+                    <i class="bi bi-person-badge"></i>
+                    Fiche Employé
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
             </div>
-            <div class="modal-body" id="detailsContent"></div>
+
+            <div class="modal-body p-4" id="detailsContent">
+                <!-- Rempli dynamiquement par JS -->
+            </div>
+
             <div class="modal-footer">
-                <button type="button" class="btn-secondary-custom" data-bs-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button type="button" class="primary-btn" id="editFromDetailsBtn">
+                    <i class="bi bi-pencil"></i>
+                    Modifier cet employé
+                </button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="appToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <i class="bi bi-droplet-fill me-2"></i>
-            <strong class="me-auto">Bidè</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+<!-- =====================================================
+     MODALE : SUPPRIMER EMPLOYÉ
+===================================================== -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="deleteModalTitle">
+                    <i class="bi bi-trash text-danger"></i>
+                    Supprimer l'employé
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <p>Êtes-vous sûr de vouloir supprimer définitivement cet employé ?</p>
+                <div class="delete-employee-preview mb-3 p-3 rounded bg-light border">
+                    <strong id="deleteEmployeeName" class="d-block text-dark fs-6"></strong>
+                    <small id="deleteEmployeeRole" class="text-muted"></small>
+                </div>
+                <div class="alert alert-warning d-flex align-items-center gap-2 mb-0 py-2">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <span>Cette action est irréversible. Les données associées seront supprimées.</span>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger d-inline-flex align-items-center gap-2 px-3 py-2 fw-bold" id="confirmDeleteBtn">
+                    <i class="bi bi-trash"></i>
+                    Supprimer
+                </button>
+            </div>
         </div>
-        <div class="toast-body" id="toastMessage">Notification</div>
     </div>
 </div>
 
+<!-- Bootstrap 5 JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- BIDE Core Scripts -->
 <script src="../js/bide.js"></script>
+<!-- Employés Management Script -->
 <script src="js/employes.js"></script>
-<script>
-    /* Menu mobile */
-    const mobileMenuBtn = document.getElementById("menuToggle");
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("sidebarOverlay");
 
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener("click", function () {
-            sidebar.classList.toggle("show");
-            overlay.classList.toggle("show");
-        });
-    }
-
-    if (overlay) {
-        overlay.addEventListener("click", function () {
-            sidebar.classList.remove("show");
-            overlay.classList.remove("show");
-        });
-    }
-
-    /* Current date */
-    const dateEl = document.getElementById("currentDate");
-    if (dateEl) {
-        dateEl.textContent = new Date().toLocaleDateString("fr-FR", {
-            day: "numeric", month: "long", year: "numeric"
-        });
-    }
-
-    /* Current year */
-    const yearEl = document.getElementById("currentYear");
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-    }
-</script>
 </body>
 </html>
