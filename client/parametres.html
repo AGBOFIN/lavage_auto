@@ -874,22 +874,37 @@
             }
         }
 
+        /* Overlay sidebar mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 99;
+            backdrop-filter: blur(2px);
+        }
+        .sidebar-overlay.active { display: block; }
 
         @media (max-width: 750px) {
 
             .sidebar {
-                transform: translateX(-100%);
-
-                transition: .3s;
+                position: fixed;
+                left: -260px;
+                top: 0;
+                bottom: 0;
+                width: 260px;
+                transition: left 0.3s ease;
+                z-index: 100;
+                box-shadow: none;
             }
 
             .sidebar.open {
-                transform: translateX(0);
+                left: 0;
+                box-shadow: 4px 0 20px rgba(0,0,0,0.15);
             }
 
             .main {
                 margin-left: 0;
-
                 width: 100%;
             }
 
@@ -920,6 +935,8 @@
 
     <div class="app">
 
+        <!-- Sidebar overlay mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
         <!-- =====================================
          SIDEBAR
@@ -1566,11 +1583,15 @@
         ====================================== */
 
         function toggleSidebar() {
-
-            const sidebar =
-                document.getElementById("sidebar");
-
+            var sidebar = document.getElementById("sidebar");
+            var overlay = document.getElementById("sidebarOverlay");
             sidebar.classList.toggle("open");
+            if (overlay) overlay.classList.toggle("active");
+        }
+        document.getElementById('sidebarOverlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('open');
+            this.classList.remove('active');
+        });
 
         }
 

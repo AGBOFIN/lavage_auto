@@ -517,15 +517,33 @@
            RESPONSIVE
         ====================================== */
 
+        /* Overlay sidebar mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 99;
+            backdrop-filter: blur(2px);
+        }
+        .sidebar-overlay.active { display: block; }
+
         @media (max-width: 750px) {
 
             .sidebar {
-                transform: translateX(-100%);
-                transition: .3s;
+                position: fixed;
+                left: -260px;
+                top: 0;
+                bottom: 0;
+                width: 260px;
+                transition: left 0.3s ease;
+                z-index: 100;
+                box-shadow: none;
             }
 
             .sidebar.open {
-                transform: translateX(0);
+                left: 0;
+                box-shadow: 4px 0 20px rgba(0,0,0,0.15);
             }
 
             .main {
@@ -537,8 +555,44 @@
                 padding: 18px;
             }
 
+            .header {
+                padding: 0 16px;
+            }
+
+            .page-title h1 {
+                font-size: 22px;
+            }
+
+            .review-form {
+                padding: 20px;
+            }
+
+            .review-form h3 {
+                font-size: 15px;
+            }
+
             .stars-input i {
                 font-size: 25px;
+            }
+
+            .reviews-list {
+                padding: 18px;
+            }
+
+            .review-item {
+                gap: 10px;
+                padding: 14px 0;
+            }
+
+            .review-avatar {
+                width: 36px;
+                height: 36px;
+                font-size: 11px;
+            }
+
+            .support {
+                position: static;
+                margin: 15px 12px;
             }
         }
     </style>
@@ -549,6 +603,9 @@
 <body>
 
     <div class="app">
+
+        <!-- Sidebar overlay mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
         <!-- =====================================
              SIDEBAR
@@ -744,8 +801,15 @@
         ====================================== */
 
         function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("open");
+            var sidebar = document.getElementById("sidebar");
+            var overlay = document.getElementById("sidebarOverlay");
+            sidebar.classList.toggle("open");
+            if (overlay) overlay.classList.toggle("active");
         }
+        document.getElementById('sidebarOverlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('open');
+            this.classList.remove('active');
+        });
 
 
         /* =====================================

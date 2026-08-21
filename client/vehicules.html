@@ -844,72 +844,94 @@
            RESPONSIVE
         ===================================== */
 
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--texte);
+            padding: 5px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        .sidebar-overlay.show { display: block; }
+
         @media (max-width: 768px) {
 
-            .dashboard {
-
-                display: block;
-
-            }
-
+            .mobile-menu-btn { display: block; }
 
             .sidebar {
-
-                position: relative;
-
-                width: 100%;
-
-                min-height: auto;
-
+                position: fixed;
+                left: -280px;
+                width: 260px;
+                height: 100vh;
+                transition: left 0.3s ease;
+                z-index: 1000;
             }
 
+            .sidebar.show {
+                left: 0;
+            }
 
             .main-content {
-
                 margin-left: 0;
-
                 width: 100%;
-
             }
-
 
             .topbar {
-
                 padding: 0 15px;
-
             }
-
 
             .page {
-
                 padding: 20px 15px;
-
             }
 
+            .vehicle-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+                padding: 15px;
+            }
+
+            .vehicle-icon {
+                width: 55px;
+                height: 55px;
+                font-size: 28px;
+            }
 
             .steps {
-
                 overflow-x: auto;
-
-                gap: 15px;
-
+                gap: 10px;
+                padding-bottom: 10px;
             }
-
 
             .step {
-
-                min-width: 90px;
-
+                min-width: 80px;
             }
 
+            .step-circle {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
 
             .progress-line,
             .progress-line-active {
-
                 display: none;
-
             }
 
+            .notification-box {
+                padding: 12px;
+                gap: 10px;
+            }
         }
     </style>
 
@@ -921,12 +943,13 @@
 
     <div class="dashboard">
 
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
         <!-- ==========================================
          SIDEBAR
     =========================================== -->
 
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
 
 
             <!-- LOGO -->
@@ -1047,6 +1070,7 @@
 
             <header class="topbar">
 
+                <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="bi bi-list"></i></button>
 
                 <h5>
                     Suivi de mon véhicule
@@ -1168,7 +1192,20 @@
 =========================================== -->
 
     <script>
-
+        /* Mobile menu toggle */
+        (function() {
+            var btn = document.getElementById('mobileMenuBtn');
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+            if (btn) btn.addEventListener('click', function() {
+                sidebar.classList.toggle('show');
+                overlay.classList.toggle('show');
+            });
+            if (overlay) overlay.addEventListener('click', function() {
+                sidebar.classList.remove('show');
+                overlay.classList.remove('show');
+            });
+        })();
 
         /* =====================================
            PROGRESSION

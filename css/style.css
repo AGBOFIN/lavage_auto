@@ -282,8 +282,13 @@ p{font-size:var(--fs-body);color:var(--color-text-light);line-height:1.7}
 
 /* ======================== RESPONSIVE ======================== */
 @media(min-width:1200px){.hero-content h1{font-size:4rem}}
+
+/* ---- TABLETTE (≤992px) ---- */
 @media(max-width:991.98px){
     :root{--fs-hero:2.5rem;--fs-h1:2.2rem;--fs-h2:1.8rem;--section-padding:60px 0}
+    .navbar-toggler{border:2px solid var(--color-primary);border-radius:var(--radius-sm);padding:6px 10px}
+    .navbar-toggler:focus{box-shadow:0 0 0 3px rgba(33,150,243,0.25)}
+    .navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(26,58,92,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")}
     .navbar-collapse{background:var(--color-white);border-radius:0 0 var(--radius-md) var(--radius-md);box-shadow:var(--shadow-md);padding:15px;margin-top:5px}
     .navbar-nav .nav-link{padding:10px 15px}
     .navbar-nav .nav-item:last-child{margin-top:10px}
@@ -293,46 +298,109 @@ p{font-size:var(--fs-body);color:var(--color-text-light);line-height:1.7}
     .pricing-card.featured:hover{transform:translateY(-8px)}
     .gallery-grid{grid-template-columns:repeat(2,1fr)}
     .how-it-works .step-connector{display:none!important}
+    .service-detail-card .service-image{height:180px}
+    .map-container iframe{height:300px}
 }
+
+/* ---- MOBILE (≤768px) ---- */
 @media(max-width:767.98px){
     :root{--fs-hero:2rem;--fs-h1:1.8rem;--fs-h2:1.6rem;--fs-h3:1.2rem;--section-padding:50px 0;--navbar-height:70px}
     .hero{min-height:80vh;text-align:center}
     .hero-video-toggle{bottom:15px;right:15px;width:40px;height:40px;font-size:1rem}
     .hero-content p{font-size:1rem}
     .hero-buttons{justify-content:center}
+    .hero-badge{font-size:var(--fs-xs);padding:6px 14px;max-width:90%}
     .section-title{margin-bottom:35px}
+    .section-title h2{font-size:var(--fs-h2)}
     .stats-section{padding:40px 0}
+    .stat-item{padding:15px 5px}
     .stat-item .stat-number{font-size:2.2rem}
-    .stat-item .stat-label{font-size:var(--fs-xs)}
+    .stat-item .stat-label{font-size:var(--fs-xs);letter-spacing:0.5px}
+    .stat-item .stat-icon{font-size:1.5rem}
     .how-it-works .step{margin-bottom:30px}
     .gallery-grid{grid-template-columns:repeat(2,1fr);gap:12px}
     .gallery-grid .gallery-item img{height:180px}
+    .gallery-filters{gap:6px}
+    .gallery-filters .filter-btn{padding:6px 16px;font-size:var(--fs-xs)}
     .pricing-card{padding:30px 20px}
     .pricing-card .pricing-amount{font-size:2.2rem}
+    .pricing-card .pricing-features li{font-size:var(--fs-xs);padding:6px 0}
     .cta-section{padding:50px 0}
     .cta-section h2{font-size:var(--fs-h3)}
+    .testimonials .testimonial-card{padding:25px 20px}
+    .testimonials .testimonial-text{font-size:var(--fs-xs)}
+    .testimonials .testimonial-avatar{width:40px;height:40px}
     .footer{text-align:center;padding:40px 0 0}
     .footer h5::after{left:50%;transform:translateX(-50%)}
     .footer-contact-item{justify-content:center}
     .footer-social{justify-content:center}
     .scroll-top{bottom:20px;right:20px;width:42px;height:42px}
     .map-container iframe{height:250px}
+    .contact-info-card{padding:25px 15px}
+    .contact-info-card .contact-icon{width:55px;height:55px;font-size:1.2rem}
+    .faq-page .accordion-button{padding:15px 18px;font-size:0.95rem}
+    .faq-page .accordion-body{padding:0 18px 15px;font-size:var(--fs-small)}
+    .faq-search{margin-bottom:30px}
+    .presentation-item{padding:20px 10px}
+    .presentation-item .icon{width:55px;height:55px;font-size:1.3rem}
+    .advantages .advantage-icon{width:42px;height:42px;min-width:42px;font-size:1rem}
+    .advantages .advantage-item{gap:12px;margin-bottom:18px}
+    .advantages .advantage-text h4{font-size:0.95rem}
+    .values-grid .value-item{padding:20px 15px}
+    .values-grid .value-icon{width:60px;height:60px;font-size:1.4rem}
 }
+
+/* ---- PETIT MOBILE (≤576px) ---- */
 @media(max-width:575.98px){
-    :root{--fs-hero:1.7rem;--fs-h1:1.6rem;--fs-h2:1.4rem}
-    .hero-buttons .btn-bide{width:100%;justify-content:center}
+    :root{--fs-hero:1.7rem;--fs-h1:1.6rem;--fs-h2:1.4rem;--fs-h3:1.1rem}
+    .hero{min-height:75vh}
+    .hero-video-toggle{bottom:10px;right:10px;width:36px;height:36px;font-size:0.9rem}
+    .hero-buttons{flex-direction:column;gap:10px;align-items:stretch}
+    .hero-buttons .btn-bide{width:100%;justify-content:center;padding:14px 20px}
+    .btn-login{padding:8px 18px;font-size:0.85rem}
+    .navbar-brand img{max-height:40px}
     .gallery-grid{grid-template-columns:1fr}
     .gallery-grid .gallery-item img{height:220px}
     .footer-brand{font-size:1.5rem}
-}
-@media(max-width:375.98px){
-    :root{--fs-hero:1.5rem;--fs-h1:1.4rem}
+    .stat-item{padding:12px 5px}
     .stat-item .stat-number{font-size:2rem}
+    .pricing-card{padding:25px 15px}
+    .pricing-card .pricing-name{font-size:var(--fs-h4)}
     .pricing-card .pricing-amount{font-size:2rem}
+    .service-detail-card .service-body{padding:18px}
+    .service-detail-card .service-image{height:160px}
+    .testimonial-card{padding:20px 15px}
+    .lightbox .lightbox-nav{font-size:1.8rem;padding:10px}
+    .lightbox img{max-width:95%}
+    .map-container iframe{height:200px}
 }
+
+/* ---- TRES PETIT MOBILE (≤376px) ---- */
+@media(max-width:375.98px){
+    :root{--fs-hero:1.5rem;--fs-h1:1.4rem;--fs-h2:1.3rem}
+    .hero{min-height:70vh}
+    .hero-content p{font-size:0.9rem}
+    .stat-item .stat-number{font-size:1.8rem}
+    .pricing-card .pricing-amount{font-size:1.8rem}
+    .section-title h2{font-size:1.3rem}
+}
+
+/* ---- HOVER: pas de hover sur tactile ---- */
 @media(hover:none){
     .card-bide:hover{transform:none}
     .gallery-grid .gallery-item:hover img{transform:none}
     .gallery-grid .gallery-overlay{opacity:1;background:linear-gradient(transparent 60%,rgba(15,37,64,0.8))}
     .gallery-grid .gallery-overlay i{display:none}
-}.testimonials .section-title{margin-bottom:30px}
+    .service-detail-card:hover{transform:none}
+    .pricing-card:hover{transform:none}
+    .pricing-card.featured:hover{transform:scale(1)}
+    .contact-info-card:hover{transform:none}
+    .advantage-item:hover .advantage-icon{background:var(--color-primary)}
+    .values-grid .value-item:hover .value-icon{transform:none}
+}
+
+.testimonials .section-title{margin-bottom:30px}
+
+/* ---- FIX: table responsive ---- */
+.table-responsive-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table{width:100%;border-collapse:collapse}

@@ -15,7 +15,7 @@ body {
     min-height: 100vh;
     display: flex;
     background: #0a1628;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 /* ============================================
@@ -604,28 +604,87 @@ body {
         min-width: auto;
         position: relative;
         z-index: 1;
-        background: linear-gradient(180deg, rgba(248,249,252,0.85) 0%, rgba(248,249,252,0.7) 50%, rgba(248,249,252,0.85) 100%);
-        backdrop-filter: blur(3px);
+        background: linear-gradient(180deg, rgba(248,249,252,0.92) 0%, rgba(248,249,252,0.88) 50%, rgba(248,249,252,0.92) 100%);
+        backdrop-filter: blur(6px);
         min-height: 100vh;
+        padding: 30px 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .login-left-content h1 {
+        font-size: 28px;
+    }
+
+    .login-left-content p {
+        font-size: 13px;
+    }
+
+    .back-brand {
+        padding: 6px 12px;
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+
+    .back-brand img {
+        max-height: 30px;
+    }
+
+    .feature {
+        padding: 10px 14px;
+    }
+
+    .feature span {
+        font-size: 12px;
     }
 }
 
 @media (max-width: 480px) {
     .login-right {
-        padding: 24px;
+        padding: 20px 18px;
     }
 
     .login-header h2 {
-        font-size: 24px;
+        font-size: 22px;
+    }
+
+    .login-header p {
+        font-size: 12px;
+    }
+
+    .input-group input {
+        padding: 12px 14px 12px 42px;
+        font-size: 13px;
+    }
+
+    .btn-login {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .login-options {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
     }
 
     .modal-card {
-        padding: 28px;
+        padding: 25px 20px;
         border-radius: 16px;
+        max-width: 95%;
     }
 
     .modal-row {
         flex-direction: column;
-        gap: 0;
+        gap: 10px;
+    }
+
+    .modal-header h2 {
+        font-size: 20px;
+    }
+
+    .modal-card .input-group input {
+        padding: 11px 14px 11px 40px;
+        font-size: 12px;
     }
 }
