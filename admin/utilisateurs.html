@@ -364,22 +364,113 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<!-- Modal Voir Admin -->
+<div class="modal fade" id="viewAdminModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-person-gear"></i> Détails administrateur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="viewAdminContent"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Modifier Admin -->
+<div class="modal fade" id="editAdminModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-pencil"></i> Modifier administrateur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Nom complet</label>
+                    <input type="text" class="form-control" id="editAdminName">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="editAdminEmail">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Téléphone</label>
+                    <input type="tel" class="form-control" id="editAdminPhone">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Rôle</label>
+                    <select class="form-select" id="editAdminRole">
+                        <option>Super Admin</option>
+                        <option>Admin</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="saveAdminBtn"><i class="bi bi-check-lg"></i> Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-    const sidebar = document.getElementById("sidebar");
-    const sidebarOverlay = document.getElementById("sidebarOverlay");
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener("click", function () {
-            sidebar.classList.toggle("show");
-            if (sidebarOverlay) sidebarOverlay.classList.toggle("show");
-        });
-    }
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener("click", function () {
-            sidebar.classList.remove("show");
-            sidebarOverlay.classList.remove("show");
-        });
-    }
+    var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    var sidebar = document.getElementById('sidebar');
+    var sidebarOverlay = document.getElementById('sidebarOverlay');
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', function() { sidebar.classList.toggle('show'); if (sidebarOverlay) sidebarOverlay.classList.toggle('show'); });
+    if (sidebarOverlay) sidebarOverlay.addEventListener('click', function() { sidebar.classList.remove('show'); sidebarOverlay.classList.remove('show'); });
+
+    /* === VIEW ADMIN === */
+    document.querySelector('.reservation-table tbody').addEventListener('click', function(e) {
+        var viewBtn = e.target.closest('.table-action.view');
+        var editBtn = e.target.closest('.table-action.edit');
+        if (viewBtn) {
+            var row = viewBtn.closest('tr');
+            if (!row) return;
+            var cells = row.querySelectorAll('td');
+            var name = cells[0] ? cells[0].querySelector('strong').textContent : '';
+            var contact = cells[1] ? cells[1].textContent.trim() : '';
+            var role = cells[2] ? cells[2].textContent.trim() : '';
+            var lastLogin = cells[3] ? cells[3].textContent.trim() : '';
+            var status = cells[4] ? cells[4].textContent.trim() : '';
+            var initials = name.split(' ').map(function(w){return w[0]}).join('').substring(0,2).toUpperCase();
+            document.getElementById('viewAdminContent').innerHTML =
+                '<div style="text-align:center;margin-bottom:20px">'
+                + '<div style="width:60px;height:60px;border-radius:50%;background:#EAF2FF;color:#2563EB;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;margin:0 auto 10px">' + initials + '</div>'
+                + '<h5 style="margin:0">' + name + '</h5>'
+                + '<span style="color:#6B7280;font-size:12px">' + role + '</span>'
+                + '</div>'
+                + '<div style="background:#F8FAFC;border-radius:10px;padding:15px">'
+                + '<p style="margin:6px 0;font-size:13px"><strong>Email :</strong> ' + contact.split('\n')[1] + '</p>'
+                + '<p style="margin:6px 0;font-size:13px"><strong>Téléphone :</strong> ' + contact.split('\n')[0] + '</p>'
+                + '<p style="margin:6px 0;font-size:13px"><strong>Dernière connexion :</strong> ' + lastLogin + '</p>'
+                + '<p style="margin:6px 0;font-size:13px"><strong>Statut :</strong> ' + status + '</p>'
+                + '</div>';
+            new bootstrap.Modal(document.getElementById('viewAdminModal')).show();
+        }
+        if (editBtn) {
+            var row = editBtn.closest('tr');
+            if (!row) return;
+            var cells = row.querySelectorAll('td');
+            var name = cells[0] ? cells[0].querySelector('strong').textContent : '';
+            var contact = cells[1] ? cells[1].textContent.trim() : '';
+            var lines = contact.split('\n');
+            document.getElementById('editAdminName').value = name;
+            document.getElementById('editAdminPhone').value = lines[0] || '';
+            document.getElementById('editAdminEmail').value = lines[1] || '';
+            document.getElementById('editAdminRole').value = cells[2] ? cells[2].textContent.trim() : 'Admin';
+            new bootstrap.Modal(document.getElementById('editAdminModal')).show();
+        }
+    });
+
+    document.getElementById('saveAdminBtn').addEventListener('click', function() {
+        bootstrap.Modal.getInstance(document.getElementById('editAdminModal')).hide();
+        BIDE.toast('Administrateur modifié avec succès !', 'success');
+    });
 </script>
 
 </body>

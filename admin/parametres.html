@@ -333,21 +333,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-    const sidebar = document.getElementById("sidebar");
-    const sidebarOverlay = document.getElementById("sidebarOverlay");
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener("click", function () {
-            sidebar.classList.toggle("show");
-            if (sidebarOverlay) sidebarOverlay.classList.toggle("show");
-        });
-    }
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener("click", function () {
-            sidebar.classList.remove("show");
-            sidebarOverlay.classList.remove("show");
-        });
-    }
+    var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    var sidebar = document.getElementById('sidebar');
+    var sidebarOverlay = document.getElementById('sidebarOverlay');
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', function() { sidebar.classList.toggle('show'); if (sidebarOverlay) sidebarOverlay.classList.toggle('show'); });
+    if (sidebarOverlay) sidebarOverlay.addEventListener('click', function() { sidebar.classList.remove('show'); sidebarOverlay.classList.remove('show'); });
+
+    /* === SAUVEGARDER PARAMETRES === */
+    document.querySelector('.primary-btn').addEventListener('click', function() {
+        var settings = {
+            businessName: document.querySelector('input[value="Bide\'"]') ? document.querySelector('input[value="Bide\'"]').value : 'Bide',
+            savedAt: new Date().toISOString()
+        };
+        try { localStorage.setItem('bide_settings', JSON.stringify(settings)); } catch(e) {}
+        BIDE.toast('Paramètres sauvegardés avec succès !', 'success');
+    });
 </script>
 
 </body>
