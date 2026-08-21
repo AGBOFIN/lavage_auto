@@ -1218,69 +1218,58 @@
             window.location.href = "deconnexion.html";
         }
 
-        // ===== CHARGEMENT DYNAMIQUE DU PROFIL =====
-        (function() {
-            var user = JSON.parse(localStorage.getItem('bide_current_user') || 'null');
-            var session = JSON.parse(localStorage.getItem('bide_session') || 'null');
-            var data = user || session || {};
-            var nom = data.nom || '';
-            var prenom = data.prenom || '';
-            var fullName = ((nom + ' ' + prenom).trim()) || 'Client';
-            var displayName = prenom || nom || 'Client';
-            var email = data.email || '';
-            var telephone = data.telephone || '';
-            var dateNaissance = data.dateNaissance || '';
-            var initials = fullName.split(' ').map(function(w){return w.charAt(0).toUpperCase();}).join('').substring(0,2);
+    </script>
 
-            // Header
-            var headerAvatar = document.getElementById('headerAvatar');
-            var headerName = document.getElementById('headerName');
-            if (headerAvatar) headerAvatar.textContent = initials;
-            if (headerName) headerName.textContent = 'Bonjour, ' + displayName;
+    <script src="../js/bide.js"></script>
+    <script src="../js/session.js"></script>
 
-            // Profile card
-            var profileFullName = document.getElementById('profileFullName');
-            var profileEmailVal = document.getElementById('profileEmailVal');
-            var profileTelVal = document.getElementById('profileTelVal');
-            if (profileFullName) profileFullName.textContent = fullName;
-            if (profileEmailVal) profileEmailVal.textContent = email || '-';
-            if (profileTelVal) profileTelVal.textContent = telephone || '-';
+    <script>
+    /* ===== CHARGEMENT DYNAMIQUE DU PROFIL ===== */
+    (function() {
+        var session = BIDE.getSession();
+        if (!session) return;
 
-            // Info list
-            var profilNom = document.getElementById('profilNom');
-            var profilEmail = document.getElementById('profilEmail');
-            var profilTel = document.getElementById('profilTel');
-            var profilDate = document.getElementById('profilDate');
-            if (profilNom) profilNom.textContent = fullName;
-            if (profilEmail) profilEmail.textContent = email || '-';
-            if (profilTel) profilTel.textContent = telephone || '-';
-            if (profilDate) profilDate.textContent = dateNaissance || '-';
+        var email = session.email || '';
+        var telephone = session.telephone || '';
 
-            // Stats
-            var requests = JSON.parse(localStorage.getItem('bide_requests') || '[]');
-            var myReqs = requests.filter(function(r) {
-                return r.email === email || r.telephone === telephone;
-            });
-            var statVehicles = document.getElementById('statVehicles');
-            if (statVehicles) statVehicles.textContent = myReqs.length;
+        // Stats
+        var requests = BIDE.getRequests();
+        var invoices = BIDE.getInvoices();
+        var myReqs = requests.filter(function(r) {
+            return r.email === email || r.telephone === telephone;
+        });
+        var myInvoices = invoices.filter(function(i) {
+            return i.email === email || i.telephone === telephone;
+        });
+        var statVehicles = document.getElementById('statVehicles');
+        if (statVehicles) statVehicles.textContent = myReqs.length;
 
-            // Vehicle list
-            var vehicleList = document.querySelector('.card .vehicle');
-            if (myReqs.length > 0 && vehicleList) {
-                var vehicleContainer = vehicleList.parentNode;
-                vehicleList.remove();
+        // Factures stat
+        var statFactures = document.querySelector('.profile-stat strong');
+        if (statFactures) statFactures.textContent = myInvoices.length;
+
+        // Vehicle list
+        var vehicleContainer = document.querySelector('.card .vehicle');
+        if (vehicleContainer && vehicleContainer.parentNode) {
+            var container = vehicleContainer.parentNode;
+            // Remove placeholder
+            vehicleContainer.remove();
+            if (myReqs.length > 0) {
                 myReqs.forEach(function(r) {
                     var vDiv = document.createElement('div');
                     vDiv.className = 'vehicle';
-                    vDiv.innerHTML = '<div class="vehicle-left"><div class="vehicle-image"><i class="bi bi-car-front"></i></div><div><div class="vehicle-name">' + r.marque + ' ' + r.modele + '</div><div class="vehicle-details">' + r.immatriculation + ' \u2022 ' + r.couleur + '</div></div></div><div><span class="vehicle-status">' + (r.statut === 'terminee' ? 'Termine' : r.statut === 'en_cours' ? 'En cours' : 'Actif') + '</span></div>';
-                    vehicleContainer.insertBefore(vDiv, vehicleContainer.querySelector('.add-vehicle'));
+                    vDiv.innerHTML = '<div class="vehicle-left"><div class="vehicle-image"><i class="bi bi-car-front"></i></div><div><div class="vehicle-name">' + r.marque + ' ' + r.modele + '</div><div class="vehicle-details">' + r.immatriculation + ' \u2022 ' + (r.couleur || '') + '</div></div></div><div><span class="vehicle-status">' + (r.statut === 'terminee' ? 'Terminé' : r.statut === 'en_cours' ? 'En cours' : 'Actif') + '</span></div>';
+                    container.insertBefore(vDiv, container.querySelector('.add-vehicle'));
                 });
+            } else {
+                var emptyDiv = document.createElement('div');
+                emptyDiv.className = 'vehicle';
+                emptyDiv.innerHTML = '<div class="vehicle-left"><div class="vehicle-image"><i class="bi bi-car-front"></i></div><div><div class="vehicle-name">Aucun véhicule</div><div class="vehicle-details">Ajoutez votre premier véhicule</div></div></div>';
+                container.insertBefore(emptyDiv, container.querySelector('.add-vehicle'));
             }
-        })();
-
+        }
+    })();
     </script>
-
-    <script src="../js/session.js"></script>
 </body>
 
 </html>

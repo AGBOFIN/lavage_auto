@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Sélection des éléments du DOM
-    const modal = document.getElementById('inscriptionModal');
-    const openBtn = document.getElementById('openModal');
-    const closeBtn = document.querySelector('.close-btn');
-    const closeModalLink = document.getElementById('closeModalLink');
-    const modalOverlay = document.querySelector('.modal-overlay');
+    var modal = document.getElementById('inscriptionModal');
+    var openBtn = document.getElementById('openModal');
+    var closeBtn = document.querySelector('.close-btn');
+    var closeModalLink = document.getElementById('closeModalLink');
+    var modalOverlay = document.querySelector('.modal-overlay');
 
-    // Ouvrir la modale
     if (openBtn) {
         openBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -15,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Fermer la modale
     function closeModal() {
         modal.classList.remove('active');
         document.body.style.overflow = '';
@@ -36,67 +33,75 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Formulaire de connexion
     var loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            var email = document.getElementById('loginEmail').value;
+            var emailOrPhone = document.getElementById('loginEmail').value.trim();
             var password = document.getElementById('loginPassword').value;
-            
-            if (!email || !password) {
+            if (!emailOrPhone || !password) {
                 showToast('Veuillez remplir tous les champs.', 'warning');
                 return;
             }
-            
-            // Sauvegarder la session
+            var users = [];
+            try { users = JSON.parse(localStorage.getItem('bide_users')) || []; } catch(ex) { users = []; }
+            var found = users.find(function(u) {
+                return (u.email && u.email.toLowerCase() === emailOrPhone.toLowerCase()) || (u.telephone && u.telephone === emailOrPhone);
+            });
+            if (!found) {
+                showToast('Aucun compte trouvé. Créez un compte !', 'warning');
+                setTimeout(function() {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }, 500);
+                return;
+            }
             localStorage.setItem('bide_session', JSON.stringify({
-                email: email,
+                email: found.email, nom: found.nom, prenom: found.prenom,
+                telephone: found.telephone, dateNaissance: found.dateNaissance || '',
                 loggedAt: new Date().toISOString()
             }));
-            
             showToast('Connexion réussie !', 'success');
-            setTimeout(function() {
-                window.location.href = 'dashboard.html';
-            }, 800);
+            setTimeout(function() { window.location.href = 'dashboard.html'; }, 800);
         });
     }
 
-    // Formulaire d'inscription
     var inscriptionForm = document.getElementById('inscriptionForm');
     if (inscriptionForm) {
         inscriptionForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Récupérer le nom pour la session
-            var nom = e.target.querySelector('input[placeholder="Nom"]')?.value || 'Client';
-            var prenom = e.target.querySelector('input[placeholder="Prénom"]')?.value || '';
-            var email = e.target.querySelector('input[type="email"]')?.value || '';
-            
-            // Sauvegarder la session
-            localStorage.setItem('bide_session', JSON.stringify({
-                email: email,
-                nom: prenom + ' ' + nom,
-                registeredAt: new Date().toISOString()
-            }));
-            
+            var nom = e.target.querySelector('input[placeholder="Nom"]')?.value.trim() || '';
+            var prenom = e.target.querySelector('input[placeholder="Prénom"]')?.value.trim() || '';
+            var email = e.target.querySelector('input[type="email"]')?.value.trim() || '';
+            var telephone = e.target.querySelector('input[type="tel"]')?.value.trim() || '';
+            var dateNaissance = e.target.querySelector('input[type="date"]')?.value || '';
+            var password = e.target.querySelector('input[type="password"]')?.value || '';
+            if (!nom || !prenom || !email || !telephone || !password) {
+                showToast('Veuillez remplir tous les champs.', 'warning');
+                return;
+            }
+            var users = [];
+            try { users = JSON.parse(localStorage.getItem('bide_users')) || []; } catch(ex) { users = []; }
+            var exists = users.find(function(u) {
+                return (u.email && u.email.toLowerCase() === email.toLowerCase()) || (u.telephone && u.telephone === telephone);
+            });
+            if (exists) {
+                showToast('Un compte avec cet email ou téléphone existe déjà.', 'warning');
+                return;
+            }
+            users.push({ id: 'USR' + Math.floor(1000 + Math.random() * 9000), nom: nom, prenom: prenom, email: email, telephone: telephone, dateNaissance: dateNaissance, registeredAt: new Date().toISOString() });
+            localStorage.setItem('bide_users', JSON.stringify(users));
+            localStorage.setItem('bide_session', JSON.stringify({ email: email, nom: nom, prenom: prenom, telephone: telephone, dateNaissance: dateNaissance, loggedAt: new Date().toISOString() }));
             closeModal();
-            showToast('Inscription réussie ! Bienvenue chez BIDÈ.', 'success');
-            setTimeout(function() {
-                window.location.href = 'dashboard.html';
-            }, 800);
+            showToast('Inscription réussie ! Bienvenue ' + prenom + '.', 'success');
+            setTimeout(function() { window.location.href = 'dashboard.html'; }, 800);
         });
     }
 
-    // Système de toast (si pas déjà défini)
     function showToast(message, type) {
-        if (typeof window.showToast === 'function' && window.showToast !== showToast) {
-            window.showToast(message, type);
-            return;
-        }
         type = type || 'success';
         var toast = document.createElement('div');
-        toast.style.cssText = 'position:fixed;top:20px;right:20px;z-index:99999;padding:15px 25px;border-radius:10px;color:white;font-weight:700;font-size:14px;box-shadow:0 4px 15px rgba(0,0,0,0.2);animation:fadeIn 0.3s ease;font-family:Nunito,sans-serif;display:flex;align-items:center;gap:10px;';
+        toast.style.cssText = 'position:fixed;top:20px;right:20px;z-index:99999;padding:15px 25px;border-radius:10px;color:white;font-weight:700;font-size:14px;box-shadow:0 4px 15px rgba(0,0,0,0.2);font-family:Nunito,sans-serif;display:flex;align-items:center;gap:10px;';
         var colors = {success:'#198754',info:'#0d6efd',warning:'#fd7e14',error:'#dc3545'};
         toast.style.background = colors[type] || colors.success;
         var icons = {success:'bi-check-circle-fill',info:'bi-info-circle-fill',warning:'bi-exclamation-triangle-fill',error:'bi-x-circle-fill'};

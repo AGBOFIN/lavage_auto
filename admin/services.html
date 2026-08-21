@@ -1185,27 +1185,177 @@
 
 
 <!-- =====================================================
-     JAVASCRIPT
+     MODALE : VOIR SERVICE
 ===================================================== -->
+<div class="modal fade" id="viewServiceModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-eye"></i> Détails du service</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="viewServiceContent"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<script>    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-    const sidebar = document.getElementById("sidebar");
-    const sidebarOverlay = document.getElementById("sidebarOverlay");
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener("click", function () {
-            sidebar.classList.toggle("show");
-            if (sidebarOverlay) sidebarOverlay.classList.toggle("show");
-        });
-    }
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener("click", function () {
-            sidebar.classList.remove("show");
-            sidebarOverlay.classList.remove("show");
-        });
+<!-- =====================================================
+     MODALE : MODIFIER SERVICE
+===================================================== -->
+<div class="modal fade" id="editServiceModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-pencil"></i> Modifier le service</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editServiceForm">
+                <input type="hidden" id="editServiceIdx">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-8"><label class="form-label">Nom du service *</label><input type="text" class="form-control" id="editServiceName" required></div>
+                        <div class="col-md-4"><label class="form-label">Prix (FCFA) *</label><input type="number" class="form-control" id="editServicePrice" required></div>
+                        <div class="col-md-6"><label class="form-label">Durée (min)</label><input type="number" class="form-control" id="editServiceDuration"></div>
+                        <div class="col-md-6"><label class="form-label">Statut</label><select class="form-select" id="editServiceStatut"><option value="active">Actif</option><option value="inactive">Inactif</option></select></div>
+                        <div class="col-12"><label class="form-label">Description</label><textarea class="form-control" id="editServiceDesc" rows="3"></textarea></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- =====================================================
+     MODALE : SUPPRIMER SERVICE
+===================================================== -->
+<div class="modal fade" id="deleteServiceModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger"><i class="bi bi-trash"></i> Supprimer le service</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Voulez-vous vraiment supprimer ce service ?</p>
+                <div id="deleteServiceName" class="fw-bold mb-3"></div>
+                <div class="alert alert-warning"><i class="bi bi-exclamation-triangle"></i> Cette action est irréversible.</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteService"><i class="bi bi-trash"></i> Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/bide.js"></script>
+
+<script>
+    /* ---- Mobile menu ---- */
+    var mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    var sidebar = document.getElementById("sidebar");
+    var sidebarOverlay = document.getElementById("sidebarOverlay");
+    if (mobileMenuBtn) { mobileMenuBtn.addEventListener("click", function () { sidebar.classList.toggle("show"); if (sidebarOverlay) sidebarOverlay.classList.toggle("show"); }); }
+    if (sidebarOverlay) { sidebarOverlay.addEventListener("click", function () { sidebar.classList.remove("show"); sidebarOverlay.classList.remove("show"); }); }
+
+    /* ---- Services data ---- */
+    var SERVICES_KEY = 'bide_services';
+    function getServices() { try { return JSON.parse(localStorage.getItem(SERVICES_KEY)) || []; } catch(e) { return []; } }
+    function saveServices(arr) { localStorage.setItem(SERVICES_KEY, JSON.stringify(arr)); }
+
+    var defaultServices = [
+        { name: 'Lavage Premium', price: 15000, duration: 60, statut: 'active', reservations: 124, desc: 'Nettoyage complet intérieur et extérieur avec finition professionnelle.' },
+        { name: 'Lavage Complet', price: 10000, duration: 45, statut: 'active', reservations: 98, desc: 'Nettoyage intérieur et extérieur adapté à tous types de véhicules.' },
+        { name: 'Lavage Extérieur', price: 5000, duration: 25, statut: 'active', reservations: 86, desc: 'Nettoyage extérieur rapide avec séchage professionnel.' },
+        { name: 'Nettoyage Intérieur', price: 7500, duration: 35, statut: 'active', reservations: 62, desc: 'Aspiration, nettoyage des sièges, tapis et tableau de bord.' },
+        { name: 'Lavage + Protection', price: 20000, duration: 75, statut: 'active', reservations: 41, desc: 'Lavage complet avec protection de la carrosserie.' },
+        { name: 'Traitement Cuir', price: 12000, duration: 50, statut: 'inactive', reservations: 18, desc: 'Nettoyage et entretien professionnel des surfaces en cuir.' }
+    ];
+    function seedServices() { var s = getServices(); if (s.length === 0) saveServices(defaultServices); }
+    seedServices();
+
+    /* ---- View Service ---- */
+    function viewService(idx) {
+        var services = getServices(); var s = services[idx]; if (!s) return;
+        var html = '<div style="text-align:center;margin-bottom:15px"><div style="width:60px;height:60px;border-radius:12px;background:#EFF6FF;color:#2563EB;display:inline-flex;align-items:center;justify-content:center;font-size:24px"><i class="bi bi-droplet-fill"></i></div></div>';
+        html += '<div class="vehicle-info-list">';
+        html += '<div class="vehicle-info-item"><span>Nom</span><strong>' + s.name + '</strong></div>';
+        html += '<div class="vehicle-info-item"><span>Prix</span><strong>' + Number(s.price).toLocaleString('fr-FR') + ' FCFA</strong></div>';
+        html += '<div class="vehicle-info-item"><span>Durée</span><strong>' + (s.duration || '—') + ' min</strong></div>';
+        html += '<div class="vehicle-info-item"><span>Réservations</span><strong>' + (s.reservations || 0) + '</strong></div>';
+        html += '<div class="vehicle-info-item"><span>Statut</span><strong><span class="status ' + (s.statut === 'active' ? 'confirmed' : 'pending') + '">' + (s.statut === 'active' ? 'Actif' : 'Inactif') + '</span></strong></div>';
+        html += '<div class="vehicle-info-item"><span>Description</span><strong>' + (s.desc || '—') + '</strong></div>';
+        html += '</div>';
+        document.getElementById('viewServiceContent').innerHTML = html;
+        new bootstrap.Modal(document.getElementById('viewServiceModal')).show();
     }
 
+    /* ---- Edit Service ---- */
+    function editService(idx) {
+        var services = getServices(); var s = services[idx]; if (!s) return;
+        document.getElementById('editServiceIdx').value = idx;
+        document.getElementById('editServiceName').value = s.name || '';
+        document.getElementById('editServicePrice').value = s.price || 0;
+        document.getElementById('editServiceDuration').value = s.duration || '';
+        document.getElementById('editServiceStatut').value = s.statut || 'active';
+        document.getElementById('editServiceDesc').value = s.desc || '';
+        new bootstrap.Modal(document.getElementById('editServiceModal')).show();
+    }
+
+    document.getElementById('editServiceForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var idx = parseInt(document.getElementById('editServiceIdx').value);
+        var services = getServices();
+        services[idx].name = document.getElementById('editServiceName').value.trim();
+        services[idx].price = parseInt(document.getElementById('editServicePrice').value);
+        services[idx].duration = parseInt(document.getElementById('editServiceDuration').value) || 0;
+        services[idx].statut = document.getElementById('editServiceStatut').value;
+        services[idx].desc = document.getElementById('editServiceDesc').value.trim();
+        saveServices(services);
+        bootstrap.Modal.getInstance(document.getElementById('editServiceModal')).hide();
+        BIDE.toast('Service mis à jour !', 'success');
+        location.reload();
+    });
+
+    /* ---- Delete Service ---- */
+    var deleteServiceIdx = null;
+    function deleteService(idx) {
+        var services = getServices(); var s = services[idx]; if (!s) return;
+        deleteServiceIdx = idx;
+        document.getElementById('deleteServiceName').textContent = s.name;
+        new bootstrap.Modal(document.getElementById('deleteServiceModal')).show();
+    }
+
+    document.getElementById('confirmDeleteService').addEventListener('click', function() {
+        if (deleteServiceIdx === null) return;
+        var services = getServices();
+        services.splice(deleteServiceIdx, 1);
+        saveServices(services);
+        deleteServiceIdx = null;
+        bootstrap.Modal.getInstance(document.getElementById('deleteServiceModal')).hide();
+        BIDE.toast('Service supprimé.', 'success');
+        location.reload();
+    });
+
+    /* ---- Table delegation ---- */
+    document.querySelectorAll('.service-card-admin').forEach(function(card, idx) {
+        var viewBtn = card.querySelector('.table-action.view');
+        var editBtn = card.querySelector('.table-action.edit');
+        var deleteBtn = card.querySelector('.table-action.delete');
+        if (viewBtn) viewBtn.addEventListener('click', function() { viewService(idx); });
+        if (editBtn) editBtn.addEventListener('click', function() { editService(idx); });
+        if (deleteBtn) deleteBtn.addEventListener('click', function() { deleteService(idx); });
+    });
 </script>
-
 
 </body>
 

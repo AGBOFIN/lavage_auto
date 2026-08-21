@@ -206,19 +206,36 @@
         if (loginForm) {
             loginForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                var email = document.getElementById('loginEmail').value;
+                var emailOrPhone = document.getElementById('loginEmail').value.trim();
                 var password = document.getElementById('loginPassword').value;
-                if (!email || !password) {
+                if (!emailOrPhone || !password) {
                     showToast('Veuillez remplir tous les champs.', 'warning');
                     return;
                 }
-                // Utiliser uniquement bide_session pour la gestion de session
-                var sessionData = {
-                    email: email,
+                // Chercher l'utilisateur dans bide_users
+                var users = [];
+                try { users = JSON.parse(localStorage.getItem('bide_users')) || []; } catch(ex) { users = []; }
+                var found = users.find(function(u) {
+                    return (u.email && u.email.toLowerCase() === emailOrPhone.toLowerCase()) || (u.telephone && u.telephone === emailOrPhone);
+                });
+                if (!found) {
+                    showToast('Aucun compte trouvé. Créez un compte !', 'warning');
+                    setTimeout(function() {
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }, 500);
+                    return;
+                }
+                // Connexion réussie : sauvegarder la session complète
+                localStorage.setItem('bide_session', JSON.stringify({
+                    email: found.email,
+                    nom: found.nom,
+                    prenom: found.prenom,
+                    telephone: found.telephone,
+                    dateNaissance: found.dateNaissance || '',
                     loggedAt: new Date().toISOString()
-                };
-                localStorage.setItem('bide_session', JSON.stringify(sessionData));
-                showToast('Connexion reussie !', 'success');
+                }));
+                showToast('Connexion réussie !', 'success');
                 setTimeout(function() {
                     window.location.href = 'dashboard.html';
                 }, 800);
@@ -234,24 +251,50 @@
                 var emailField = e.target.querySelector('input[type="email"]');
                 var phoneField = e.target.querySelector('input[type="tel"]');
                 var dateField = e.target.querySelector('input[type="date"]');
-                var userData = {
-                    nom: nomInput ? nomInput.value : '',
-                    prenom: prenomInput ? prenomInput.value : '',
-                    email: emailField ? emailField.value : '',
-                    telephone: phoneField ? phoneField.value : '',
-                    dateNaissance: dateField ? dateField.value : '',
+                var passField = e.target.querySelector('input[type="password"]');
+                var nom = nomInput ? nomInput.value.trim() : '';
+                var prenom = prenomInput ? prenomInput.value.trim() : '';
+                var email = emailField ? emailField.value.trim() : '';
+                var telephone = phoneField ? phoneField.value.trim() : '';
+                var dateNaissance = dateField ? dateField.value : '';
+                var password = passField ? passField.value : '';
+                if (!nom || !prenom || !email || !telephone || !password) {
+                    showToast('Veuillez remplir tous les champs.', 'warning');
+                    return;
+                }
+                // Vérifier si l'email ou téléphone existe déjà
+                var users = [];
+                try { users = JSON.parse(localStorage.getItem('bide_users')) || []; } catch(ex) { users = []; }
+                var exists = users.find(function(u) {
+                    return (u.email && u.email.toLowerCase() === email.toLowerCase()) || (u.telephone && u.telephone === telephone);
+                });
+                if (exists) {
+                    showToast('Un compte avec cet email ou téléphone existe déjà.', 'warning');
+                    return;
+                }
+                // Sauvegarder l'utilisateur dans bide_users
+                var newUser = {
+                    id: 'USR' + Math.floor(1000 + Math.random() * 9000),
+                    nom: nom,
+                    prenom: prenom,
+                    email: email,
+                    telephone: telephone,
+                    dateNaissance: dateNaissance,
                     registeredAt: new Date().toISOString()
                 };
-                // Utiliser uniquement bide_session pour la gestion de session
+                users.push(newUser);
+                localStorage.setItem('bide_users', JSON.stringify(users));
+                // Sauvegarder la session complète
                 localStorage.setItem('bide_session', JSON.stringify({
-                    email: userData.email,
-                    nom: userData.nom,
-                    prenom: userData.prenom,
-                    telephone: userData.telephone,
+                    email: email,
+                    nom: nom,
+                    prenom: prenom,
+                    telephone: telephone,
+                    dateNaissance: dateNaissance,
                     loggedAt: new Date().toISOString()
                 }));
                 closeModal();
-                showToast('Inscription reussie ! Bienvenue.', 'success');
+                showToast('Inscription réussie ! Bienvenue ' + prenom + '.', 'success');
                 setTimeout(function() {
                     window.location.href = 'dashboard.html';
                 }, 800);

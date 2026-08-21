@@ -2,1174 +2,334 @@
 <html lang="fr">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clients | Bidè Admin</title>
-
-    <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-
-    <!-- Bootstrap Icons -->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    >
-
-    <!-- CSS principal -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
-
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      SIDEBAR
 ===================================================== -->
-
 <aside class="sidebar" id="sidebar">
-
-
-    <!-- LOGO -->
-
     <div class="sidebar-logo">
         <a href="dashboard.html"><img src="../images/bide-wash-logo-no-bg.png" alt="BIDÈ" style="height:42px;width:auto;object-fit:contain"></a>
     </div>
-
-    <!-- MENU -->
     <div class="sidebar-menu">
-
-        <p class="menu-title">
-            MENU PRINCIPAL
-        </p>
-
-
-        <a href="dashboard.html"
-           class="menu-link">
-
-            <i class="bi bi-grid-1x2-fill"></i>
-
-            <span>
-                Dashboard
-            </span>
-
-        </a>
-
-
-        <a href="reservations.html"
-           class="menu-link">
-
-            <i class="bi bi-calendar-check"></i>
-
-            <span>
-                Réservations
-            </span>
-
-            <span class="menu-badge">
-                8
-            </span>
-        </a>
-
-        <a href="clients.html"
-           class="menu-link active">
-            <i class="bi bi-people"></i>
-
-            <span>
-                Clients
-            </span>
-
-        </a>
-
-
-        <a href="services.html"
-           class="menu-link">
-
-            <i class="bi bi-droplet"></i>
-
-            <span>
-                Services
-            </span>
-
-        </a>
-
-
-        <a href="vehicules.html"
-           class="menu-link">
-
-            <i class="bi bi-car-front"></i>
-
-            <span>
-                Véhicules
-            </span>
-
-        </a>
-
-
-        <p class="menu-title mt-4">
-            GESTION
-        </p>
-
-        <a href="paiements.html"
-           class="menu-link">
-
-            <i class="bi bi-credit-card"></i>
-
-            <span>
-                Paiements
-            </span>
-
-        </a>
-
-
-        <a href="messages.html"
-           class="menu-link">
-
-            <i class="bi bi-chat-left-text"></i>
-
-            <span>
-                Messages
-            </span>
-
-            <span class="menu-badge">
-                3
-            </span>
-
-        </a>        <a href="avis.html" class="menu-link">
-
-            <i class="bi bi-star"></i>
-
-            <span>
-                Avis clients
-            </span>
-
-        </a>
-
-        <a href="employes.html" class="menu-link">
-
-            <i class="bi bi-person-badge"></i>
-
-            <span>
-                Employés
-            </span>
-
-        </a>
-
-
-        <p class="menu-title mt-4">
-            SYSTÈME
-        </p>
-
-
-        <a href="utilisateurs.html"
-           class="menu-link">
-
-            <i class="bi bi-person-gear"></i>
-
-            <span>
-                Administrateurs
-            </span>
-
-        </a>
-
-
-        <a href="parametres.html"
-           class="menu-link">
-
-            <i class="bi bi-gear"></i>
-
-            <span>
-                Paramètres
-            </span>
-
-        </a>
-
+        <p class="menu-title">MENU PRINCIPAL</p>
+        <a href="dashboard.html" class="menu-link"><i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></a>
+        <a href="reservations.html" class="menu-link"><i class="bi bi-calendar-check"></i><span>Réservations</span><span class="menu-badge">8</span></a>
+        <a href="clients.html" class="menu-link active"><i class="bi bi-people"></i><span>Clients</span></a>
+        <a href="services.html" class="menu-link"><i class="bi bi-droplet"></i><span>Services</span></a>
+        <a href="vehicules.html" class="menu-link"><i class="bi bi-car-front"></i><span>Véhicules</span></a>
+        <p class="menu-title mt-4">GESTION</p>
+        <a href="paiements.html" class="menu-link"><i class="bi bi-credit-card"></i><span>Paiements</span></a>
+        <a href="messages.html" class="menu-link"><i class="bi bi-chat-left-text"></i><span>Messages</span><span class="menu-badge">3</span></a>
+        <a href="avis.html" class="menu-link"><i class="bi bi-star"></i><span>Avis clients</span></a>
+        <a href="employes.html" class="menu-link"><i class="bi bi-person-badge"></i><span>Employés</span></a>
+        <p class="menu-title mt-4">SYSTÈME</p>
+        <a href="utilisateurs.html" class="menu-link"><i class="bi bi-person-gear"></i><span>Administrateurs</span></a>
+        <a href="parametres.html" class="menu-link"><i class="bi bi-gear"></i><span>Paramètres</span></a>
     </div>
-
-
-    <!-- DECONNEXION -->
-
     <div class="sidebar-bottom">
-
-        <a href="../client/connexion.html"
-           class="logout-link">
-
-            <i class="bi bi-box-arrow-left"></i>
-
-            <span>
-                Déconnexion
-            </span>
-
-        </a>
-
-    </div></aside>
+        <a href="../client/connexion.html" class="logout-link"><i class="bi bi-box-arrow-left"></i><span>Déconnexion</span></a>
+    </div>
+</aside>
 
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
 
 <!-- =====================================================
      MAIN
 ===================================================== -->
-
 <main class="main-content">
-
-
-    <!-- TOPBAR -->
-
     <header class="topbar">
-
-
-        <button
-            class="mobile-menu-btn"
-            id="mobileMenuBtn">
-
-            <i class="bi bi-list"></i>
-
-        </button>
-
-
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="bi bi-list"></i></button>
         <div class="topbar-left">
-
             <div class="breadcrumb-admin">
-
-                <span>
-                    Administration
-                </span>
-
+                <span>Administration</span>
                 <i class="bi bi-chevron-right"></i>
-
-                <strong>
-                    Clients
-                </strong>
-
+                <strong>Clients</strong>
             </div>
-
         </div>
-
-
         <div class="topbar-right">
-
-            <button class="notification-btn">
-
-                <i class="bi bi-bell"></i>
-
-                <span class="notification-dot"></span>
-
-            </button>
-
-
+            <button class="notification-btn"><i class="bi bi-bell"></i><span class="notification-dot"></span></button>
             <div class="admin-profile">
-
-                <div class="profile-avatar">
-                    AG
-                </div>
-
+                <div class="profile-avatar">AG</div>
                 <div class="profile-info">
-
-                    <strong>
-                        Admin
-                    </strong>
-
-                    <span>
-                        Administrateur
-                    </span>
-
+                    <strong>Admin</strong>
+                    <span>Administrateur</span>
                 </div>
-
                 <i class="bi bi-chevron-down profile-arrow"></i>
-
             </div>
-
         </div>
-
     </header>
-
-
 
     <!-- =================================================
          CONTENU
     ================================================== -->
-
     <div class="dashboard-container">
 
-
         <!-- TITRE -->
-
         <div class="page-header">
-
             <div>
-
-                <h1>
-                    Clients
-                </h1>
-
-                <p>
-                    Consultez et gérez les clients de Bidè.
-                </p>
-
+                <h1>Clients</h1>
+                <p>Consultez et gérez les clients de Bidè.</p>
             </div>
-
-
-            <button class="primary-btn">
-
+            <button class="primary-btn" id="addClientBtn">
                 <i class="bi bi-person-plus"></i>
-
                 Ajouter un client
-
             </button>
-
         </div>
 
-
-
-        <!-- =================================================
-             STATISTIQUES
-        ================================================== -->
-
+        <!-- STATISTIQUES -->
         <div class="row g-4 mb-4">
-
-
-            <!-- TOTAL -->
-
             <div class="col-xl-3 col-md-6">
-
                 <div class="stat-card">
-
                     <div class="stat-card-top">
-
-                        <div class="stat-icon blue">
-
-                            <i class="bi bi-people-fill"></i>
-
-                        </div>
-
-                        <span class="stat-growth positive">
-                            +12.5%
-                        </span>
-
+                        <div class="stat-icon blue"><i class="bi bi-people-fill"></i></div>
                     </div>
-
-                    <p>
-                        Total clients
-                    </p>
-
-                    <h2>
-                        1 248
-                    </h2>
-
-                    <small>
-                        Clients enregistrés
-                    </small>
-
+                    <p>Total clients</p>
+                    <h2 id="statTotal">0</h2>
+                    <small>Clients enregistrés</small>
                 </div>
-
             </div>
-
-
-            <!-- NOUVEAUX -->
-
             <div class="col-xl-3 col-md-6">
-
                 <div class="stat-card">
-
                     <div class="stat-card-top">
-
-                        <div class="stat-icon azure">
-
-                            <i class="bi bi-person-plus-fill"></i>
-
-                        </div>
-
-                        <span class="stat-growth positive">
-                            +8.4%
-                        </span>
-
+                        <div class="stat-icon azure"><i class="bi bi-person-check-fill"></i></div>
                     </div>
-
-                    <p>
-                        Nouveaux clients
-                    </p>
-
-                    <h2>
-                        128
-                    </h2>
-
-                    <small>
-                        Ce mois-ci
-                    </small>
-
+                    <p>Clients actifs</p>
+                    <h2 id="statActifs">0</h2>
+                    <small>Clients en activité</small>
                 </div>
-
             </div>
-
-
-            <!-- ACTIFS -->
-
             <div class="col-xl-3 col-md-6">
-
                 <div class="stat-card">
-
                     <div class="stat-card-top">
-
-                        <div class="stat-icon blue">
-
-                            <i class="bi bi-person-check-fill"></i>
-
-                        </div>
-
+                        <div class="stat-icon orange"><i class="bi bi-person-dash-fill"></i></div>
                     </div>
-
-                    <p>
-                        Clients actifs
-                    </p>
-
-                    <h2>
-                        1 174
-                    </h2>
-
-                    <small>
-                        94% des clients
-                    </small>
-
+                    <p>Clients inactifs</p>
+                    <h2 id="statInactifs">0</h2>
+                    <small>Comptes inactifs</small>
                 </div>
-
             </div>
-
-
-            <!-- INACTIFS -->
-
             <div class="col-xl-3 col-md-6">
-
                 <div class="stat-card">
-
                     <div class="stat-card-top">
-
-                        <div class="stat-icon azure">
-
-                            <i class="bi bi-person-dash-fill"></i>
-
-                        </div>
-
+                        <div class="stat-icon green"><i class="bi bi-car-front-fill"></i></div>
                     </div>
-
-                    <p>
-                        Clients inactifs
-                    </p>
-
-                    <h2>
-                        74
-                    </h2>
-
-                    <small>
-                        Comptes inactifs
-                    </small>
-
+                    <p>Total véhicules</p>
+                    <h2 id="statVehicules">0</h2>
+                    <small>Véhicules enregistrés</small>
                 </div>
-
             </div>
-
         </div>
 
-
-
-        <!-- =================================================
-             LISTE DES CLIENTS
-        ================================================== -->
-
+        <!-- LISTE DES CLIENTS -->
         <div class="dashboard-card">
-
-
-            <!-- OUTILS -->
-
             <div class="reservation-toolbar">
-
-
                 <div class="reservation-search">
-
                     <i class="bi bi-search"></i>
-
-                    <input
-                        type="text"
-                        placeholder="Rechercher un client..."
-                    >
-
+                    <input type="text" id="searchClient" placeholder="Rechercher un client...">
                 </div>
-
-
                 <div class="reservation-filters">
-
-
-                    <select class="reservation-select">
-
-                        <option>
-                            Tous les clients
-                        </option>
-
-                        <option>
-                            Clients actifs
-                        </option>
-
-                        <option>
-                            Clients inactifs
-                        </option>
-
+                    <select class="reservation-select" id="filterStatus">
+                        <option value="all">Tous les clients</option>
+                        <option value="active">Clients actifs</option>
+                        <option value="inactive">Clients inactifs</option>
                     </select>
-
-
-                    <button class="filter-btn">
-
-                        <i class="bi bi-funnel"></i>
-
-                        Filtrer
-
-                    </button>
-
+                    <button class="filter-btn" id="resetBtn"><i class="bi bi-arrow-counterclockwise"></i> Réinitialiser</button>
                 </div>
-
             </div>
-
-
-
-            <!-- TABLE -->
 
             <div class="table-responsive">
-
                 <table class="reservation-table clients-table">
-
                     <thead>
-
                         <tr>
-
-                            <th>
-                                CLIENT
-                            </th>
-
-                            <th>
-                                CONTACT
-                            </th>
-
-                            <th>
-                                VÉHICULES
-                            </th>
-
-                            <th>
-                                RÉSERVATIONS
-                            </th>
-
-                            <th>
-                                INSCRIPTION
-                            </th>
-
-                            <th>
-                                STATUT
-                            </th>
-
-                            <th>
-                                ACTION
-                            </th>
-
+                            <th>CLIENT</th>
+                            <th>CONTACT</th>
+                            <th>VÉHICULES</th>
+                            <th>RÉSERVATIONS</th>
+                            <th>INSCRIPTION</th>
+                            <th>STATUT</th>
+                            <th class="text-end">ACTIONS</th>
                         </tr>
-
                     </thead>
-
-
-                    <tbody>
-
-
-                        <!-- CLIENT 1 -->
-
-                        <tr>
-
-                            <td>
-
-                                <div class="client-cell">
-
-                                    <div class="client-avatar">
-                                        KA
-                                    </div>
-
-                                    <div>
-
-                                        <strong>
-                                            Kossi Agbeko
-                                        </strong>
-
-                                        <span>
-                                            #CLI001
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <strong>
-                                    +228 90 00 00 01
-                                </strong>
-
-                                <span class="table-subtext">
-                                    kossi@email.com
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                2 véhicules
-                            </td>
-
-
-                            <td>
-
-                                <strong>
-                                    24
-                                </strong>
-
-                                <span class="table-subtext">
-                                    réservations
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                12 Jan 2026
-                            </td>
-
-
-                            <td>
-
-                                <span class="status confirmed">
-                                    Actif
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="action-buttons">
-
-                                    <button
-                                        class="table-action view"
-                                        title="Voir le client">
-
-                                        <i class="bi bi-eye"></i>
-
-                                    </button>
-
-
-                                    <button
-                                        class="table-action edit"
-                                        title="Modifier">
-
-                                        <i class="bi bi-pencil"></i>
-
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-
-                        <!-- CLIENT 2 -->
-
-                        <tr>
-
-                            <td>
-
-                                <div class="client-cell">
-
-                                    <div class="client-avatar">
-                                        AM
-                                    </div>
-
-                                    <div>
-
-                                        <strong>
-                                            Ama Mensah
-                                        </strong>
-
-                                        <span>
-                                            #CLI002
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <strong>
-                                    +228 91 00 00 02
-                                </strong>
-
-                                <span class="table-subtext">
-                                    ama@email.com
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                1 véhicule
-                            </td>
-
-
-                            <td>
-
-                                <strong>
-                                    18
-                                </strong>
-
-                                <span class="table-subtext">
-                                    réservations
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                04 Fév 2026
-                            </td>
-
-
-                            <td>
-
-                                <span class="status confirmed">
-                                    Actif
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="action-buttons">
-
-                                    <button class="table-action view">
-
-                                        <i class="bi bi-eye"></i>
-
-                                    </button>
-
-                                    <button class="table-action edit">
-
-                                        <i class="bi bi-pencil"></i>
-
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-
-                        <!-- CLIENT 3 -->
-
-                        <tr>
-
-                            <td>
-
-                                <div class="client-cell">
-
-                                    <div class="client-avatar">
-                                        YK
-                                    </div>
-
-                                    <div>
-
-                                        <strong>
-                                            Yao Komlan
-                                        </strong>
-
-                                        <span>
-                                            #CLI003
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <strong>
-                                    +228 92 00 00 03
-                                </strong>
-
-                                <span class="table-subtext">
-                                    yao@email.com
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                3 véhicules
-                            </td>
-
-
-                            <td>
-
-                                <strong>
-                                    31
-                                </strong>
-
-                                <span class="table-subtext">
-                                    réservations
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                21 Mars 2026
-                            </td>
-
-
-                            <td>
-
-                                <span class="status confirmed">
-                                    Actif
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="action-buttons">
-
-                                    <button class="table-action view">
-
-                                        <i class="bi bi-eye"></i>
-
-                                    </button>
-
-                                    <button class="table-action edit">
-
-                                        <i class="bi bi-pencil"></i>
-
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-
-                        <!-- CLIENT 4 -->
-
-                        <tr>
-
-                            <td>
-
-                                <div class="client-cell">
-
-                                    <div class="client-avatar">
-                                        EA
-                                    </div>
-
-                                    <div>
-
-                                        <strong>
-                                            Eyram Adjo
-                                        </strong>
-
-                                        <span>
-                                            #CLI004
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <strong>
-                                    +228 93 00 00 04
-                                </strong>
-
-                                <span class="table-subtext">
-                                    eyram@email.com
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                1 véhicule
-                            </td>
-
-
-                            <td>
-
-                                <strong>
-                                    7
-                                </strong>
-
-                                <span class="table-subtext">
-                                    réservations
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                15 Mai 2026
-                            </td>
-
-
-                            <td>
-
-                                <span class="status pending">
-                                    Inactif
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="action-buttons">
-
-                                    <button class="table-action view">
-
-                                        <i class="bi bi-eye"></i>
-
-                                    </button>
-
-                                    <button class="table-action edit">
-
-                                        <i class="bi bi-pencil"></i>
-
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-
-                        <!-- CLIENT 5 -->
-
-                        <tr>
-
-                            <td>
-
-                                <div class="client-cell">
-
-                                    <div class="client-avatar">
-                                        SD
-                                    </div>
-
-                                    <div>
-
-                                        <strong>
-                                            Sena Dodzi
-                                        </strong>
-
-                                        <span>
-                                            #CLI005
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <strong>
-                                    +228 94 00 00 05
-                                </strong>
-
-                                <span class="table-subtext">
-                                    sena@email.com
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                2 véhicules
-                            </td>
-
-
-                            <td>
-
-                                <strong>
-                                    16
-                                </strong>
-
-                                <span class="table-subtext">
-                                    réservations
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                28 Juin 2026
-                            </td>
-
-
-                            <td>
-
-                                <span class="status confirmed">
-                                    Actif
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="action-buttons">
-
-                                    <button class="table-action view">
-
-                                        <i class="bi bi-eye"></i>
-
-                                    </button>
-
-                                    <button class="table-action edit">
-
-                                        <i class="bi bi-pencil"></i>
-
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-
+                    <tbody id="clientsTableBody"></tbody>
                 </table>
-
             </div>
 
-
-
-            <!-- PAGINATION -->
-
-            <div class="reservation-pagination">
-
-                <span>
-                    Affichage de 1 à 5 sur 1 248 clients
-                </span>
-
-
-                <div>
-
-                    <button class="pagination-btn">
-
-                        <i class="bi bi-chevron-left"></i>
-
-                    </button>
-
-
-                    <button class="pagination-btn active">
-                        1
-                    </button>
-
-
-                    <button class="pagination-btn">
-                        2
-                    </button>
-
-
-                    <button class="pagination-btn">
-                        3
-                    </button>
-
-
-                    <span class="pagination-dots">
-                        ...
-                    </span>
-
-
-                    <button class="pagination-btn">
-                        250
-                    </button>
-
-
-                    <button class="pagination-btn">
-
-                        <i class="bi bi-chevron-right"></i>
-
-                    </button>
-
-                </div>
-
+            <div id="emptyState" class="empty-table d-none">
+                <i class="bi bi-people"></i>
+                <h5>Aucun client trouvé</h5>
+                <p>Aucun client ne correspond à votre recherche.</p>
             </div>
 
+            <div class="reservation-pagination" id="pagination">
+                <span id="paginationInfo">Affichage de 0 à 0 sur 0 clients</span>
+                <div id="paginationBtns"></div>
+            </div>
         </div>
 
     </div>
-
 </main>
 
 
+<!-- =====================================================
+     MODALE : AJOUTER CLIENT
+===================================================== -->
+<div class="modal fade" id="addClientModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-person-plus"></i> Nouveau client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addClientForm">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Prénom *</label>
+                            <input type="text" class="form-control" id="addPrenom" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Nom *</label>
+                            <input type="text" class="form-control" id="addNom" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Téléphone *</label>
+                            <input type="tel" class="form-control" id="addTelephone" required placeholder="+228 XX XX XX XX">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="addEmail" placeholder="client@email.com">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Statut</label>
+                            <select class="form-select" id="addStatut">
+                                <option value="active">Actif</option>
+                                <option value="inactive">Inactif</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Ajouter le client</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <!-- =====================================================
-     JAVASCRIPT
+     MODALE : VOIR CLIENT
 ===================================================== -->
+<div class="modal fade" id="viewClientModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-person"></i> Détails du client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="viewClientContent"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<script>
 
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-    const sidebar = document.getElementById("sidebar");
-    const sidebarOverlay = document.getElementById("sidebarOverlay");
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener("click", function () {
-            sidebar.classList.toggle("show");
-            if (sidebarOverlay) sidebarOverlay.classList.toggle("show");
-        });
-    }
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener("click", function () {
-            sidebar.classList.remove("show");
-            sidebarOverlay.classList.remove("show");
-        });
-    }
+<!-- =====================================================
+     MODALE : MODIFIER CLIENT
+===================================================== -->
+<div class="modal fade" id="editClientModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-pencil"></i> Modifier le client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editClientForm">
+                <input type="hidden" id="editClientId">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Prénom *</label>
+                            <input type="text" class="form-control" id="editPrenom" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Nom *</label>
+                            <input type="text" class="form-control" id="editNom" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Téléphone *</label>
+                            <input type="tel" class="form-control" id="editTelephone" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="editEmail">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Statut</label>
+                            <select class="form-select" id="editStatut">
+                                <option value="active">Actif</option>
+                                <option value="inactive">Inactif</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-</script>
 
+<!-- =====================================================
+     MODALE : SUPPRIMER CLIENT
+===================================================== -->
+<div class="modal fade" id="deleteClientModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger"><i class="bi bi-trash"></i> Supprimer le client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Voulez-vous vraiment supprimer ce client ?</p>
+                <div id="deleteClientName" class="fw-bold mb-3"></div>
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Cette action est irréversible. Toutes les données associées seront supprimées.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
+                    <i class="bi bi-trash"></i> Supprimer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- BIDE Core -->
+<script src="../js/bide.js"></script>
+<!-- Clients JS -->
+<script src="js/clients.js"></script>
 
 </body>
-
 </html>
