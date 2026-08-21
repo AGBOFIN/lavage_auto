@@ -370,20 +370,5 @@ body {
 
     .summary-total strong {
         font-size: 20px;
-    }
-}    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-    width: 42px;
-
-.step span {
-    align-items: center;
-    color: #9CA3AF;
-    position: relative;
-    gap: 80px;
-}
-
-    display: flex;
+    }}
 

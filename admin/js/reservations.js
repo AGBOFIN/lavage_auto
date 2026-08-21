@@ -476,9 +476,17 @@
     ===================================================== */
     var mobileMenuBtn = document.getElementById('mobileMenuBtn');
     var sidebar = document.getElementById('sidebar');
+    var sidebarOverlay = document.getElementById('sidebarOverlay');
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', function() {
             sidebar.classList.toggle('show');
+            if (sidebarOverlay) sidebarOverlay.classList.toggle('show');
+        });
+    }
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', function() {
+            sidebar.classList.remove('show');
+            sidebarOverlay.classList.remove('show');
         });
     }
     

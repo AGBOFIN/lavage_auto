@@ -49,16 +49,10 @@
 
 
     <div class="sidebar-logo">
-
         <a href="dashboard.html"><img src="../images/bide-wash-logo-no-bg.png" alt="BIDÈ" style="height:42px;width:auto;object-fit:contain"></a>
-        </div>
-
-
     </div>
 
-
     <!-- MENU -->
-
     <div class="sidebar-menu">
 
         <p class="menu-title">
@@ -160,16 +154,22 @@
                 3
             </span>
 
-        </a>
-
-
-        <a href="avis.html"
-           class="menu-link">
+        </a>        <a href="avis.html" class="menu-link">
 
             <i class="bi bi-star"></i>
 
             <span>
                 Avis clients
+            </span>
+
+        </a>
+
+        <a href="employes.html" class="menu-link">
+
+            <i class="bi bi-person-badge"></i>
+
+            <span>
+                Employés
             </span>
 
         </a>
@@ -221,10 +221,9 @@
 
         </a>
 
-    </div>
+    </div></aside>
 
-</aside>
-
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 
 <!-- =====================================================
@@ -1189,23 +1188,21 @@
      JAVASCRIPT
 ===================================================== -->
 
-<script>
-
-    const mobileMenuBtn =
-        document.getElementById("mobileMenuBtn");
-
-    const sidebar =
-        document.getElementById("sidebar");
-
-
-    mobileMenuBtn.addEventListener(
-        "click",
-        function () {
-
+<script>    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarOverlay = document.getElementById("sidebarOverlay");
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener("click", function () {
             sidebar.classList.toggle("show");
-
-        }
-    );
+            if (sidebarOverlay) sidebarOverlay.classList.toggle("show");
+        });
+    }
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener("click", function () {
+            sidebar.classList.remove("show");
+            sidebarOverlay.classList.remove("show");
+        });
+    }
 
 </script>
 
