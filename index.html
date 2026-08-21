@@ -47,8 +47,15 @@
     <!-- ======================== -->
     <!-- 1. HERO / ACCUEIL        -->
     <!-- ======================== -->
-    <section class="hero" id="accueil" style="background-image: url('https://res.cloudinary.com/g36grm5h/image/upload/v1787151019/ChatGPT_Image_19_ao%C3%BBt_2026_14_50_01_gmjr2z.png');">
+    <section class="hero" id="accueil">
+        <video class="hero-video" autoplay muted loop playsinline poster="https://res.cloudinary.com/g36grm5h/image/upload/v1787151019/ChatGPT_Image_19_ao%C3%BBt_2026_14_50_01_gmjr2z.png">
+            <source src="https://res.cloudinary.com/g36grm5h/video/upload/v1787318551/WhatsApp_Video_2026-08-21_at_11.34.10_wd4bkj.mp4" type="video/mp4">
+        </video>
         <div class="hero-overlay"></div>
+        <!-- Bouton Play/Pause -->
+        <button class="hero-video-toggle" id="heroVideoToggle" aria-label="Play / Pause la vidéo">
+            <i class="bi bi-pause-fill" id="heroVideoIcon"></i>
+        </button>
         <div class="container">
             <div class="row">
                 <div class="col-lg-7">
@@ -880,6 +887,65 @@
             setTimeout(function() { document.getElementById('contactSuccess').style.display = 'none'; }, 5000);
         });
 
+        // ===== HERO VIDEO: Play / Pause + Parallax + Mobile =====
+        (function() {
+            var heroVideo = document.querySelector('.hero-video');
+            var toggleBtn = document.getElementById('heroVideoToggle');
+            var toggleIcon = document.getElementById('heroVideoIcon');
+            var heroSection = document.getElementById('accueil');
+            if (!heroVideo || !toggleBtn) return;
+
+            // --- Play / Pause ---
+            var isPlaying = true;
+            toggleBtn.addEventListener('click', function() {
+                if (heroVideo.paused) {
+                    heroVideo.play();
+                    isPlaying = true;
+                    toggleIcon.className = 'bi bi-pause-fill';
+                } else {
+                    heroVideo.pause();
+                    isPlaying = false;
+                    toggleIcon.className = 'bi bi-play-fill';
+                }
+            });
+
+            // --- Parallaxe au scroll ---
+            var ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        var scrollY = window.pageYOffset;
+                        var heroHeight = heroSection.offsetHeight;
+                        if (scrollY < heroHeight * 1.5) {
+                            heroVideo.style.transform = 'translateY(' + (scrollY * 0.3) + 'px)';
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            // --- Mobile : vitesse de lecture réduite + qualité auto ---
+            var isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                heroVideo.playbackRate = 0.75;
+                // Forcer le poster sur mobile si la connexion est lente
+                if (navigator.connection && navigator.connection.saveData) {
+                    heroVideo.pause();
+                    heroVideo.removeAttribute('autoplay');
+                    heroVideo.load();
+                }
+            }
+
+            // --- Auto-play visibility : pause quand l'onglet est caché ---
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    heroVideo.pause();
+                } else if (isPlaying) {
+                    heroVideo.play();
+                }
+            });
+        })();
 
     </script>
 </body>

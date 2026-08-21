@@ -99,8 +99,13 @@ p{font-size:var(--fs-body);color:var(--color-text-light);line-height:1.7}
 .card-bide .card-text{color:var(--color-text-light);font-size:var(--fs-small)}
 
 /* ======================== HERO ======================== */
-.hero{min-height:90vh;display:flex;align-items:center;position:relative;background-size:cover;background-position:center;background-repeat:no-repeat;padding-top:var(--navbar-height)}
+.hero{min-height:90vh;display:flex;align-items:center;position:relative;background:#0f2540;padding-top:var(--navbar-height);overflow:hidden}
+.hero-video{position:absolute;inset:0;width:100%;height:115%;object-fit:cover;z-index:0;transition:transform 0.1s linear}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,37,64,0.92),rgba(26,58,92,0.85));z-index:1}
+/* Bouton Play/Pause */
+.hero-video-toggle{position:absolute;bottom:30px;right:30px;z-index:3;width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.35);backdrop-filter:blur(8px);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease}
+.hero-video-toggle:hover{background:var(--color-blue);border-color:var(--color-blue);transform:scale(1.1)}
+.hero-video-toggle:active{transform:scale(0.95)}
 .hero-content{position:relative;z-index:2;color:var(--color-white)}
 .hero-content h1{font-size:var(--fs-hero);font-weight:800;color:var(--color-white);margin-bottom:20px;line-height:1.1}
 .hero-content h1 span{color:var(--color-blue-light)}
@@ -292,6 +297,7 @@ p{font-size:var(--fs-body);color:var(--color-text-light);line-height:1.7}
 @media(max-width:767.98px){
     :root{--fs-hero:2rem;--fs-h1:1.8rem;--fs-h2:1.6rem;--fs-h3:1.2rem;--section-padding:50px 0;--navbar-height:70px}
     .hero{min-height:80vh;text-align:center}
+    .hero-video-toggle{bottom:15px;right:15px;width:40px;height:40px;font-size:1rem}
     .hero-content p{font-size:1rem}
     .hero-buttons{justify-content:center}
     .section-title{margin-bottom:35px}
