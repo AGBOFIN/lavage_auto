@@ -56,29 +56,65 @@
        CHARGER LES VÉHICULES DYNAMIQUEMENT
     ===================================================== */
     function loadVehicles() {
-        var requests = BIDE.getRequests();
         var select = document.getElementById('reservationVehicle');
         if (!select) return;
         
         var currentValue = select.value;
         select.innerHTML = '<option value="">Sélectionner un véhicule</option>';
         
-        // Créer une liste unique de véhicules
+        // Collect vehicles from multiple sources
         var vehicles = {};
-        requests.forEach(function(r) {
-            var key = r.marque + ' ' + r.modele;
-            if (!vehicles[key]) {
-                vehicles[key] = {
-                    marque: r.marque,
-                    modele: r.modele,
-                    immatriculation: r.immatriculation
+        
+        // 1. From bide_vehicles (primary source)
+        var storedVehicles = [];
+        try { storedVehicles = JSON.parse(localStorage.getItem('bide_vehicles')) || []; } catch(e) {}
+        storedVehicles.forEach(function(v) {
+            if (v.immatriculation) {
+                vehicles[v.immatriculation] = {
+                    marque: v.marque || '',
+                    modele: v.modele || '',
+                    immatriculation: v.immatriculation,
+                    couleur: v.couleur || ''
                 };
             }
         });
         
-        Object.values(vehicles).forEach(function(v) {
+        // 2. From bide_requests (fallback)
+        var requests = BIDE.getRequests();
+        requests.forEach(function(r) {
+            if (r.immatriculation && !vehicles[r.immatriculation]) {
+                vehicles[r.immatriculation] = {
+                    marque: r.marque || '',
+                    modele: r.modele || '',
+                    immatriculation: r.immatriculation,
+                    couleur: r.couleur || ''
+                };
+            }
+        });
+        
+        // 3. Seed default vehicles if empty
+        var vehicleList = Object.values(vehicles);
+        if (vehicleList.length === 0) {
+            vehicleList = [
+                { marque: 'Toyota', modele: 'Corolla', immatriculation: 'TG-1234-AA', couleur: 'Blanc' },
+                { marque: 'Hyundai', modele: 'Tucson', immatriculation: 'TG-5678-BB', couleur: 'Gris' },
+                { marque: 'Mercedes', modele: 'Classe C', immatriculation: 'TG-9012-CC', couleur: 'Noir' },
+                { marque: 'Peugeot', modele: '308', immatriculation: 'TG-3456-DD', couleur: 'Bleu' },
+                { marque: 'Renault', modele: 'Clio', immatriculation: 'TG-7890-EE', couleur: 'Rouge' }
+            ];
+            // Save seed vehicles
+            var seedToStore = vehicleList.map(function(v) {
+                return { id: 'VEH' + Math.floor(1000 + Math.random() * 9000), marque: v.marque, modele: v.modele, immatriculation: v.immatriculation, couleur: v.couleur, dateAjout: new Date().toISOString() };
+            });
+            localStorage.setItem('bide_vehicles', JSON.stringify(seedToStore));
+        }
+        
+        vehicleList.forEach(function(v) {
             var opt = el('option', { value: v.immatriculation });
-            opt.textContent = v.marque + ' ' + v.modele + ' (' + v.immatriculation + ')';
+            var label = v.marque + ' ' + v.modele;
+            if (v.couleur) label += ' — ' + v.couleur;
+            label += ' (' + v.immatriculation + ')';
+            opt.textContent = label;
             select.appendChild(opt);
         });
         
@@ -464,7 +500,7 @@
        SYNCHRONISATION TEMPS RÉEL
     ===================================================== */
     BIDE.onSync(function(key) {
-        if (key === 'bide_requests' || key === 'bide_clients') {
+        if (key === 'bide_requests' || key === 'bide_clients' || key === 'bide_vehicles') {
             loadReservations();
             loadClients();
             loadVehicles();

@@ -673,6 +673,17 @@
                 </a>
 
 
+                <!-- NOTIFICATIONS -->
+
+                <a href="notifications.html">
+
+                    <i class="bi bi-bell"></i>
+
+                    Notifications
+
+                </a>
+
+
                 <!-- AVIS -->
 
                 <a href="avis.html">
@@ -1376,6 +1387,18 @@
 
     <script src="js/factures.js"></script>
     <script>
+        /* === DECONNEXION === */
+        function deconnexion() {
+            localStorage.removeItem('bide_session');
+            window.location.href = 'deconnexion.html';
+        }
+
+        /* === IMPRIMER FACTURE === */
+        function imprimerFacture() {
+            window.print();
+        }
+
+        /* === SIDEBAR MOBILE === */
         (function() {
             var btn = document.getElementById('mobileMenuBtn');
             var sidebar = document.getElementById('sidebar');

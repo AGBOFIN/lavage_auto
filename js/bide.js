@@ -111,6 +111,24 @@ var BIDE = (function () {
         setStore('bide_requests', requests);
         setStore('bide_clients', clients);
 
+        // Also store vehicle in bide_vehicles for dropdown population
+        var vehicles = getStore('bide_vehicles');
+        var vehExists = vehicles.find(function(v) {
+            return v.immatriculation === data.immatriculation;
+        });
+        if (!vehExists && data.immatriculation) {
+            vehicles.push({
+                id: generateId('VEH'),
+                marque: data.marque || '',
+                modele: data.modele || '',
+                immatriculation: data.immatriculation || '',
+                couleur: data.couleur || '',
+                clientId: request.clientId,
+                dateAjout: now()
+            });
+            setStore('bide_vehicles', vehicles);
+        }
+
         return request;
     }
 
