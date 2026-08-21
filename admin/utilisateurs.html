@@ -363,6 +363,7 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/bide.js"></script>
 
 <!-- Modal Voir Admin -->
 <div class="modal fade" id="viewAdminModal" tabindex="-1">
@@ -389,6 +390,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="editAdminRowIndex">
                 <div class="mb-3">
                     <label class="form-label">Nom complet</label>
                     <input type="text" class="form-control" id="editAdminName">
@@ -404,8 +406,8 @@
                 <div class="mb-3">
                     <label class="form-label">Rôle</label>
                     <select class="form-select" id="editAdminRole">
-                        <option>Super Admin</option>
-                        <option>Admin</option>
+                        <option value="Super Admin">Super Admin</option>
+                        <option value="Admin">Admin</option>
                     </select>
                 </div>
             </div>
@@ -424,53 +426,108 @@
     if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', function() { sidebar.classList.toggle('show'); if (sidebarOverlay) sidebarOverlay.classList.toggle('show'); });
     if (sidebarOverlay) sidebarOverlay.addEventListener('click', function() { sidebar.classList.remove('show'); sidebarOverlay.classList.remove('show'); });
 
-    /* === VIEW ADMIN === */
-    document.querySelector('.reservation-table tbody').addEventListener('click', function(e) {
-        var viewBtn = e.target.closest('.table-action.view');
-        var editBtn = e.target.closest('.table-action.edit');
-        if (viewBtn) {
-            var row = viewBtn.closest('tr');
-            if (!row) return;
-            var cells = row.querySelectorAll('td');
-            var name = cells[0] ? cells[0].querySelector('strong').textContent : '';
-            var contact = cells[1] ? cells[1].textContent.trim() : '';
-            var role = cells[2] ? cells[2].textContent.trim() : '';
-            var lastLogin = cells[3] ? cells[3].textContent.trim() : '';
-            var status = cells[4] ? cells[4].textContent.trim() : '';
-            var initials = name.split(' ').map(function(w){return w[0]}).join('').substring(0,2).toUpperCase();
-            document.getElementById('viewAdminContent').innerHTML =
-                '<div style="text-align:center;margin-bottom:20px">'
-                + '<div style="width:60px;height:60px;border-radius:50%;background:#EAF2FF;color:#2563EB;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;margin:0 auto 10px">' + initials + '</div>'
-                + '<h5 style="margin:0">' + name + '</h5>'
-                + '<span style="color:#6B7280;font-size:12px">' + role + '</span>'
-                + '</div>'
-                + '<div style="background:#F8FAFC;border-radius:10px;padding:15px">'
-                + '<p style="margin:6px 0;font-size:13px"><strong>Email :</strong> ' + contact.split('\n')[1] + '</p>'
-                + '<p style="margin:6px 0;font-size:13px"><strong>Téléphone :</strong> ' + contact.split('\n')[0] + '</p>'
-                + '<p style="margin:6px 0;font-size:13px"><strong>Dernière connexion :</strong> ' + lastLogin + '</p>'
-                + '<p style="margin:6px 0;font-size:13px"><strong>Statut :</strong> ' + status + '</p>'
-                + '</div>';
-            new bootstrap.Modal(document.getElementById('viewAdminModal')).show();
-        }
-        if (editBtn) {
-            var row = editBtn.closest('tr');
-            if (!row) return;
-            var cells = row.querySelectorAll('td');
-            var name = cells[0] ? cells[0].querySelector('strong').textContent : '';
-            var contact = cells[1] ? cells[1].textContent.trim() : '';
-            var lines = contact.split('\n');
-            document.getElementById('editAdminName').value = name;
-            document.getElementById('editAdminPhone').value = lines[0] || '';
-            document.getElementById('editAdminEmail').value = lines[1] || '';
-            document.getElementById('editAdminRole').value = cells[2] ? cells[2].textContent.trim() : 'Admin';
-            new bootstrap.Modal(document.getElementById('editAdminModal')).show();
-        }
-    });
+    var currentEditRow = null;
 
-    document.getElementById('saveAdminBtn').addEventListener('click', function() {
-        bootstrap.Modal.getInstance(document.getElementById('editAdminModal')).hide();
-        BIDE.toast('Administrateur modifié avec succès !', 'success');
-    });
+    /* === VIEW & EDIT ADMIN === */
+    var tbody = document.querySelector('.reservation-table tbody');
+    if (tbody) {
+        tbody.addEventListener('click', function(e) {
+            var viewBtn = e.target.closest('.table-action.view');
+            var editBtn = e.target.closest('.table-action.edit');
+            if (viewBtn) {
+                var row = viewBtn.closest('tr');
+                if (!row) return;
+                var cells = row.querySelectorAll('td');
+                var nameEl = cells[0] ? cells[0].querySelector('strong') : null;
+                var name = nameEl ? nameEl.textContent.trim() : '';
+                var phoneEl = cells[1] ? cells[1].querySelector('strong') : null;
+                var emailEl = cells[1] ? cells[1].querySelector('.table-subtext') : null;
+                var phone = phoneEl ? phoneEl.textContent.trim() : '';
+                var email = emailEl ? emailEl.textContent.trim() : '';
+                var roleEl = cells[2] ? cells[2].querySelector('.status') || cells[2] : null;
+                var role = roleEl ? roleEl.textContent.trim() : 'Admin';
+                var lastLogin = cells[3] ? cells[3].textContent.trim() : '';
+                var statusEl = cells[4] ? cells[4].querySelector('.status') || cells[4] : null;
+                var status = statusEl ? statusEl.textContent.trim() : 'Actif';
+                var initials = name.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2).toUpperCase();
+
+                document.getElementById('viewAdminContent').innerHTML =
+                    '<div style="text-align:center;margin-bottom:20px">'
+                    + '<div style="width:60px;height:60px;border-radius:50%;background:#EAF2FF;color:#2563EB;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;margin:0 auto 10px">' + initials + '</div>'
+                    + '<h5 style="margin:0">' + escH(name) + '</h5>'
+                    + '<span style="color:#6B7280;font-size:12px">' + escH(role) + '</span>'
+                    + '</div>'
+                    + '<div style="background:#F8FAFC;border-radius:10px;padding:15px">'
+                    + '<p style="margin:6px 0;font-size:13px"><strong>Email :</strong> ' + escH(email || '—') + '</p>'
+                    + '<p style="margin:6px 0;font-size:13px"><strong>Téléphone :</strong> ' + escH(phone || '—') + '</p>'
+                    + '<p style="margin:6px 0;font-size:13px"><strong>Dernière connexion :</strong> ' + escH(lastLogin) + '</p>'
+                    + '<p style="margin:6px 0;font-size:13px"><strong>Statut :</strong> ' + escH(status) + '</p>'
+                    + '</div>';
+                new bootstrap.Modal(document.getElementById('viewAdminModal')).show();
+            }
+            if (editBtn) {
+                var row = editBtn.closest('tr');
+                if (!row) return;
+                currentEditRow = row;
+                var cells = row.querySelectorAll('td');
+                var nameEl = cells[0] ? cells[0].querySelector('strong') : null;
+                var phoneEl = cells[1] ? cells[1].querySelector('strong') : null;
+                var emailEl = cells[1] ? cells[1].querySelector('.table-subtext') : null;
+                var roleEl = cells[2] ? cells[2].querySelector('.status') || cells[2] : null;
+
+                document.getElementById('editAdminName').value = nameEl ? nameEl.textContent.trim() : '';
+                document.getElementById('editAdminPhone').value = phoneEl ? phoneEl.textContent.trim() : '';
+                document.getElementById('editAdminEmail').value = emailEl ? emailEl.textContent.trim() : '';
+                document.getElementById('editAdminRole').value = (roleEl && roleEl.textContent.trim().indexOf('Super') >= 0) ? 'Super Admin' : 'Admin';
+                new bootstrap.Modal(document.getElementById('editAdminModal')).show();
+            }
+        });
+    }
+
+    function escH(s) {
+        var d = document.createElement('div');
+        d.textContent = s || '';
+        return d.innerHTML;
+    }
+
+    var saveBtn = document.getElementById('saveAdminBtn');
+    if (saveBtn) {
+        saveBtn.addEventListener('click', function() {
+            var name = document.getElementById('editAdminName').value.trim();
+            var phone = document.getElementById('editAdminPhone').value.trim();
+            var email = document.getElementById('editAdminEmail').value.trim();
+            var role = document.getElementById('editAdminRole').value;
+
+            if (currentEditRow) {
+                var cells = currentEditRow.querySelectorAll('td');
+                if (cells[0]) {
+                    var str = cells[0].querySelector('strong');
+                    var av = cells[0].querySelector('.client-avatar');
+                    if (str) str.textContent = name;
+                    if (av) av.textContent = name.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2).toUpperCase();
+                }
+                if (cells[1]) {
+                    var ph = cells[1].querySelector('strong');
+                    var em = cells[1].querySelector('.table-subtext');
+                    if (ph) ph.textContent = phone;
+                    if (em) em.textContent = email;
+                }
+                if (cells[2]) {
+                    var st = cells[2].querySelector('.status');
+                    if (st) {
+                        st.textContent = role;
+                        st.className = 'status ' + (role === 'Super Admin' ? 'confirmed' : 'pending');
+                    }
+                }
+            }
+
+            var modalEl = document.getElementById('editAdminModal');
+            var bsModal = bootstrap.Modal.getInstance(modalEl);
+            if (bsModal) bsModal.hide();
+
+            BIDE.toast('Administrateur modifié avec succès !', 'success');
+        });
+    }
 </script>
 
 </body>

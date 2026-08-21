@@ -1210,43 +1210,209 @@
             setTimeout(function(){t.remove();},3000);
         }
 
+        var isEditingProfile = false;
         function modifierProfil() {
-            showToast('Mode modification activé. Modifiez vos champs puis enregistrez.', 'info');
-            document.querySelectorAll('.info-value').forEach(function(el) {
-                el.contentEditable = 'true';
-                el.style.background = '#eef5ff';
-                el.style.borderRadius = '4px';
-                el.style.padding = '2px 6px';
-            });
+            var nomEl = document.getElementById('profilNom');
+            var dateEl = document.getElementById('profilDate');
+            var telEl = document.getElementById('profilTel');
+            var emailEl = document.getElementById('profilEmail');
+            var btn = document.querySelector('.btn-edit-profile');
+
+            if (!isEditingProfile) {
+                isEditingProfile = true;
+                if (btn) btn.innerHTML = '<i class="bi bi-check-lg"></i> Enregistrer';
+                showToast('Mode modification activé. Modifiez vos informations puis cliquez sur Enregistrer.', 'info');
+                [nomEl, dateEl, telEl, emailEl].forEach(function(el) {
+                    if (el) {
+                        el.contentEditable = 'true';
+                        el.style.background = '#eef5ff';
+                        el.style.borderRadius = '6px';
+                        el.style.padding = '4px 8px';
+                        el.style.border = '1px dashed #0066e6';
+                    }
+                });
+            } else {
+                isEditingProfile = false;
+                if (btn) btn.innerHTML = '<i class="bi bi-pencil"></i> Modifier';
+                var fullNom = nomEl ? nomEl.textContent.trim() : '';
+                var dateN = dateEl ? dateEl.textContent.trim() : '';
+                var tel = telEl ? telEl.textContent.trim() : '';
+                var em = emailEl ? emailEl.textContent.trim() : '';
+
+                var nameParts = fullNom.split(' ');
+                var nom = nameParts[0] || '';
+                var prenom = nameParts.slice(1).join(' ') || '';
+
+                var session = BIDE.getSession() || {};
+                session.nom = nom;
+                session.prenom = prenom;
+                session.telephone = tel;
+                session.email = em;
+                session.dateNaissance = dateN;
+                BIDE.setSession(session);
+
+                // Also update in bide_users if exists
+                var users = [];
+                try { users = JSON.parse(localStorage.getItem('bide_users')) || []; } catch(e) {}
+                var u = users.find(function(usr) { return usr.email === em || usr.telephone === tel; });
+                if (u) {
+                    u.nom = nom;
+                    u.prenom = prenom;
+                    u.telephone = tel;
+                    u.email = em;
+                    u.dateNaissance = dateN;
+                    localStorage.setItem('bide_users', JSON.stringify(users));
+                }
+
+                [nomEl, dateEl, telEl, emailEl].forEach(function(el) {
+                    if (el) {
+                        el.contentEditable = 'false';
+                        el.style.background = '';
+                        el.style.borderRadius = '';
+                        el.style.padding = '';
+                        el.style.border = '';
+                    }
+                });
+                showToast('Profil mis à jour avec succès !', 'success');
+            }
         }
 
         function ajouterVehicule() {
+            var existingModal = document.getElementById('addVehicleModalForm');
+            if (existingModal) existingModal.remove();
+
             var form = document.createElement('div');
-            form.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:99999;background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,0.15);width:300px;font-family:Nunito,sans-serif;';
-            form.innerHTML = '<h4 style="margin:0 0 12px;font-size:15px;">Ajouter un véhicule</h4>' +
-                '<input type="text" placeholder="Marque (ex: Toyota)" style="width:100%;padding:8px 12px;border:1px solid #e2e8f0;border-radius:6px;margin-bottom:8px;font-size:13px;" id="newVehicleName">' +
-                '<input type="text" placeholder="Immatriculation" style="width:100%;padding:8px 12px;border:1px solid #e2e8f0;border-radius:6px;margin-bottom:8px;font-size:13px;" id="newVehiclePlate">' +
-                '<input type="text" placeholder="Couleur" style="width:100%;padding:8px 12px;border:1px solid #e2e8f0;border-radius:6px;margin-bottom:12px;font-size:13px;" id="newVehicleColor">' +
+            form.id = 'addVehicleModalForm';
+            form.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:99999;background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,0.15);width:320px;font-family:Nunito,sans-serif;';
+            form.innerHTML = '<h4 style="margin:0 0 12px;font-size:15px;font-weight:700;"><i class="bi bi-car-front"></i> Ajouter un véhicule</h4>' +
+                '<input type="text" placeholder="Marque & Modèle (ex: Toyota Corolla)" style="width:100%;padding:8px 12px;border:1px solid #e2e8f0;border-radius:6px;margin-bottom:8px;font-size:13px;" id="newVehicleName">' +
+                '<input type="text" placeholder="Immatriculation (ex: TG-1234-AA)" style="width:100%;padding:8px 12px;border:1px solid #e2e8f0;border-radius:6px;margin-bottom:8px;font-size:13px;" id="newVehiclePlate">' +
+                '<input type="text" placeholder="Couleur (ex: Noir)" style="width:100%;padding:8px 12px;border:1px solid #e2e8f0;border-radius:6px;margin-bottom:12px;font-size:13px;" id="newVehicleColor">' +
                 '<button onclick="validerVehicule()" style="width:100%;padding:10px;background:#0066e6;color:white;border:none;border-radius:6px;font-weight:700;font-size:13px;cursor:pointer;">Ajouter</button>' +
                 '<button onclick="this.parentNode.remove()" style="width:100%;padding:8px;background:white;border:1px solid #e2e8f0;border-radius:6px;font-size:12px;cursor:pointer;margin-top:6px;">Annuler</button>';
             document.body.appendChild(form);
         }
 
         function validerVehicule() {
-            var name = document.getElementById('newVehicleName').value;
-            var plate = document.getElementById('newVehiclePlate').value;
-            var color = document.getElementById('newVehicleColor').value;
-            if (!name || !plate) { showToast('Remplissez la marque et l\'immatriculation.', 'warning'); return; }
-            document.querySelector('.add-vehicle').parentNode.removeChild(document.querySelector('.add-vehicle').previousElementSibling);
-            document.querySelector('.add-vehicle').previousElementSibling;
-            var vehicleDiv = document.createElement('div');
-            vehicleDiv.className = 'vehicle';
-            vehicleDiv.innerHTML = '<div class="vehicle-left"><div class="vehicle-image"><i class="bi bi-car-front"></i></div><div><div class="vehicle-name">'+name+'</div><div class="vehicle-details">'+plate+' • '+color+'</div></div></div><div><span class="vehicle-status">Actif</span></div>';
-            var container = document.querySelector('.vehicle').parentNode;
-            container.insertBefore(vehicleDiv, container.lastElementChild);
-            document.querySelector('[onclick="ajouterVehicule()"]').previousElementSibling?.remove();
-            showToast(name + ' ajouté avec succès !', 'success');
-            document.querySelector('div[style*="position:fixed;bottom"]')?.remove();
+            var name = document.getElementById('newVehicleName').value.trim();
+            var plate = document.getElementById('newVehiclePlate').value.trim();
+            var color = document.getElementById('newVehicleColor').value.trim();
+            if (!name || !plate) { showToast('Veuillez renseigner la marque et l\'immatriculation.', 'warning'); return; }
+
+            var session = BIDE.getSession() || {};
+            var parts = name.split(' ');
+            var marque = parts[0] || name;
+            var modele = parts.slice(1).join(' ') || '';
+
+            // Store in bide_vehicles
+            var vehicles = [];
+            try { vehicles = JSON.parse(localStorage.getItem('bide_vehicles')) || []; } catch(e) {}
+            var newVeh = {
+                id: BIDE.generateId('VEH'),
+                marque: marque,
+                modele: modele,
+                immatriculation: plate,
+                couleur: color,
+                clientId: session.clientId || null,
+                clientNom: (session.prenom ? session.prenom + ' ' + session.nom : session.nom) || 'Client',
+                dateAjout: new Date().toISOString()
+            };
+            vehicles.push(newVeh);
+            localStorage.setItem('bide_vehicles', JSON.stringify(vehicles));
+
+            // Remove modal
+            var form = document.getElementById('addVehicleModalForm');
+            if (form) form.remove();
+
+            // Refresh vehicles on profile
+            loadProfileVehicles();
+            showToast('Véhicule ' + name + ' ajouté avec succès !', 'success');
+        }
+
+        function loadProfileVehicles() {
+            var session = BIDE.getSession();
+            if (!session) return;
+
+            var email = session.email || '';
+            var telephone = session.telephone || '';
+
+            var requests = BIDE.getRequests();
+            var invoices = BIDE.getInvoices();
+            var myReqs = requests.filter(function(r) {
+                var matchEmail = email && r.email && r.email.toLowerCase() === email.toLowerCase();
+                var matchTel = telephone && r.telephone && r.telephone.replace(/\s+/g, '') === telephone.replace(/\s+/g, '');
+                return matchEmail || matchTel;
+            });
+            var myInvoices = invoices.filter(function(i) {
+                var matchEmail = email && i.email && i.email.toLowerCase() === email.toLowerCase();
+                var matchTel = telephone && i.telephone && i.telephone.replace(/\s+/g, '') === telephone.replace(/\s+/g, '');
+                return matchEmail || matchTel;
+            });
+
+            // Also check bide_vehicles
+            var storedVehicles = [];
+            try { storedVehicles = JSON.parse(localStorage.getItem('bide_vehicles')) || []; } catch(e) {}
+            var userVehicles = [];
+
+            myReqs.forEach(function(r) {
+                if (r.immatriculation && !userVehicles.find(function(v){ return v.immatriculation === r.immatriculation; })) {
+                    userVehicles.push({ marque: r.marque, modele: r.modele, immatriculation: r.immatriculation, couleur: r.couleur, statut: r.statut });
+                }
+            });
+            storedVehicles.forEach(function(v) {
+                if (v.immatriculation && !userVehicles.find(function(uv){ return uv.immatriculation === v.immatriculation; })) {
+                    userVehicles.push({ marque: v.marque, modele: v.modele, immatriculation: v.immatriculation, couleur: v.couleur, statut: 'actif' });
+                }
+            });
+
+            var statVehicles = document.getElementById('statVehicles');
+            if (statVehicles) statVehicles.textContent = userVehicles.length;
+
+            var statFactures = document.querySelector('.profile-stat strong');
+            if (statFactures) statFactures.textContent = myInvoices.length;
+
+            // Reviews stat
+            var avisList = [];
+            try { avisList = JSON.parse(localStorage.getItem('bide_avis')) || []; } catch(e) {}
+            var myAvis = avisList.filter(function(a) {
+                return (session.nom && a.client && a.client.toLowerCase().includes(session.nom.toLowerCase()));
+            });
+            var statReviews = document.getElementById('statReviews');
+            if (statReviews) statReviews.textContent = myAvis.length;
+
+            // Render vehicles list
+            var addBtn = document.querySelector('.add-vehicle');
+            if (addBtn && addBtn.parentNode) {
+                var card = addBtn.parentNode;
+                // Remove all existing .vehicle divs
+                card.querySelectorAll('.vehicle').forEach(function(el) { el.remove(); });
+
+                if (userVehicles.length > 0) {
+                    userVehicles.forEach(function(v) {
+                        var vDiv = document.createElement('div');
+                        vDiv.className = 'vehicle';
+                        var stLabel = v.statut === 'terminee' ? 'Terminé' : v.statut === 'en_cours' ? 'En cours' : 'Actif';
+                        vDiv.innerHTML = '<div class="vehicle-left">' +
+                            '<div class="vehicle-image"><i class="bi bi-car-front"></i></div>' +
+                            '<div><div class="vehicle-name">' + esc(v.marque + ' ' + v.modele) + '</div>' +
+                            '<div class="vehicle-details">' + esc(v.immatriculation) + (v.couleur ? ' • ' + esc(v.couleur) : '') + '</div></div>' +
+                            '</div>' +
+                            '<div><span class="vehicle-status">' + stLabel + '</span></div>';
+                        card.insertBefore(vDiv, addBtn);
+                    });
+                } else {
+                    var emptyDiv = document.createElement('div');
+                    emptyDiv.className = 'vehicle';
+                    emptyDiv.innerHTML = '<div class="vehicle-left"><div class="vehicle-image"><i class="bi bi-car-front"></i></div><div><div class="vehicle-name">Aucun véhicule</div><div class="vehicle-details">Ajoutez votre premier véhicule</div></div></div>';
+                    card.insertBefore(emptyDiv, addBtn);
+                }
+            }
+        }
+
+        function esc(s) {
+            var d = document.createElement('div');
+            d.textContent = s || '';
+            return d.innerHTML;
         }
 
         // Charger photo de profil
@@ -1290,51 +1456,11 @@
     <script src="../js/session.js"></script>
 
     <script>
-    /* ===== CHARGEMENT DYNAMIQUE DU PROFIL ===== */
-    (function() {
-        var session = BIDE.getSession();
-        if (!session) return;
-
-        var email = session.email || '';
-        var telephone = session.telephone || '';
-
-        // Stats
-        var requests = BIDE.getRequests();
-        var invoices = BIDE.getInvoices();
-        var myReqs = requests.filter(function(r) {
-            return r.email === email || r.telephone === telephone;
-        });
-        var myInvoices = invoices.filter(function(i) {
-            return i.email === email || i.telephone === telephone;
-        });
-        var statVehicles = document.getElementById('statVehicles');
-        if (statVehicles) statVehicles.textContent = myReqs.length;
-
-        // Factures stat
-        var statFactures = document.querySelector('.profile-stat strong');
-        if (statFactures) statFactures.textContent = myInvoices.length;
-
-        // Vehicle list
-        var vehicleContainer = document.querySelector('.card .vehicle');
-        if (vehicleContainer && vehicleContainer.parentNode) {
-            var container = vehicleContainer.parentNode;
-            // Remove placeholder
-            vehicleContainer.remove();
-            if (myReqs.length > 0) {
-                myReqs.forEach(function(r) {
-                    var vDiv = document.createElement('div');
-                    vDiv.className = 'vehicle';
-                    vDiv.innerHTML = '<div class="vehicle-left"><div class="vehicle-image"><i class="bi bi-car-front"></i></div><div><div class="vehicle-name">' + r.marque + ' ' + r.modele + '</div><div class="vehicle-details">' + r.immatriculation + ' \u2022 ' + (r.couleur || '') + '</div></div></div><div><span class="vehicle-status">' + (r.statut === 'terminee' ? 'Terminé' : r.statut === 'en_cours' ? 'En cours' : 'Actif') + '</span></div>';
-                    container.insertBefore(vDiv, container.querySelector('.add-vehicle'));
-                });
-            } else {
-                var emptyDiv = document.createElement('div');
-                emptyDiv.className = 'vehicle';
-                emptyDiv.innerHTML = '<div class="vehicle-left"><div class="vehicle-image"><i class="bi bi-car-front"></i></div><div><div class="vehicle-name">Aucun véhicule</div><div class="vehicle-details">Ajoutez votre premier véhicule</div></div></div>';
-                container.insertBefore(emptyDiv, container.querySelector('.add-vehicle'));
-            }
-        }
-    })();
+    /* ===== INITIALISATION DYNAMIQUE DU PROFIL ===== */
+    loadProfileVehicles();
+    BIDE.onSync(function(key) {
+        if (key === 'bide_requests' || key === 'bide_vehicles') loadProfileVehicles();
+    });
     </script>
 </body>
 

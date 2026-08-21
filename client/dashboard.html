@@ -863,7 +863,9 @@
             var list = document.getElementById('myRequestsList');
             if (!session) { list.innerHTML = '<p class="text-muted text-center">Connectez-vous pour voir vos demandes.</p>'; return; }
             var myReqs = requests.filter(function(r) {
-                return r.email === session.email || r.telephone === (session.telephone || '');
+                var matchEmail = session.email && r.email && r.email.toLowerCase() === session.email.toLowerCase();
+                var matchTel = session.telephone && r.telephone && r.telephone.replace(/\s+/g, '') === session.telephone.replace(/\s+/g, '');
+                return matchEmail || matchTel;
             });
             if (myReqs.length === 0) {
                 list.innerHTML = '<p class="text-muted text-center" style="padding:40px 0">Aucune demande pour l\'instant</p>';

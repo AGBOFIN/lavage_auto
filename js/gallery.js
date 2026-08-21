@@ -74,31 +74,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function openLightbox(index) {
         getVisibleImages();
+        if (!lightbox || !lightboxImg || !visibleImages.length || !visibleImages[index]) return;
         currentImageIndex = index;
         const img = visibleImages[currentImageIndex].querySelector('img');
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
+        if (img) {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt || 'Photo galerie';
+        }
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
     function closeLightbox() {
-        lightbox.classList.remove('active');
+        if (lightbox) lightbox.classList.remove('active');
         document.body.style.overflow = '';
     }
 
     function showPrev() {
+        if (!visibleImages.length || !lightboxImg) return;
         currentImageIndex = (currentImageIndex - 1 + visibleImages.length) % visibleImages.length;
-        const img = visibleImages[currentImageIndex].querySelector('img');
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
+        const target = visibleImages[currentImageIndex];
+        if (target) {
+            const img = target.querySelector('img');
+            if (img) {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt || 'Photo galerie';
+            }
+        }
     }
 
     function showNext() {
+        if (!visibleImages.length || !lightboxImg) return;
         currentImageIndex = (currentImageIndex + 1) % visibleImages.length;
-        const img = visibleImages[currentImageIndex].querySelector('img');
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
+        const target = visibleImages[currentImageIndex];
+        if (target) {
+            const img = target.querySelector('img');
+            if (img) {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt || 'Photo galerie';
+            }
+        }
     }
 
     // Attach click events to gallery items

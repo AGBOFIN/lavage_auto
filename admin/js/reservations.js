@@ -124,14 +124,18 @@
     /* =====================================================
        CHARGER LES RÉSERVATIONS DANS LE TABLEAU
     ===================================================== */
-    function loadReservations() {
-        var requests = BIDE.getRequests();
+    function loadReservations(customRequests) {
+        var allRequests = BIDE.getRequests();
+        var requests = customRequests !== undefined ? customRequests : allRequests;
         var tbody = document.getElementById('reservationsTableBody');
         if (!tbody) return;
         
         if (!requests.length) {
             tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:40px;color:#6B7280;">Aucune réservation pour le moment.</td></tr>';
-            updateStats(0, 0, 0, 0);
+            var allPending = allRequests.filter(function(r) { return r.statut === 'en_attente'; }).length;
+            var allConfirmed = allRequests.filter(function(r) { return r.statut === 'en_cours'; }).length;
+            var allCompleted = allRequests.filter(function(r) { return r.statut === 'terminee'; }).length;
+            updateStats(allRequests.length, allPending, allConfirmed, allCompleted);
             return;
         }
         
@@ -468,18 +472,13 @@
             return matchesSearch && matchesStatus && matchesDate;
         });
         
-        // Afficher les résultats filtrés
+        var emptyEl = document.getElementById('emptyReservations');
         if (!filtered.length) {
             tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:40px;color:#6B7280;">Aucune réservation trouvée.</td></tr>';
-            document.getElementById('emptyReservations').classList.remove('d-none');
+            if (emptyEl) emptyEl.classList.remove('d-none');
         } else {
-            document.getElementById('emptyReservations').classList.add('d-none');
-            // Utiliser la même logique que loadReservations pour afficher
-            // Pour simplifier, on recharge toutes les réservations filtrées
-            var originalRequests = BIDE.getRequests();
-            localStorage.setItem('bide_requests', JSON.stringify(filtered));
-            loadReservations();
-            localStorage.setItem('bide_requests', JSON.stringify(originalRequests));
+            if (emptyEl) emptyEl.classList.add('d-none');
+            loadReservations(filtered);
         }
     }
     

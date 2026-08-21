@@ -793,7 +793,7 @@
     <!-- =====================================
          JAVASCRIPT
     ====================================== -->
-
+    <script src="../js/bide.js"></script>
     <script>
 
         /* =====================================
@@ -877,14 +877,69 @@
 
 
         /* =====================================
-           ENVOYER AVIS
+           GERER LES AVIS
         ====================================== */
+        var AVIS_KEY = 'bide_avis';
+        function getAvis() {
+            try { return JSON.parse(localStorage.getItem(AVIS_KEY)) || []; }
+            catch(e) { return []; }
+        }
+
+        function renderMyReviews() {
+            var session = BIDE.getSession();
+            var container = document.getElementById("reviewsContainer");
+            if (!container) return;
+
+            var avisList = getAvis();
+            var userAvis = [];
+
+            if (session) {
+                var userFullName = ((session.prenom || '') + ' ' + (session.nom || '')).trim().toLowerCase();
+                userAvis = avisList.filter(function(a) {
+                    if (a.clientId && session.clientId && a.clientId === session.clientId) return true;
+                    if (a.client && userFullName && a.client.toLowerCase().includes(userFullName)) return true;
+                    return false;
+                });
+            }
+
+            if (userAvis.length === 0) {
+                container.innerHTML =
+                    '<div style="text-align:center;padding:40px;color:#bbb;">' +
+                    '<i class="bi bi-star" style="font-size:36px;display:block;margin-bottom:10px;"></i>' +
+                    '<p>Aucun avis pour le moment. Partagez votre expérience !</p>' +
+                    '</div>';
+                return;
+            }
+
+            container.innerHTML = '';
+            userAvis.forEach(function(a) {
+                var starsHtml = "";
+                for (var i = 1; i <= 5; i++) {
+                    starsHtml += i <= a.note ? '<i class="bi bi-star-fill"></i>' : '<i class="bi bi-star"></i>';
+                }
+                var initials = (a.client || 'CL').split(' ').map(function(w){return w[0];}).join('').substring(0,2).toUpperCase();
+
+                var item = document.createElement("div");
+                item.className = "review-item";
+                item.innerHTML =
+                    '<div class="review-avatar">' + initials + '</div>' +
+                    '<div class="review-content">' +
+                        '<div class="review-header">' +
+                            '<span class="review-author">' + esc(a.client) + '</span>' +
+                            '<span class="review-date">' + (a.date || '') + '</span>' +
+                        '</div>' +
+                        '<div class="review-stars">' + starsHtml + '</div>' +
+                        '<p class="review-text">' + esc(a.texte) + '</p>' +
+                        '<span class="review-tag tag-comp">' + esc(a.service) + '</span>' +
+                    '</div>';
+                container.appendChild(item);
+            });
+        }
 
         function envoyerAvis() {
-
-            const note = document.getElementById("noteValue").value;
-            const commentaire = document.getElementById("commentaire").value;
-            const service = document.getElementById("serviceSelect").value;
+            var note = document.getElementById("noteValue").value;
+            var commentaire = document.getElementById("commentaire").value;
+            var service = document.getElementById("serviceSelect").value;
 
             if (note == 0) {
                 showToast('Sélectionnez une note.', 'warning');
@@ -901,58 +956,33 @@
                 return;
             }
 
-
-            /* Générer les étoiles */
-            let starsHtml = "";
-            for (let i = 1; i <= 5; i++) {
-                if (i <= note) {
-                    starsHtml += '<i class="bi bi-star-fill"></i>';
-                } else {
-                    starsHtml += '<i class="bi bi-star"></i>';
-                }
-            }
-
-
-            /* Label du service */
-            const serviceLabels = {
-                "lavage-ext": "Lavage extérieur",
-                "lavage-int": "Nettoyage intérieur",
-                "pressing": "Pressing",
-                "polissage": "Polissage",
-                "complet": "Lavage complet"
+            var serviceLabels = {
+                "lavage-ext": "Lavage Extérieur",
+                "lavage-int": "Lavage Intérieur",
+                "pressing": "Nettoyage des Sièges",
+                "polissage": "Polish",
+                "complet": "Lavage Complet"
             };
-            const tagClass = service.includes("ext") ? "tag-ext" :
-                             service.includes("int") || service === "pressing" ? "tag-int" : "tag-comp";
+            var sLabel = serviceLabels[service] || service;
 
+            var session = BIDE.getSession() || {};
+            var fullName = ((session.prenom || '') + ' ' + (session.nom || '')).trim() || 'Client';
 
-            /* Date du jour */
-            const now = new Date();
-            const options = { year: "numeric", month: "long", day: "numeric" };
-            const dateStr = now.toLocaleDateString("fr-FR", options);
+            var now = new Date();
+            var dateStr = now.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" });
 
+            var avisList = getAvis();
+            avisList.unshift({
+                id: session.clientId || BIDE.generateId('CLI'),
+                client: fullName,
+                service: sLabel,
+                note: parseInt(note),
+                texte: commentaire.trim(),
+                date: dateStr
+            });
+            localStorage.setItem(AVIS_KEY, JSON.stringify(avisList));
 
-            /* Créer l'élément */
-            const newReview = document.createElement("div");
-            newReview.className = "review-item";
-            newReview.innerHTML =
-                '<div class="review-avatar">KK</div>' +
-                '<div class="review-content">' +
-                    '<div class="review-header">' +
-                        '<span class="review-author">' + (JSON.parse(localStorage.getItem('bide_session')||'{}').nom || 'Client') + '</span>' +
-                        '<span class="review-date">' + dateStr + '</span>' +
-                    '</div>' +
-                    '<div class="review-stars">' + starsHtml + '</div>' +
-                    '<p class="review-text">' + commentaire + '</p>' +
-                    '<span class="review-tag ' + tagClass + '">' + serviceLabels[service] + '</span>' +
-                '</div>';
-
-
-            /* Insérer au début */
-            const container = document.getElementById("reviewsContainer");
-            container.insertBefore(newReview, container.firstChild);
-
-
-            /* Réinitialiser le formulaire */
+            // Reset form
             document.getElementById("noteValue").value = 0;
             document.getElementById("commentaire").value = "";
             document.getElementById("serviceSelect").value = "";
@@ -962,8 +992,14 @@
                 item.classList.add("bi-star");
             });
 
-
+            renderMyReviews();
             showToast('Merci pour votre avis !', 'success');
+        }
+
+        function esc(s) {
+            var d = document.createElement('div');
+            d.textContent = s || '';
+            return d.innerHTML;
         }
 
         function showToast(msg, type) {
@@ -984,8 +1020,10 @@
             window.location.href = "deconnexion.html";
         }
 
-    </script>
+        // Init
+        renderMyReviews();
 
+    </script>
 
     <script src="../js/session.js"></script>
 </body>

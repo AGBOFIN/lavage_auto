@@ -31,7 +31,10 @@
         if (!session) return;
 
         var invoices = BIDE.getInvoices().filter(function(inv) {
-            return inv.email === session.email || inv.telephone === session.telephone || inv.clientId === session.clientId;
+            var matchEmail = session.email && inv.email && inv.email.toLowerCase() === session.email.toLowerCase();
+            var matchTel = session.telephone && inv.telephone && inv.telephone.replace(/\s+/g, '') === session.telephone.replace(/\s+/g, '');
+            var matchClient = session.clientId && inv.clientId === session.clientId;
+            return matchEmail || matchTel || matchClient;
         });
 
         var tbody = document.querySelector('#invoiceTable tbody');

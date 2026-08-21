@@ -1150,15 +1150,23 @@
                  INFORMATIONS VEHICULE
             =========================================== -->
 
-                <div class="dashboard-card mb-4">
-                    <div class="card-title">
-                        <h5>Véhicule actuellement pris en charge</h5>
+                <!-- ==========================================
+                 INFORMATIONS VEHICULE
+            =========================================== -->
+
+                <div id="activeVehicleCard" class="dashboard-card mb-4">
+                    <div class="card-title d-flex justify-content-between align-items-center">
+                        <h5 class="m-0">Véhicule actuellement pris en charge</h5>
+                        <button class="btn btn-sm btn-outline-primary" onclick="actualiserSuivi()"><i class="bi bi-arrow-clockwise"></i> Actualiser</button>
                     </div>
 
-                    <div style="text-align:center;padding:40px;color:#bbb;">
-                        <i class="bi bi-car-front" style="font-size:48px;display:block;margin-bottom:15px;"></i>
-                        <h5 style="color:#999;">Aucun véhicule en cours</h5>
-                        <p style="font-size:13px;">Réservez un lavage pour suivre votre véhicule ici.</p>
+                    <div id="activeVehicleContent">
+                        <div style="text-align:center;padding:40px;color:#bbb;">
+                            <i class="bi bi-car-front" style="font-size:48px;display:block;margin-bottom:15px;"></i>
+                            <h5 style="color:#999;">Aucun véhicule en cours</h5>
+                            <p style="font-size:13px;">Enregistrez un lavage depuis votre tableau de bord pour suivre votre véhicule en temps réel.</p>
+                            <a href="dashboard.html" class="btn btn-sm btn-primary mt-2" style="border-radius:20px;padding:8px 20px;"><i class="bi bi-plus-circle"></i> Enregistrer un véhicule</a>
+                        </div>
                     </div>
                 </div>
 
@@ -1168,11 +1176,11 @@
 
                 <div class="dashboard-card">
                     <div class="card-title">
-                        <h5>Historique du traitement</h5>
+                        <h5>Historique des lavages</h5>
                     </div>
-                    <div style="text-align:center;padding:30px;color:#bbb;">
+                    <div id="vehicleHistoryContent" style="text-align:center;padding:30px;color:#bbb;">
                         <i class="bi bi-clock-history" style="font-size:36px;display:block;margin-bottom:10px;"></i>
-                        <p>Aucun historique pour le moment.</p>
+                        <p class="m-0">Aucun historique pour le moment.</p>
                     </div>
                 </div>
 
@@ -1190,7 +1198,7 @@
     <!-- ==========================================
      JAVASCRIPT
 =========================================== -->
-
+    <script src="../js/bide.js"></script>
     <script>
         /* Mobile menu toggle */
         (function() {
@@ -1208,86 +1216,159 @@
         })();
 
         /* =====================================
-           PROGRESSION
+           SUIVI DYNAMIQUE DU VEHICULE
         ====================================== */
+        function loadVehicleTracking() {
+            var session = BIDE.getSession();
+            var activeContainer = document.getElementById('activeVehicleContent');
+            var historyContainer = document.getElementById('vehicleHistoryContent');
+            if (!activeContainer) return;
 
-        let progression = 40;
+            if (!session) {
+                activeContainer.innerHTML =
+                    '<div style="text-align:center;padding:40px;color:#bbb;">' +
+                    '<i class="bi bi-person-lock" style="font-size:48px;display:block;margin-bottom:15px;"></i>' +
+                    '<h5 style="color:#999;">Non connecté</h5>' +
+                    '<p style="font-size:13px;">Connectez-vous pour suivre votre véhicule.</p>' +
+                    '<a href="connexion.html" class="btn btn-sm btn-primary mt-2">Se connecter</a>' +
+                    '</div>';
+                return;
+            }
 
+            var requests = BIDE.getRequests();
+            var myReqs = requests.filter(function(r) {
+                var matchEmail = session.email && r.email && r.email.toLowerCase() === session.email.toLowerCase();
+                var matchTel = session.telephone && r.telephone && r.telephone.replace(/\s+/g, '') === session.telephone.replace(/\s+/g, '');
+                return matchEmail || matchTel;
+            });
 
-        /*
-            Simulation de mise à jour.
-            Dans la version finale, cette valeur
-            viendra du système de gestion des véhicules.
-        */
+            // Active request: latest non-completed or latest overall
+            var activeReq = myReqs.find(function(r) { return r.statut !== 'terminee'; });
+            if (!activeReq && myReqs.length > 0 && myReqs[0].statut === 'terminee') {
+                // If all finished, show the latest finished with 100%
+                activeReq = myReqs[0];
+            }
 
+            if (!activeReq) {
+                activeContainer.innerHTML =
+                    '<div style="text-align:center;padding:40px;color:#bbb;">' +
+                    '<i class="bi bi-car-front" style="font-size:48px;display:block;margin-bottom:15px;"></i>' +
+                    '<h5 style="color:#999;">Aucun véhicule en cours</h5>' +
+                    '<p style="font-size:13px;">Enregistrez un lavage depuis votre tableau de bord pour suivre votre véhicule en temps réel.</p>' +
+                    '<a href="dashboard.html" class="btn btn-sm btn-primary mt-2" style="border-radius:20px;padding:8px 20px;"><i class="bi bi-plus-circle"></i> Enregistrer un véhicule</a>' +
+                    '</div>';
+            } else {
+                var step1Class = 'step done';
+                var step2Class = 'step';
+                var step3Class = 'step';
+                var step4Class = 'step';
+                var lineWidth = '15%';
+                var statusBadge = '<span class="status progress">En attente de prise en charge</span>';
 
-        function afficherProgression() {
+                if (activeReq.statut === 'en_attente') {
+                    step1Class = 'step done';
+                    step2Class = 'step active';
+                    lineWidth = '25%';
+                    statusBadge = '<span class="status progress"><i class="bi bi-hourglass-split"></i> En attente</span>';
+                } else if (activeReq.statut === 'en_cours') {
+                    step1Class = 'step done';
+                    step2Class = 'step done';
+                    step3Class = 'step active';
+                    lineWidth = '65%';
+                    statusBadge = '<span class="status progress" style="background:#dbeafe;color:#1d4ed8"><i class="bi bi-droplet-half"></i> En cours de lavage</span>';
+                } else if (activeReq.statut === 'terminee') {
+                    step1Class = 'step done';
+                    step2Class = 'step done';
+                    step3Class = 'step done';
+                    step4Class = 'step done';
+                    lineWidth = '100%';
+                    statusBadge = '<span class="status done"><i class="bi bi-check-circle-fill"></i> Lavage terminé — Prêt</span>';
+                }
 
+                activeContainer.innerHTML =
+                    '<div class="vehicle-header d-flex align-items-center justify-content-between flex-wrap gap-3 pb-3 border-bottom">' +
+                        '<div class="d-flex align-items-center gap-3">' +
+                            '<div class="vehicle-icon" style="width:60px;height:60px;border-radius:12px;background:#eaf3ff;color:#0d6efd;display:flex;align-items:center;justify-content:center;font-size:28px;">' +
+                                '<i class="bi bi-car-front-fill"></i>' +
+                            '</div>' +
+                            '<div>' +
+                                '<h4 style="margin:0 0 4px;font-weight:800;">' + esc(activeReq.marque + ' ' + activeReq.modele) + '</h4>' +
+                                '<p style="margin:0;color:#6c757d;font-size:13px;"><i class="bi bi-credit-card-2-front"></i> ' + esc(activeReq.immatriculation) + (activeReq.couleur ? ' • ' + esc(activeReq.couleur) : '') + '</p>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div>' + statusBadge + '</div>' +
+                    '</div>' +
 
-            document
-                .getElementById("progressPercent")
-                .textContent = progression + "%";
+                    '<div class="progress-container my-4">' +
+                        '<div class="progress-line"></div>' +
+                        '<div class="progress-line-active" style="width:' + lineWidth + '"></div>' +
+                        '<div class="steps">' +
+                            '<div class="' + step1Class + '">' +
+                                '<div class="step-circle"><i class="bi bi-box-arrow-in-right"></i></div>' +
+                                '<h6>Arrivée</h6>' +
+                                '<small>' + (activeReq.dateArrivee ? BIDE.formatDate(activeReq.dateArrivee).split(',')[0] : 'Enregistré') + '</small>' +
+                            '</div>' +
+                            '<div class="' + step2Class + '">' +
+                                '<div class="step-circle"><i class="bi bi-clipboard-check"></i></div>' +
+                                '<h6>Prise en charge</h6>' +
+                                '<small>' + (activeReq.statut === 'en_cours' || activeReq.statut === 'terminee' ? 'Validé' : 'En file') + '</small>' +
+                            '</div>' +
+                            '<div class="' + step3Class + '">' +
+                                '<div class="step-circle"><i class="bi bi-droplet-fill"></i></div>' +
+                                '<h6>Lavage</h6>' +
+                                '<small>' + (activeReq.statut === 'en_cours' ? 'En cours' : activeReq.statut === 'terminee' ? 'Effectué' : 'À venir') + '</small>' +
+                            '</div>' +
+                            '<div class="' + step4Class + '">' +
+                                '<div class="step-circle"><i class="bi bi-check-lg"></i></div>' +
+                                '<h6>Prêt</h6>' +
+                                '<small>' + (activeReq.statut === 'terminee' ? 'Disponible' : 'En attente') + '</small>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
 
+                    '<ul class="info-list pt-2">' +
+                        '<li><span class="info-label">Référence demande</span><span class="info-value"><strong>#' + esc(activeReq.id) + '</strong></span></li>' +
+                        '<li><span class="info-label">Service demandé</span><span class="info-value">' + esc(activeReq.service) + '</span></li>' +
+                        '<li><span class="info-label">Date d\'arrivée</span><span class="info-value">' + (activeReq.dateArrivee ? BIDE.formatDate(activeReq.dateArrivee) : '—') + '</span></li>' +
+                        '<li><span class="info-label">Tarif estimé</span><span class="info-value" style="color:#0d6efd;font-weight:800;">' + BIDE.formatMoney(BIDE.getTarif(activeReq.service)) + '</span></li>' +
+                    '</ul>';
+            }
 
-            document
-                .getElementById("progressActive")
-                .style.width = progression + "%";
-
+            // History
+            if (historyContainer) {
+                if (myReqs.length === 0) {
+                    historyContainer.innerHTML = '<i class="bi bi-clock-history" style="font-size:36px;display:block;margin-bottom:10px;"></i><p class="m-0">Aucun historique pour le moment.</p>';
+                } else {
+                    var html = '<div class="table-responsive"><table class="table table-hover align-middle mb-0" style="font-size:13px;">' +
+                        '<thead><tr><th>ID</th><th>Véhicule</th><th>Service</th><th>Date</th><th>Statut</th></tr></thead><tbody>';
+                    myReqs.forEach(function(r) {
+                        var stBg = r.statut === 'terminee' ? 'bg-success' : r.statut === 'en_cours' ? 'bg-primary' : 'bg-warning text-dark';
+                        var stLbl = r.statut === 'terminee' ? 'Terminée' : r.statut === 'en_cours' ? 'En cours' : 'En attente';
+                        html += '<tr>' +
+                            '<td><strong>#' + esc(r.id) + '</strong></td>' +
+                            '<td><strong>' + esc(r.marque + ' ' + r.modele) + '</strong><br><small class="text-muted">' + esc(r.immatriculation) + '</small></td>' +
+                            '<td>' + esc(r.service) + '</td>' +
+                            '<td>' + (r.dateArrivee ? BIDE.formatDate(r.dateArrivee) : '—') + '</td>' +
+                            '<td><span class="badge ' + stBg + '">' + stLbl + '</span></td>' +
+                            '</tr>';
+                    });
+                    html += '</tbody></table></div>';
+                    historyContainer.innerHTML = html;
+                    historyContainer.style.textAlign = 'left';
+                    historyContainer.style.padding = '10px 0';
+                }
+            }
         }
 
-
-        afficherProgression();
-
-
-
-        /* =====================================
-           ACTUALISATION
-        ====================================== */
+        function esc(s) {
+            var d = document.createElement('div');
+            d.textContent = s || '';
+            return d.innerHTML;
+        }
 
         function actualiserSuivi() {
-
-
-            showToast('Suivi véhicule actualisé.', 'success');
-
-
-            afficherProgression();
-
-        }
-
-
-
-        /* =====================================
-           MISE À JOUR AUTOMATIQUE
-        ====================================== */
-
-        setInterval(function () {
-
-
-            console.log(
-                "Actualisation du suivi du véhicule..."
-            );
-
-
-            /*
-                Plus tard, cette partie pourra utiliser
-                fetch() pour récupérer le statut depuis
-                le backend.
-            */
-
-
-        }, 5000);
-
-        function showToast(msg, type) {
-            type = type || 'success';
-            var t = document.createElement('div');
-            t.style.cssText = 'position:fixed;top:20px;right:20px;z-index:99999;padding:15px 25px;border-radius:10px;color:white;font-weight:700;font-size:14px;box-shadow:0 4px 15px rgba(0,0,0,0.2);font-family:Nunito,sans-serif;display:flex;align-items:center;gap:10px;';
-            var c = {success:'#198754',info:'#0d6efd',warning:'#fd7e14',error:'#dc3545'};
-            t.style.background = c[type]||c.success;
-            var ic = {success:'bi-check-circle-fill',info:'bi-info-circle-fill',warning:'bi-exclamation-triangle-fill'};
-            t.innerHTML = '<i class="bi '+(ic[type]||ic.success)+'"></i> '+msg;
-            document.body.appendChild(t);
-            setTimeout(function(){t.style.opacity='0';t.style.transition='opacity 0.3s';},2500);
-            setTimeout(function(){t.remove();},3000);
+            loadVehicleTracking();
+            BIDE.toast('Suivi actualisé !', 'info');
         }
 
         function deconnexion() {
@@ -1295,8 +1376,12 @@
             window.location.href = "deconnexion.html";
         }
 
+        // Init
+        loadVehicleTracking();
+        BIDE.onSync(function(key) {
+            if (key === 'bide_requests') loadVehicleTracking();
+        });
     </script>
-
 
     <script src="../js/session.js"></script>
 </body>
