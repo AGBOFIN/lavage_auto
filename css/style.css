@@ -71,7 +71,7 @@ p{font-size:var(--fs-body);color:var(--color-text-light);line-height:1.7}
 /* ======================== NAVBAR ======================== */
 .navbar{padding:0;min-height:var(--navbar-height);background:var(--navbar-bg);border-bottom:1px solid var(--color-border);transition:var(--transition);z-index:1000}
 .navbar.scrolled{background:var(--navbar-scrolled-bg);box-shadow:var(--shadow-sm)}
-.navbar-brand{display:flex;align-items:center;gap:12px;padding:4px 8px;background:transparent;border:1px solid rgba(26,58,92,0.22);border-radius:10px;font-family:var(--font-heading);font-weight:800;font-size:1.8rem;color:var(--color-primary);transition:var(--transition)}
+.navbar-brand{display:flex;align-items:center;gap:12px;padding:4px 8px;background:var(--color-primary);border:1px solid rgba(255,255,255,0.28);border-radius:10px;font-family:var(--font-heading);font-weight:800;font-size:1.8rem;color:var(--color-primary);box-shadow:0 2px 8px rgba(26,58,92,0.18);transition:var(--transition)}
 .navbar-brand:hover{transform:scale(1.02)}
 .navbar-brand img{max-height:55px;width:auto;filter:drop-shadow(0 2px 8px rgba(26,58,92,0.15));transition:var(--transition);object-fit:contain}
 .navbar-brand:hover img{filter:drop-shadow(0 4px 12px rgba(26,58,92,0.25));transform:scale(1.05)}

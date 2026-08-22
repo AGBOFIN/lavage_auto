@@ -97,6 +97,10 @@ select {
 .sidebar-logo a {
     display: flex;
     align-items: center;
+    padding: 5px 8px;
+    background: var(--navy);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 8px;
 }
 
 /* MENU */
