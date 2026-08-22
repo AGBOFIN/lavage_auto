@@ -385,6 +385,44 @@ p{font-size:var(--fs-body);color:var(--color-text-light);line-height:1.7}
     .section-title h2{font-size:1.3rem}
 }
 
+/* ---- MOBILE: navigation et contenu sans débordement ---- */
+@media(max-width:767.98px){
+    body{overflow-x:clip}
+    .container{padding-left:20px;padding-right:20px}
+    .navbar .container{padding-left:14px;padding-right:14px}
+    .navbar-brand{max-width:calc(100% - 64px);padding:4px 7px}
+    .navbar-brand img{max-width:185px;max-height:42px}
+    .navbar-collapse{margin-left:0;margin-right:0;padding:12px;border-radius:0 0 var(--radius-md) var(--radius-md)}
+    .navbar-nav{padding:2px 0 8px}
+    .navbar-nav .nav-link{padding:12px 14px}
+    .navbar .btn-login{display:flex;width:100%;justify-content:center;margin-top:4px}
+    .hero{min-height:max(680px,100dvh);padding-bottom:64px}
+    .hero-content{width:100%;max-width:36rem;margin:0 auto}
+    .hero-content h1{overflow-wrap:anywhere}
+    .hero-content p{max-width:34rem;margin-left:auto;margin-right:auto}
+    .section-title.text-start{text-align:center!important}
+    .section-title.text-start h2::after{margin-left:auto;margin-right:auto}
+    .section .row{row-gap:20px}
+    .advantages{max-width:34rem;margin:0 auto}
+    .advantages .advantage-item{text-align:left}
+    .advantage-icon i{line-height:1}
+    .gallery-filters{margin-bottom:28px}
+    .contact-form .btn-bide{width:100%;justify-content:center}
+}
+
+@media(max-width:575.98px){
+    .container{padding-left:16px;padding-right:16px}
+    .navbar-brand img{max-width:155px;max-height:36px}
+    .hero{min-height:max(620px,100dvh);padding-bottom:54px}
+    .hero-content h1{line-height:1.15}
+    .hero-content p{line-height:1.65;margin-bottom:28px}
+    .hero-buttons .btn-bide{min-height:48px}
+    .gallery-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+    .gallery-filters .filter-btn{width:100%;padding:8px 10px}
+    .advantages .advantage-item{gap:10px}
+    .advantages .advantage-text p{line-height:1.55}
+}
+
 /* ---- HOVER: pas de hover sur tactile ---- */
 @media(hover:none){
     .card-bide:hover{transform:none}
